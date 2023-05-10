@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block content %}
+<section class="hero-search">
+    <div class="bob">
+        <div class="roof">
+            <div class="category">
+                <div class="ana">
+                    <div class="word-card">
+                        <div class="buy">
+                            <a href="#">קונה</a>
+                        </div>
+                        <div class="sale">
+                            <a href="#">שווי הנכס</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="Search-rectangle">
+                <div class="flex-wrapper-six">
+                    <p class="mca-at-hbit-hba-wlk">מצא את הבית הבא שלך</p>
+                    <form action="{% url 'search' %}" method="get">
+                        <input type="text" name="neighborhood" autocomplete="off" id="input_address" placeholder="שכונה" required>
+                        <input class="coco1" type="number" name="room"  id="room-numbrt" min="1" max="30" placeholder="חדרים">
+                        <input class="coco" type="number" id="first-number"  name="min-price" min="1" max="300000000" placeholder=" מ-">
+                        <input class="coco" type="number" id="first-second" name="max-price" min="1" max="300000000" placeholder=" עד-">
+                        <button class="sudmit2" type="submit">חיפוש מתקדם</button>
+                        <button class="sudmit1" type="submit">חיפוש</button>
+                    </form>
+
+                </div>
+            </section>
+            <img alt="" class="triple" src="https://static.overlay-tech.com/assets/70647bc4-e803-47da-a4da-b594cf1fc1b2.svg">
+        </div>
+    </div>
+</section>
+
+<style>
+  .table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    padding-top: 30px;
+
+  }
+
+  .table-bordered {
+    border: none;
+    margin-bottom: 30px;
+    background-color: #fff;
+  }
+
+  .card {
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+</style>
+
+<div class="table-container">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tbody>
+        {% for apartment in apartments %}
+          {% if forloop.counter0|divisibleby:4 %}
+            <tr>
+          {% endif %}
+          <td>
+            <div class="card">
+              <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/nvFile3401256.jpg' %}';">
+              <div class="card-body">
+                <h5 class="card-title">{{ apartment.Street }} רחוב :</h5>
+                <p class="card-text">מחיר : {{ apartment.Price }}</p>
+                <p class="card-text">מחיר האלגוריתם: {{ apartment.Predicted }}</p>
+                <p class="card-text">גדול הדירה: {{ apartment.Size }}</p>
+                <p class="card-text">קומה: {{ apartment.Floor }}</p>
+                <p class="card-text">Rooms: {{ apartment.Room }}</p>
+                <p class="card-text">עיר: {{ apartment.City }}</p>
+                <p class="card-text">שכונה: {{ apartment.Neighborhood }}</p>
+                <a href="{{ apartment.link }}" class="btn btn-primary">לפרטים נוספים לחץ כאן</a>
+              </div>
+            </div>
+          </td>
+          {% if forloop.counter|divisibleby:4 or forloop.last %}
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

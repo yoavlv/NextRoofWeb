@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextRoof</title>
+    <link rel="stylesheet" href="{% static 'css/ready.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap" rel="stylesheet">
+</head>
+
+
+<body dir="rtl">
+    <header>
+        <nav>
+            <div class="nav2">
+                <div class="logo-menu1">
+                    <div class="group-26">
+                        <div class="ellipse-1-two"></div>
+                        <img alt="" class="union" src="https://static.overlay-tech.com/assets/6f64b59a-46aa-4977-ad27-4a8ac1a475ed.svg">
+                    </div>
+                    <p class="knish">כניסה</p>
+                </div>
+                <ul>
+                    <li><a href="#"> המציאה היומית</a></li>
+                    <li><a href="#">שווי הנכס</a></li>
+                    <li><a href="#">חיפוש</a></li>
+                    <li><a href="#">יצירת קשר</a></li>
+                    <li><a href="#">דף הבית</a></li>
+                </ul>
+                <div class="logo-menu">
+                    <div class="group-11">
+                        <div class="ellipse-1"></div>
+                    </div>
+                    <p class="next-roof">NextRoof</p>
+                </div>
+            </div>
+        </nav>
+
+{% block content %}
+
+
+{% endblock %}
+            </header>
+
+    <div class="about-us">
+        <h2>מי אנחנו?</h2>
+        <p>NextRoof הינה מערכת אינטרנטית (web application) המשתמשת באלגוריתם בינה מלאכותית (AI) כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
+    </div>
+    <footer>
+        <div class="a-list">
+
+
+                    <div class="one-right">
+
+                        <p><a href="#">דף הבית</a></p>
+                        <p><a href="#">שווי הנכס</a></p>
+                        <p><a href="#">חיפוש</a></p>
+
+                    </div>
+
+                    <div class="one-middle">
+
+                        <p><a href="#">תקנון האתר</a></p>
+                        <p><a href="#">מדיניות פרטיות</a></p>
+                        <p><a href="#">אודות</a></p>
+
+                    </div>
+
+                    <div class="one-left">
+
+                        <p><a href="#">המציאה היומית</a></p>
+                        <p><a href="#">יצירת קשר</a></p>
+
+                    </div>
+
+
+        </div>
+
+        <div class="left-logo2">
+
+            <div class="logo-menu2">
+                <div class="group-11-2">
+                <div class="ellipse-1-2"></div>
+                </div>
+                <p class="next-roof-2">NextRoof</p>
+            </div>
+
+            <div class="hand-footer">
+                <img src="{% static '/img/real-estate-agent-37672998.png' %}" alt="">
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

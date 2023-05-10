@@ -1,0 +1,624 @@
+$bag-card: #01080e;
+$primarBtn: #020b13;
+$secondBtn: #071f35;
+$back-card: #041524;
+$textcolor: #ffffff;
+$secondaryBB: #e9ecfc;
+
+@mixin button-primary($background, $padding, $color) {
+  padding: $padding;
+  border-style: none;
+  border-radius: 0.2rem;
+  background: $background;
+  color: $color;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #020b13;
+  font-family: "Rubik", sans-serif;
+}
+
+header {
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(2, 11, 19, 0.98) 100%
+    ),
+    linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.7)),
+    url("https://static.overlay-tech.com/assets/f209e5b4-05e3-49c8-b0a6-a816e390658a.png");
+  background-size: 100%;
+  background-position: center;
+}
+
+nav {
+  display: flex;
+  height: calc(7.74% - 10px);
+  background-color: rgba(2, 11, 19, 0.7);
+}
+
+.nav2 {
+  width: 80%;
+
+  display: flex;
+  height: calc(7.74% - 10px);
+  padding: 0.4rem 0;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+
+  ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0 50px;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgba(240, 240, 240, 1);
+    font-size: 1rem;
+  }
+
+  .knish {
+    max-width: 35px;
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    color: rgba(255, 255, 255, 1);
+    text-align: right;
+  }
+}
+
+.logo-menu {
+  display: flex;
+  flex-direction: column;
+
+  .group-11 {
+    background-size: 100% 100%;
+    background-position: center;
+    background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
+    margin-bottom: 3.48px;
+    padding: 40.33px 21.09px 9.28px 30.24px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .ellipse-1 {
+    width: 1.6px;
+    height: 1.6px;
+    background-color: rgba(240, 240, 240, 1);
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .next-roof {
+    font-family: "Major Mono Display";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    color: rgba(201, 201, 201, 1);
+  }
+}
+
+.hero-search {
+  height: 100vh;
+  //   background: linear-gradient(
+  //       180deg,
+  //       rgba(0, 0, 0, 0) 70%,
+  //       rgba(2, 11, 19, 0.98) 91%
+  //     ),
+  //     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  //     url("https://static.overlay-tech.com/assets/f209e5b4-05e3-49c8-b0a6-a816e390658a.png");
+  //   background-size: 100%;
+  //   background-position: center;
+}
+
+.bob {
+  display: flex;
+  position: relative;
+  width: 80%;
+  margin: auto;
+  top: 5rem;
+
+  .roof {
+    width: 85%;
+
+    margin: auto;
+  }
+}
+
+.Search-rectangle {
+  background: rgba(255, 255, 255, 0.5);
+  width: 85%;
+  height: 13.6rem;
+  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
+  /* margin: auto; */
+  border-radius: 0.1rem;
+
+  left: 84px;
+  top: 118px;
+  position: absolute;
+}
+
+.triple {
+  width: 218px;
+  height: 354px;
+  float: left;
+}
+
+.logo-menu1 {
+  .group-26 {
+    margin-bottom: 0.11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ellipse-1-two {
+    width: 8.67px;
+    height: 8.67px;
+    margin-bottom: 1.85px;
+    border-radius: 50%;
+    border: 0.4px solid rgba(201, 201, 201, 1);
+  }
+  .union {
+    width: 26.44px;
+    height: 25.54px;
+  }
+}
+
+.category {
+  margin-top: 4.8rem;
+
+  float: right;
+
+  .sale a {
+    text-decoration: none;
+    color: #020b13;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: rgba(240, 240, 240, 0.315);
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.2rem;
+    margin-right: 0.8rem;
+  }
+  .word-card {
+    display: flex;
+    align-items: center;
+  }
+
+  .buy a {
+    text-decoration: none;
+    color: #020b13;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background-color: rgba(240, 240, 240, 0.692);
+    padding: 0.6rem 1.1rem;
+    border-radius: 0.2rem;
+  }
+}
+
+form {
+  display: flex;
+  position: absolute;
+  z-index: 80;
+  gap: 0rem 0.2rem;
+  /* background-color: aqua; */
+  right: 1rem;
+
+  input {
+    border-radius: 0.2rem;
+    border-style: none;
+    width: 10.4rem;
+    height: 2rem;
+  }
+
+  .coco1 {
+    width: 6.8rem;
+  }
+
+  .coco {
+    width: 5.8rem;
+  }
+
+  .sudmit2 {
+    padding: 0.5rem 0.8rem;
+    border-style: none;
+    border-radius: 0.2rem;
+    background: $secondaryBB;
+    &:hover {
+      background: darken($secondaryBB, 5%);
+    }
+  }
+  .sudmit1 {
+    @include button-primary($back-card, 0.5rem 1.8rem, $textcolor);
+    transition: 0.3s;
+
+    &:hover {
+      background: darken($bag-card, 2%);
+    }
+  }
+}
+
+.mca-at-hbit-hba-wlk {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: normal;
+  color: rgba(2, 11, 19, 1);
+  text-align: right;
+  padding: 1rem 1rem;
+}
+
+.hmzea-hyomet {
+  h1 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  width: 75%;
+  // background-color: rgba(127, 219, 255, 0.473);
+  color: aliceblue;
+  margin: 0 auto;
+  text-align: center;
+  .btn-hmzea {
+    @include button-primary($secondBtn, 0.6rem 1.8rem, $textcolor);
+    margin: 0.8rem 0;
+    font-size: 1rem;
+    transition: 00.3s;
+
+    &:hover {
+      background: darken($secondBtn, 3%);
+    }
+  }
+}
+
+/* מההה עכשיו */
+
+.day {
+  // text-align: center;
+  // top: 40vh;
+  // color: aliceblue;
+  // position: relative;
+
+  width: 80%;
+  display: flex;
+  gap: 0.8rem;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.card-hmzea-right {
+  // width: 19.5%;
+  // background: #f3900f77;
+  margin: auto;
+  justify-content: center;
+
+  .top-card {
+    display: flex;
+    // position: relative;
+    // margin: 0;
+    // padding: 0;
+    // box-sizing: content-box;
+
+    .photo-card {
+      width: 18.6rem;
+      height: 12.3rem;
+      clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+
+      position: absolute;
+      margin-top: 2.7rem;
+    }
+
+    .triple-card {
+      width: 166px;
+      margin-right: 6.1rem;
+
+      // position: absolute;
+    }
+  }
+
+  .down-card {
+    // background: $bag-card;
+    text-align: center;
+    color: $textcolor;
+
+    p {
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .hiskvn {
+      font-size: 1.8rem;
+      font-weight: 700;
+      padding-top: 1.4rem;
+    }
+  }
+
+  .details {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    align-items: center;
+    color: $textcolor;
+    padding: 0.8rem 0;
+
+    .line-1 {
+      width: 0.08rem;
+      height: 2rem;
+      background-color: $textcolor;
+    }
+  }
+}
+
+.btn-card1 {
+  @include button-primary($secondBtn, 0.4rem 1.8rem, $textcolor);
+  font-size: 1.2rem;
+  width: 82%;
+  margin: 0.9rem 0;
+  transition: 00.3s;
+
+  &:hover {
+    background: darken($secondBtn, 3%);
+  }
+}
+
+.down-card-text {
+  text-align: center;
+  background-color: $bag-card;
+  border-radius: 3px;
+}
+
+.card-hmzea-middle {
+  // width: 19.5%;
+  // background: #f3900f77;
+  margin: auto;
+  justify-content: center;
+
+  .top-card {
+    display: flex;
+    // position: relative;
+    // margin: 0;
+    // padding: 0;
+    // box-sizing: content-box;
+
+    .photo-card {
+      width: 18.6rem;
+      height: 12.3rem;
+      clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+
+      position: absolute;
+      margin-top: 2.7rem;
+    }
+
+    .triple-card {
+      width: 166px;
+      margin-right: 6.1rem;
+
+      // position: absolute;
+    }
+  }
+
+  .down-card {
+    // background: $bag-card;
+    text-align: center;
+    color: $textcolor;
+
+    p {
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .hiskvn {
+      font-size: 1.8rem;
+      font-weight: 700;
+      padding-top: 1.4rem;
+    }
+  }
+
+  .details {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    align-items: center;
+    color: $textcolor;
+    padding: 0.8rem 0;
+
+    .line-1 {
+      width: 0.08rem;
+      height: 2rem;
+      background-color: $textcolor;
+    }
+  }
+}
+
+.btn-card2 {
+  @include button-primary($secondBtn, 0.4rem 1.8rem, $textcolor);
+  font-size: 1.2rem;
+  width: 82%;
+  margin: 0.9rem 0;
+  transition: 00.3s;
+
+  &:hover {
+    background: darken($secondBtn, 3%);
+  }
+}
+
+.down-card-text {
+  text-align: center;
+  background-color: $bag-card;
+  border-radius: 3px;
+}
+
+.card-hmzea-left {
+  // width: 19.5%;
+  // background: #f3900f77;
+  margin: auto;
+  justify-content: center;
+
+  .top-card {
+    display: flex;
+    // position: relative;
+    // margin: 0;
+    // padding: 0;
+    // box-sizing: content-box;
+
+    .photo-card {
+      width: 18.6rem;
+      height: 12.3rem;
+      clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+
+      position: absolute;
+      margin-top: 2.7rem;
+    }
+
+    .triple-card {
+      width: 166px;
+      margin-right: 6.1rem;
+
+      // position: absolute;
+    }
+  }
+
+  .down-card {
+    // background: $bag-card;
+    text-align: center;
+    color: $textcolor;
+
+    p {
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .hiskvn {
+      font-size: 1.8rem;
+      font-weight: 700;
+      padding-top: 1.4rem;
+    }
+  }
+
+  .details {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    align-items: center;
+    color: $textcolor;
+    padding: 0.8rem 0;
+
+    .line-1 {
+      width: 0.08rem;
+      height: 2rem;
+      background-color: $textcolor;
+    }
+  }
+}
+
+.btn-card3 {
+  @include button-primary($secondBtn, 0.4rem 1.8rem, $textcolor);
+  font-size: 1.2rem;
+  width: 82%;
+  margin: 0.9rem 0;
+  transition: 00.3s;
+
+  &:hover {
+    background: darken($secondBtn, 3%);
+  }
+}
+
+.down-card-text {
+  text-align: center;
+  background-color: $bag-card;
+  border-radius: 3px;
+}
+
+.about-us {
+  color: $textcolor;
+  text-align: center;
+  font-size: 1.2rem;
+  width: 48%;
+  margin: 8rem auto;
+}
+
+footer {
+  height: 80vh;
+  align-items: center;
+  padding-top: 10rem;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(2, 11, 19, 0.98) 100%
+    ),
+    linear-gradient(rgba(0, 0, 0, 0.938), rgba(0, 0, 0, 0.219)),
+    url("/img/footer.jpg");
+  background-size: 100%;
+  background-position: center;
+
+  display: flex;
+
+  .a-list {
+    display: flex;
+    gap: 2rem;
+    margin: auto;
+    width: 38%;
+    a {
+      list-style: none;
+      color: $textcolor;
+      text-decoration: none;
+      font-size: 1.3rem;
+      text-shadow: 2px 4px 8px #01080e;
+    }
+
+    p {
+      padding: 5px 0;
+    }
+
+    .one-right {
+    }
+  }
+}
+
+.left-logo2 {
+  .logo-menu2 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 6rem;
+    margin-bottom: -3.4rem;
+
+    .group-11-2 {
+      background-size: 100% 100%;
+      background-position: center;
+      background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
+      margin-bottom: 3.48px;
+      padding: 80px 21.09px 9.28px 30.24px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .ellipse-1-2 {
+      width: 1.6px;
+      height: 1.6px;
+      background-color: rgba(240, 240, 240, 1);
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+    .next-roof-2 {
+      font-family: "Major Mono Display";
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: normal;
+      color: $textcolor;
+      margin: auto;
+    }
+  }
+
+  .hand-footer img {
+    width: 80%;
+    float: left;
+  }
+}

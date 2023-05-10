@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/ready.css'%}">
+
+<!--    {% static '/https://fonts.googleapis.com'%}-->
+    <link rel="preconnect" href="{% static '/https://fonts.googleapis.com'%}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+
+</head>
+<body dir="rtl">
+    <header>
+            <nav>
+                <div class="nav2">
+                    <div class="logo-menu1">
+                        <div class="group-26">
+                        <div class="ellipse-1-two"></div>
+                        <img
+                            alt=""
+                            class="union"
+                            src="https://static.overlay-tech.com/assets/6f64b59a-46aa-4977-ad27-4a8ac1a475ed.svg"
+                        />
+                        </div>
+                        <p class="knish">כניסה</p>
+                    </div>
+
+                            <ul> 
+
+                                    <li><a href="#"> המציאה היומית</a></li>
+                                    <li><a href="#">שווי הנכס</a></li>
+                                    <li><a href="#">חיפוש</a></li>
+                                    <li><a href="#">יצירת קשר</a></li>
+                                    <li><a href="#">דף הבית</a></li>
+                            </ul>
+
+
+                            
+                        <div class="logo-menu">
+                            <div class="group-11">
+                            <div class="ellipse-1"></div>
+                            </div>
+                            <p class="next-roof">NextRoof</p>
+                        </div>
+
+
+
+                </div>
+
+
+
+
+            </nav>
+
+            <section class="hero-search">
+        
+                <div class="bob">
+        
+                    <div class="roof">
+
+
+                        <div class="category">
+
+                            <div class="ana">
+
+                                <div class="word-card">
+
+                                               
+                                    <div class="buy">
+                                        <a href="#">קונה</a>
+                                    </div>
+
+                                    <div class="sale">
+                                        <a href="#">שווי הנכס</a>
+                                    </div>
+ 
+            
+                                </div>
+            
+                        </div>
+        
+                        </div>
+
+                                        
+                                 <section class="Search-rectangle">
+
+                                        <div class="flex-wrapper-six"> 
+
+                                            <p class="mca-at-hbit-hba-wlk">מצא את הבית הבא שלך</p>
+
+                            
+                                            <form action="/url" method="GET">
+                                                <input type="text" name="area,city,neighborhood,street" autocomplete="off" id="input_address" placeholder=" לדוגמה, תלאביב יפו" required>
+                                                <select id="comp">
+                                                    <option value="sass">Sass</option>
+                                                    <option value="less">Less</option>
+                                                    <option value="stylus">Stylus</option>
+                                                    <option value="postcss">PostCSS</option>
+                                                    <option value="other">Other</option>
+                                                  </select>
+                                                
+                                                <input class="coco1" type="number" name="room-numbrt"  id="room-numbrt" min="1" max="30" placeholder=" חדרים" required>
+                                                <input class="coco" type="number" id="first-number" name="first-quantity" min="1" max="300000000" placeholder=" מ-" required>
+                                                <input class="coco" type="number" id="first-second" name="second-quantity" min="1" max="300000000" placeholder=" עד-" required>
+                                                <button class="sudmit2" type="submit">חיפוש מתקדם</button>  
+                                                <button class="sudmit1" type="submit">חיפוש</button>  
+                                            </form>
+
+
+                                
+                                        </div>
+
+
+                         </section>
+        
+                                <img
+                                alt=""
+                                class="triple"
+                                src="https://static.overlay-tech.com/assets/70647bc4-e803-47da-a4da-b594cf1fc1b2.svg"
+                            />
+        
+                    </div>
+
+
+
+
+
+                </div>
+        
+            </section>
+            
+
+    </header>
+
+    <section class="hmzea-hyomet">
+        <h1>המציאה היומית</h1>
+        <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
+
+        <button class="btn-hmzea">הצטרפו וקבלו הצעות ראשונים</button>
+
+    </section>
+    
+
+<section class="day">
+
+{% for deal in top_deals %}
+
+    {%if  forloop.counter == 0 %}
+        <div class="card-hmzea-right">
+    {%elif forloop.counter == 1 %}
+        <div class="card-hmzea-middle">
+    {% else  %}
+        <div class="card-hmzea-left">
+
+    {%endif%}
+
+        <div class="top-card">
+            {% if deal.Images %}
+            <img class="photo-card" src="{{ deal.Images }}" alt="{% static '/img/nvFile3401256.jpg' %}">
+            {% else %}
+            <img class="photo-card" src="{% static '/img/nvFile3401256.jpg' %}" alt="">
+            {% endif %}
+
+            <img
+                alt=""
+                class="triple-card"
+                src="https://static.overlay-tech.com/assets/1caae834-6301-4529-9963-b5b4ddb1b780.svg"
+            />
+        </div>
+
+        <div class="down-card-text">
+            <div class="down-card">
+                <p class="hiskvn">חיסכון: {{ deal.p_change }}%</p>
+                <p class="mhir-mbvqw">מחיר מבוקש : {{ deal.Price }}</p>
+                <p class="mhir-mverk">מחיר מוערך: {{ deal.Predicted }}</p>
+                <p class="location-apartment">{{ deal.Street }},{{ deal.Neighborhood }},{{ deal.City }}</p>
+            </div>
+
+            <div class="details">
+                <p class="num-90">{{ deal.Size }} מ"ר</p>
+                <p class="line-1"></p>
+                <p class="num-5">קומה {{ deal.Floor }}</p>
+                <p class="line-1"></p>
+                <p class="num-4">חדרים {{ deal.Room }}</p>
+            </div>
+
+        {%if  forloop.counter == 0 %}
+            <button class="btn-card1" onclick=window.location.href='{{deal.link}}' >לפרטים נוספים</button>
+        {%elif forloop.counter == 1 %}
+           <button class="btn-card2" onclick=window.location.href='{{deal.link}}' >לפרטים נוספים</button>
+        {% else  %}
+            <button class="btn-card3" onclick=window.location.href='{{deal.link}}' >לפרטים נוספים</button>
+
+    {%endif%}
+        </div>
+
+    </div>
+
+{% endfor %}
+
+</section>
+
+    <div class="about-us">
+        <h2>מי אנחנו?</h2>
+        <p>NextRoof הינה מערכת אינטרנטית (web application) המשתמשת באלגוריתם בינה מלאכותית (AI) כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
+    </div>
+
+    <footer>
+
+        <div class="a-list">
+
+
+                    <div class="one-right">
+
+                        <p><a href="#">דף הבית</a></p>
+                        <p><a href="#">שווי הנכס</a></p>
+                        <p><a href="#">חיפוש</a></p>
+
+                    </div>
+
+                    <div class="one-middle">
+
+                        <p><a href="#">תקנון האתר</a></p>
+                        <p><a href="#">מדיניות פרטיות</a></p>
+                        <p><a href="#">אודות</a></p>
+
+                    </div>   
+                    
+                    <div class="one-left">
+
+                        <p><a href="#">המציאה היומית</a></p>
+                        <p><a href="#">יצירת קשר</a></p>
+
+                    </div>  
+                    
+
+        </div>
+
+        <div class="left-logo2">
+
+            <div class="logo-menu2">
+                <div class="group-11-2">
+                <div class="ellipse-1-2"></div>
+                </div>
+                <p class="next-roof-2">NextRoof</p>
+            </div>
+
+            <div class="hand-footer">
+                <img src="{% static '/img/real-estate-agent-37672998.png' %}" alt="">
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
