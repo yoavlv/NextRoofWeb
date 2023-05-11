@@ -97,7 +97,6 @@ def search_apartments(request):
 
         query += "ORDER BY RAND() LIMIT 16"
         cursor.execute(query)
-        print(query)
 
         rows = cursor.fetchall()
         apartments = []

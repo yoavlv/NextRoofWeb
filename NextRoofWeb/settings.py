@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+def read_data(filename):
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+        secret_key = lines[0].strip()
+        password = lines[1].strip()
+        return secret_key, password
+filename = 'hide.txt'
+secret_key, password = read_data(filename)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tvu@wl=2t8=9%9-h9norknjc6+npalwqrw))%^x!0y0!txjsao'
+
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nextroofweb_db',
         'USER': 'root',
-        'PASSWORD': 'QIU9543blk12sbM',
+        'PASSWORD': password,
         'PORT':3306,
         'HOST':'127.0.0.1',
     }
