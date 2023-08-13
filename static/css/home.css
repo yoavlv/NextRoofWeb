@@ -1,0 +1,356 @@
+
+
+.daily-find {
+    position: relative;
+    top: -60px;
+    background-color: rgba(190, 188, 243, 0.095);
+    position: center;
+}
+.day-title {
+  position: relative;
+  top: 70px;
+  left: -10px;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.7rem;
+  width: 450px;
+  padding: 20px;
+}
+
+.day-title h1 {
+  color: white;
+  padding: 12px;
+}
+
+.day-title p {
+  font-size: 17px;
+  color: white;
+  text-indent: 2px;
+  text-transform: uppercase;
+}
+
+.day-title button {
+  padding: 0.4rem 1.8rem;
+  border-style: none;
+  border-radius: 0.7rem;
+  background: #072f55;
+  color: #ffffff;
+  font-size: 1.2rem;
+  width: 71%;
+  margin: 0.9rem 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.day-title button:hover {
+  background: #0c3476;
+}
+
+
+
+.day-deal {
+  width: 75%;
+  color: alicee-blue;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.day-deal h1 {
+  font-size: 1.8rem;
+}
+
+.day-deal p {
+  font-size: 1.2rem;
+}
+
+.day-deal .btn-day {
+  padding: 0.6rem 1.8rem;
+  border-style: none;
+  border-radius: 0.2rem;
+  background: #071f35;
+  color: #ffffff;
+  margin: 0.8rem 0;
+  font-size: 1rem;
+  -webkit-transition: 00.3s;
+  transition: 00.3s;
+}
+
+
+.deal-day .btn-day:hover {
+  background: #051727;
+}
+
+.day {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.8rem;
+  margin: auto;
+  margin-top: 2.7rem;
+}
+
+
+
+.card-day-right {
+  margin: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card-day-right .top-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-day-right .top-card .photo-card {
+  width: 18.6rem;
+  height: 12.3rem;
+  -webkit-clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+          clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+  position: absolute;
+  margin-top: 2.7rem;
+}
+
+.card-day-right .top-card .triple-card {
+  width: 166px;
+  margin-right: 6.1rem;
+}
+
+.card-day-right .down-card {
+  text-align: center;
+  color: #ffffff;
+}
+
+.card-day-right .down-card p {
+  padding: 0.2rem 0;
+  font-size: 1rem;
+}
+
+.card-day-right .down-card .saving {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding-top: 1.4rem;
+}
+
+.card-day-right .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+  padding: 0.8rem 0;
+}
+
+.card-day-right .details .line-1 {
+  width: 0.08rem;
+  height: 2rem;
+  background-color: #ffffff;
+}
+
+.btn-card1 {
+  padding: 0.4rem 1.8rem;
+  border-style: none;
+  border-radius: 0.2rem;
+  background: #071f35;
+  color: #ffffff;
+  font-size: 1.2rem;
+  width: 82%;
+  margin: 0.9rem 0;
+  -webkit-transition: 00.3s;
+  transition: 00.3s;
+}
+
+.btn-card1:hover {
+  background: #051727;
+}
+
+.down-card-text {
+  text-align: center;
+  background-color: #01080e;
+  border-radius: 3px;
+}
+
+.card-day-middle {
+  margin: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card-day-middle .top-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-day-middle .top-card .photo-card {
+  width: 18.6rem;
+  height: 12.3rem;
+  -webkit-clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+          clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+  position: absolute;
+  margin-top: 2.7rem;
+}
+
+
+.card-day-middle .down-card {
+  text-align: center;
+  color: #ffffff;
+}
+
+.card-day-middle .down-card p {
+  padding: 0.2rem 0;
+  font-size: 1rem;
+}
+
+.card-day-middle .down-card .saving {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding-top: 1.4rem;
+}
+
+.card-day-middle .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+  padding: 0.8rem 0;
+}
+
+.card-day-middle .details .line-1 {
+  width: 0.08rem;
+  height: 2rem;
+  background-color: #ffffff;
+}
+
+.btn-card2 {
+  padding: 0.4rem 1.8rem;
+  border-style: none;
+  border-radius: 0.2rem;
+  background: #071f35;
+  color: #ffffff;
+  font-size: 1.2rem;
+  width: 82%;
+  margin: 0.9rem 0;
+  -webkit-transition: 00.3s;
+  transition: 00.3s;
+}
+
+.btn-card2:hover {
+  background: #051727;
+}
+
+.down-card-text {
+  text-align: center;
+  background-color: #01080e;
+  border-radius: 3px;
+}
+
+.card-day-left {
+  margin: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card-day-left .top-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-day-left .top-card .photo-card {
+  width: 18.6rem;
+  height: 12.3rem;
+  -webkit-clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+          clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+  position: absolute;
+  margin-top: 2.7rem;
+}
+
+.card-day-left .top-card .triple-card {
+  width: 166px;
+  margin-right: 6.1rem;
+}
+
+.card-day-left .down-card {
+  text-align: center;
+  color: #ffffff;
+}
+
+.card-day-left .down-card p {
+  padding: 0.2rem 0;
+  font-size: 1rem;
+}
+
+.card-day-left .down-card .saving {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding-top: 1.4rem;
+}
+
+.card-day-left .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+  padding: 0.8rem 0;
+}
+
+.card-day-left .details .line-1 {
+  width: 0.08rem;
+  height: 2rem;
+  background-color: #ffffff;
+}
+
+
+.btn-card3 {
+  padding: 0.4rem 1.8rem;
+  border-style: none;
+  border-radius: 0.2rem;
+  background: #071f35;
+  color: #ffffff;
+  font-size: 1.2rem;
+  width: 82%;
+  margin: 0.9rem 0;
+  -webkit-transition: 00.3s;
+  transition: 00.3s;
+}
+
+.btn-card3:hover {
+  background: #051727;
+}
+
+.down-card-text {
+  text-align: center;
+  background-color: #01080e;
+  border-radius: 3px;
+}
+

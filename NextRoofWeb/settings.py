@@ -18,6 +18,7 @@ def read_data(filename):
         password = lines[1].strip()
         return secret_key, password
 filename = 'hide.txt'
+
 secret_key, password = read_data(filename)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,10 +33,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = ['nexroof.online', 'www.nexroof.online', '127.0.0.1']
+ALLOWED_HOSTS = ['nextroof.online', 'www.nextroof.online' ,'*']
 
 # Application definition
 
@@ -131,10 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR,'static_dev')
 ]
 
 

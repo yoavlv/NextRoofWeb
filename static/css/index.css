@@ -1,0 +1,195 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+body {
+  background: linear-gradient(1deg, rgba(0, 0, 0, 0) 10%, rgba(2, 11, 19, 0.98) 100%), linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.7)), url("/static/img/main-background.jpg");
+  background-size: 110%;
+  background-position: center;
+  font-family: "Rubik", sans-serif;
+}
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: calc(7.74% - 10px);
+  background-color: rgba(2, 11, 19, 0.7);
+}
+
+.nav2 {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: calc(7.74% - 10px);
+  padding: 0.4rem ;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: auto;
+}
+
+.nav2 ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  gap: 4rem;
+  margin: 0 50px;
+}
+
+.nav2 a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+}
+
+.nav2 .enter {
+  max-width: 35px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: normal;
+  color: white;
+  text-align: right;
+}
+
+.logo-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.logo-menu .group-11 {
+  background-size: 100% 100%;
+  background-position: center;
+  background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
+  margin-bottom: 3.48px;
+  padding: 40.33px 21.09px 9.28px 30.24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.logo-menu .ellipse-1 {
+  width: 1.6px;
+  height: 1.6px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.logo-menu .next-roof {
+  font-family: "Major Mono Display";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  color: #c9c9c9;
+}
+
+
+
+.about-us {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem;
+  width: 48%;
+  margin: 8rem auto;
+}
+
+footer {
+  height: 40vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 10rem;
+  background-size: 100%;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+footer .a-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+  margin: auto;
+  width: 38%;
+}
+
+footer .a-list a {
+  list-style: none;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.3rem;
+  text-shadow: 2px 4px 8px #01080e;
+}
+
+footer .a-list p {
+  padding: 5px 0;
+}
+
+.left-logo2 .logo-menu2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 6rem;
+  margin-bottom: -3.4rem;
+}
+
+.left-logo2 .logo-menu2 .group-11-2 {
+  background-size: 100% 100%;
+  background-position: center;
+  background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
+  margin-bottom: 3.48px;
+  padding: 80px 21.09px 9.28px 30.24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.left-logo2 .logo-menu2 .ellipse-1-2 {
+  width: 1.6px;
+  height: 1.6px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.left-logo2 .logo-menu2 .next-roof-2 {
+  font-family: "Major Mono Display";
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: normal;
+  color: #ffffff;
+  margin: auto;
+}
+
+.left-logo2 .hand-footer img {
+  width: 80%;
+  float: left;
+}
+/*# sourceMappingURL=ready.css.map */

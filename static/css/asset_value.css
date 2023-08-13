@@ -1,0 +1,187 @@
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  z-index: 80;
+  gap: 0rem 0.2rem;
+  /* background-color: aqua; */
+  right: 1rem;
+}
+
+form input {
+  border-radius: 0.2rem;
+  border-style: none;
+  width: 10.4rem;
+  height: 2rem;
+}
+
+form .coco1 {
+  width: 6.8rem;
+}
+
+form .coco {
+  width: 5.8rem;
+}
+
+.input-search-field {
+    margin:3px;
+}
+
+.neighborhood , .street ,.condition ,.parking{
+    width: 10.8rem;
+    height: 2rem;
+}
+
+.parking , .condition{
+    width: 5.8rem;
+}
+
+
+.result {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.algo-res {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%; /* Expand to the full width of the parent container */
+  max-width: 600px; /* Increase the max-width as desired */
+}
+
+.algo-res h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.algo-price {
+  margin-bottom: 20px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.algo-price h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  flex-basis: 88%;
+}
+
+.algo-price h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.algo-card-in {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.result .algo-right,
+.result .algo-left {
+  flex-basis: 100%; /* Adjust the flex-basis to make them wider */
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.algo-right ul,
+.algo-left ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+}
+
+.algo-right li,
+.algo-left li {
+  margin-bottom: 10px;
+}
+
+#neighborhood_plot {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  overflow: auto; /* Enable scrolling if needed */
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ccc;
+}
+
+.generate-last-deals {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.generate-last-deals h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.generate-last-deals table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.generate-last-deals th,
+.generate-last-deals td {
+  padding: 10px;
+  text-align: center;
+}
+
+.generate-last-deals th {
+  font-weight: bold;
+}
+
+.generate-last-deals tbody tr:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.generate-last-deals tbody td {
+  vertical-align: middle;
+}

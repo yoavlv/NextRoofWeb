@@ -1,8 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
-
-
 {% block content %}
+
 <section class="hero-search">
     <div class="bob">
         <div class="roof">
@@ -13,73 +12,106 @@
                             <a href="#">קונה</a>
                         </div>
                         <div class="sale">
-                            <a href="#">שווי הנכס</a>
+                            <a href="{% url 'asset_value' %}">שווי הנכס</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <section class="Search-rectangle">
-                <div class="flex-wrapper-six">
-                    <p class="mca-at-hbit-hba-wlk">מצא את הבית הבא שלך</p>
-                    <form action="{% url 'search' %}" method="get">
-                        <input type="text" name="neighborhood" autocomplete="off" id="input_address" placeholder="שכונה" required>
-                        <input class="coco1" type="number" name="room"  id="room-numbrt" min="1" max="30" placeholder="חדרים">
-                        <input class="coco" type="number" id="first-number"  name="min-price" min="1" max="300000000" placeholder=" מ-">
-                        <input class="coco" type="number" id="first-second" name="max-price" min="1" max="300000000" placeholder=" עד-">
-                        <button class="sudmit2" type="submit">חיפוש מתקדם</button>
-                        <button class="sudmit1" type="submit">חיפוש</button>
-                    </form>
 
-                </div>
-            </section>
-            <img alt="" class="triple" src="https://static.overlay-tech.com/assets/70647bc4-e803-47da-a4da-b594cf1fc1b2.svg">
+<section class="Search-rectangle">
+        <p class="search-text">חיפוש</p>
+        <h1>{{parmas}}</h1>
+        <form action="{% url 'search' %}" method="get">
+        <div class="input-search-field">
+           <p>עיר</p>
+          <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
         </div>
-    </div>
+
+        <div class="input-search-field">
+            <p>שכונה</p>
+            <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
+                {% for neighborhood in neighborhoods %}
+                    <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+         <div class="input-search-field">
+           <p>חדרים מ-</p>
+          <input class="coco1" type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" value="{{user_search_params.min_rooms}}">
+        </div>
+
+        <div class="input-search-field">
+        <p> עד-</p>
+          <input class="coco1" type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="עד- "   value="{{user_search_params.max_rooms}}" >
+        </div>
+
+       <div class="input-search-field">
+           <p>קומה מ-</p>
+          <input class="coco1" type="number" name="min-floor" id="min-floor" min="1" max="40" placeholder="קומה"  value="{{user_search_params.min_floor}}"  >
+        </div>
+         <div class="input-search-field">
+        <p>קומה עד-</p>
+          <input class="coco1" type="number" name="max-floor" id="max-floor" min="1" max="40" placeholder="עד-"  value="{{user_search_params.max_floor}}">
+        </div>
+
+            <div class="input-search-field">
+       <p>גודל עד-</p>
+          <input class="coco1" type="number" name="min-size" id="min-size" min="0" max="300" placeholder="עד-"  value="{{user_search_params.min_size}}">
+        </div>
+          <div class="input-search-field">
+            <p>גודל עד-</p>
+          <input class="coco1" type="number" name="max-size" id="max-size" min="1" max="300" placeholder="מר"  value="{{user_search_params.max_size}}">
+        </div>
+
+        <div class="search-btn">
+          <button class="click-continue" type="submit">חפש</button>
+        </div>
+
+
+        <div class="total-results">
+            <p class="res-number">נמצאו {{ num_results }} תוצאות</p>
+                <label class = sort_label for="sort">מיין לפי:</label>
+                <select name="sort" id="sort" onchange="this.form.submit()">
+                    <option value="">בחר</option>
+                    <option value="price_asc">מחיר - עולה</option>
+                    <option value="price_desc">מחיר - יורד</option>
+                </select>
+
+        </div>
+    </form>
+  </section>
+
+
+
+  </div>
 </section>
 
-<style>
-  .table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    padding-top: 30px;
-
-  }
-
-  .table-bordered {
-    border: none;
-    margin-bottom: 30px;
-    background-color: #fff;
-  }
-
-  .card {
-    margin-bottom: 20px;
-    background-color: #fff;
-  }
-</style>
-
-<div class="table-container">
-  <div class="table-responsive">
-    <table class="table table-bordered">
+<div class="results">
+    <table class="table-container">
       <tbody>
         {% for apartment in apartments %}
           {% if forloop.counter0|divisibleby:4 %}
             <tr>
           {% endif %}
           <td>
-            <div class="card">
-              <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/nvFile3401256.jpg' %}';">
-              <div class="card-body">
-                <h5 class="card-title">{{ apartment.Street }} רחוב :</h5>
-                <p class="card-text">מחיר : {{ apartment.Price }}</p>
-                <p class="card-text">מחיר האלגוריתם: {{ apartment.Predicted }}</p>
-                <p class="card-text">גדול הדירה: {{ apartment.Size }}</p>
-                <p class="card-text">קומה: {{ apartment.Floor }}</p>
-                <p class="card-text">Rooms: {{ apartment.Room }}</p>
-                <p class="card-text">עיר: {{ apartment.City }}</p>
-                <p class="card-text">שכונה: {{ apartment.Neighborhood }}</p>
-                <a href="{{ apartment.link }}" class="btn btn-primary">לפרטים נוספים לחץ כאן</a>
+            <div class="apt-card">
+              <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/default-asset-img.jpg' %}';">
+
+              <div class="apt-card-body">
+                <p class="saving">חיסכון: {{ apartment.p_change }}%</p>
+                <p class="price">מחיר מבוקש: {{ apartment.Price }}</p>
+                <p class="predicted-price">מחיר מוערך: {{ apartment.Predicted }}</p>
+                <p class="location-apartment">{{ apartment.Street }}, {{ apartment.Neighborhood }}, {{ apartment.City }}</p>
+
+                <p class="apt-size">{{ apartment.Size }} מ"ר</p>
+                <p class="apt-floor">קומה {{ apartment.Floor }}</p>
+                <p class="apt-rooms">חדרים {{ apartment.Room }}</p>
+                <div class="button-container">
+                  <button class="apt-link">
+                    <a href="{{ apartment.link }}" class="btn btn-primary">לפרטים נוספים</a>
+                  </button>
+                </div>
               </div>
             </div>
           </td>
@@ -89,7 +121,28 @@
         {% endfor %}
       </tbody>
     </table>
-  </div>
 </div>
 
+<div class="pagination">
+      <span class="step-links">
+        {% if apartments.has_previous %}
+          <a href="?{{ request.GET.urlencode }}&page=1">&laquo;  חזרה לעמוד הראשון </a>
+          <a href="?{{ request.GET.urlencode }}&page={{ apartments.previous_page_number }}">הקודם</a>
+        {% endif %}
+
+        <span class="current-page">
+          עמוד {{ apartments.number }} מתוך {{ apartments.paginator.num_pages }}
+        </span>
+
+        {% if apartments.has_next %}
+          <a href="?{{ request.GET.urlencode }}&page={{ apartments.next_page_number }}">הבא</a>
+          <a href="?{{ request.GET.urlencode }}&page={{ apartments.paginator.num_pages }}"> לעמוד האחרון &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+
+
+<script>
+
+</script>
 {% endblock %}

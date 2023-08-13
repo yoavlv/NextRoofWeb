@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <section class="hero-search">
     <div class="bob">
         <div class="roof">
@@ -12,67 +13,105 @@
                             <a href="#">קונה</a>
                         </div>
                         <div class="sale">
-                            <a href="#">שווי הנכס</a>
+                            <a href="{% url 'asset_value' %}">שווי הנכס</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <section class="Search-rectangle">
-                <div class="flex-wrapper-six">
-                    <p class="mca-at-hbit-hba-wlk">מצא את הבית הבא שלך</p>
-                    <form action="{% url 'search' %}" method="get">
-                        <input type="text" name="neighborhood" autocomplete="off" id="input_address" placeholder="שכונה" required>
-                        <input class="coco1" type="number" name="room"  id="room-numbrt" min="1" max="30" placeholder="חדרים">
-                        <input class="coco" type="number" id="first-number"  name="min-price" min="1" max="300000000" placeholder=" מ-">
-                        <input class="coco" type="number" id="first-second" name="max-price" min="1" max="300000000" placeholder=" עד-">
-                        <button class="sudmit2" type="submit">חיפוש מתקדם</button>
-                        <button class="sudmit1" type="submit">חיפוש</button>
-                    </form>
 
-                </div>
-            </section>
-            <img alt="" class="triple" src="https://static.overlay-tech.com/assets/70647bc4-e803-47da-a4da-b594cf1fc1b2.svg">
+<section class="Search-rectangle">
+        <p class="search-text">חיפוש</p>
+        <form action="{% url 'search' %}" method="get">
+        <div class="input-search-field">
+           <p>עיר</p>
+          <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
         </div>
-    </div>
+
+        <div class="input-search-field">
+            <p>שכונה</p>
+            <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
+                {% for neighborhood in neighborhoods %}
+                    <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+         <div class="input-search-field">
+           <p>חדרים מ-</p>
+          <input class="coco1" type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" >
+        </div>
+
+        <div class="input-search-field">
+        <p> עד-</p>
+          <input class="coco1" type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="חדרים מ-" >
+        </div>
+
+       <div class="input-search-field">
+           <p>קומה מ-</p>
+          <input class="coco1" type="number" name="min-floor" id="min-floor" min="1" max="10" placeholder="קומה" >
+        </div>
+         <div class="input-search-field">
+        <p>קומה עד-</p>
+          <input class="coco1" type="number" name="max-floor" id="max-floor" min="1" max="10" placeholder="מ-" >
+        </div>
+
+       <div class="input-search-field">
+       <p>גודל עד-</p>
+          <input class="coco1" type="number" name="min-size" id="min-size" min="1" max="10" placeholder="עד-" >
+        </div>
+          <div class="input-search-field">
+            <p>גודל עד-</p>
+          <input class="coco1" type="number" name="max-size" id="max-size" min="1" max="10" placeholder="מר" >
+        </div>
+
+        <div class="search-btn">
+          <button class="click-continue" type="submit">חפש</button>
+        </div>
+    </form>
+  </section>
+
+
 </section>
 
-</header>
 
-<section class="hmzea-hyomet">
+
+<div class = 'daily-find'>
+<div class="day-title">
+
     <h1>המציאה היומית</h1>
     <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
 
-    <button class="btn-hmzea">הצטרפו וקבלו הצעות ראשונים</button>
+    <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
 
-</section>
-
+    </div>
 
 <section class="day">
 
 {% for deal in top_deals %}
 
     {% if forloop.counter0 %}
-        <div class="card-hmzea-right">
+        <div class="card-day-right">
     {% elif forloop.counter1 %}
-        <div class="card-hmzea-middle">
+        <div class="card-day-middle">
     {% else %}
-        <div class="card-hmzea-left">
+        <div class="card-day-left">
     {% endif %}
 
         <div class="top-card">
             {% if deal.Images %}
                 <img class="photo-card" src="{{ deal.Images }}" alt="">
             {% else %}
-                <img class="photo-card" src="{% static 'img/nvFile3401256.jpg' %}" alt="">
+                <img class="photo-card" src="{% static '/img/default-asset-img.jpg' %}" alt="">
             {% endif %}
+
             <img alt="" class="triple-card" src="https://static.overlay-tech.com/assets/1caae834-6301-4529-9963-b5b4ddb1b780.svg">
         </div>
 
         <div class="down-card-text">
             <div class="down-card">
-                <p class="hiskvn">חיסכון: {{ deal.p_change }}%</p>
-                <p class="mhir-mbvqw">מחיר מבוקש : {{ deal.Price }}</p>
-                <p class="mhir-mverk">מחיר מוערך: {{ deal.Predicted }}</p>
+                <p class="saving">חיסכון: {{ deal.p_change }}%</p>
+                <p class="price">מחיר מבוקש : {{ deal.Price }}</p>
+                <p class="predicted-price">מחיר מוערך: {{ deal.Predicted }}</p>
                 <p class="location-apartment">{{ deal.Street }}, {{ deal.Neighborhood }}, {{ deal.City }}</p>
             </div>
 
@@ -96,6 +135,8 @@
 
 {% endfor %}
 
-</section>
-
+    </section>
+</div>
 {% endblock %}
+
+
