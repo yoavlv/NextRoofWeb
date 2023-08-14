@@ -1,22 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.db import connection
 from django.shortcuts import redirect
 from .base_functions import lasted_deals_street
 import math
 from django.core.paginator import Paginator
+import pandas as pd
 
 
 def home(request):
     top_deals = get_random_deals()
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT distinct(Neighborhood) From trans ORDER BY Neighborhood")
-        neighborhoods = [neighborhood[0].replace('(', '').replace("'", "") for neighborhood in cursor.fetchall() if neighborhood[0]]
-
-    with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT distinct(Street) From trans ORDER BY Street")
-        streets = [street[0].replace('(', '').replace("'", "") for street in cursor.fetchall() if street[0]]
+    df_history_deals = pd.read_csv('data/Nadlan_clean.csv')
+    neighborhoods = sorted(set(df_history_deals['Neighborhood']))
+    streets = sorted(set(df_history_deals['Street']))
 
     return render(request, "home.html", {'top_deals':top_deals ,'neighborhoods':neighborhoods ,'streets':streets})
 
@@ -25,32 +20,31 @@ def login(request):
 
 
 def get_random_deals(num_deals=3):
-    with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT Price, Predicted, Street, Size, Floor, Rooms,City, Neighborhood,Item_id ,Images FROM trans WHERE LENGTH(Images) > 10  ORDER BY RAND() LIMIT %s",
-            (num_deals,))
-        rows = cursor.fetchall()
+
     items = []
-    for row in rows:
-        price_int = int(row[0].replace(",", "").replace(" ₪", ""))
-        p_change =  calculate_percentage_difference(price_int ,int(row[1]))
-        format_pred = f"{row[1]:,} ₪"
-        Images = row[9]
-        Images = Images.split(",")
+
+    df_deals = pd.read_csv('data/Predicted_DB.csv')
+    df_filtered = df_deals[df_deals['Images'].apply(lambda x: len(x) > 10)]
+    df_shuffled = df_filtered.sample(frac=1)
+    df_shuffled = df_shuffled.head(3)
+    for index, row in df_shuffled.iterrows():
+        price_int = int(row['Price'].replace(",", "").replace(" ₪", ""))
+        p_change = calculate_percentage_difference(price_int ,int(row['Predicted']))
+        link = 'https://www.yad2.co.il/' + 'item/' + row['Item_id']
+        Images = row['Images'].split(",")
         first = 'https:'+ Images[0][2:-1]
         if len(first) < 10:
             first =None
 
-        link = 'https://www.yad2.co.il/' + 'item/' + row[8]
         item = {
-            'Price': row[0],
-            'Predicted': format_pred,
-            'Street': row[2],
-            'Size': row[3],
-            'Floor': int(row[4]),
-            'Room': int(row[5]),
-            'City': row[6],
-            'Neighborhood':row[7],
+            'Price':row['Price'],
+            'Predicted': row['Predicted'],
+            'Street': row['Street'],
+            'Size': row['Size'],
+            'Floor': int(row['Floor']),
+            'Room':  int(row['Rooms']),
+            'City': row['City'],
+            'Neighborhood':row['Neighborhood'],
             'link': link,
             'Images': first,
             'p_change':p_change,
@@ -65,15 +59,12 @@ def calculate_percentage_difference(num1, num2):
     percentage_difference = (difference / average) * 100
     return round(percentage_difference, 2)
 
-def search_apartments(request ):
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT distinct(Neighborhood) From trans ORDER BY Neighborhood")
-        neighborhoods = [neighborhood[0].replace('(', '').replace("'", "") for neighborhood in cursor.fetchall() if neighborhood[0]]
-
+def search_apartments(request):
+    df_history_deals = pd.read_csv('data/Nadlan_clean.csv')
+    neighborhoods = sorted(set(df_history_deals['Neighborhood']))
 
     if request.method == 'GET':
         sort_option = request.GET.get('sort')
-        # city = str(request.GET.get('city')).strip()
         neighborhood = request.GET.get('neighborhood')
         street = request.GET.get('street')
         min_rooms = request.GET.get('min-rooms')
@@ -85,107 +76,82 @@ def search_apartments(request ):
         max_floor = request.GET.get('max-floor')
         min_floor = request.GET.get('min-floor')
 
-        cursor = connection.cursor()
-        query = "SELECT Price, Predicted, Street, Size, Floor, Rooms, City, Neighborhood, Item_id, Images FROM trans WHERE 1=1 "
-        params = []
-        user_search_params = {}
-
-        # if city:
-        #     query += "AND City = %s "
-        #     params.append(city)
+        results_df = pd.read_csv('data/Predicted_DB.csv')
 
         if neighborhood:
             neighborhood = str(neighborhood).strip()
-            query += "AND Neighborhood = %s "
-            params.append(neighborhood)
-            user_search_params['neighborhood'] = neighborhood
+            results_df = results_df[results_df['Neighborhood'] == neighborhood]
 
         if street:
             street = str(street).strip()
-            query += "AND Street = %s "
-            params.append(street)
-            user_search_params['street'] = street
+            results_df = results_df[results_df['Street'] == street]
 
         if min_rooms:
-            query += "AND Rooms >= %s "
-            params.append(min_rooms)
-            user_search_params['min_rooms'] = min_rooms
+            min_rooms = int(min_rooms)
+            results_df = results_df[results_df['Rooms'] >= min_rooms]
 
         if max_rooms:
-            query += "AND Rooms <= %s "
-            params.append(max_rooms)
-            user_search_params['max_rooms'] = max_rooms
+            max_rooms = int(max_rooms)
+            results_df = results_df[results_df['Rooms'] <= max_rooms]
 
         if min_price:
-            query += "AND Price >= %s "
-            params.append(min_price)
-            user_search_params['min_price'] = min_price
+            min_price = int(min_price)
+            results_df = results_df[results_df['Price'] >= min_price]
 
         if max_price:
-            query += "AND Price <= %s "
-            params.append(max_price)
-            user_search_params['max_price'] = max_price
+            max_price = int(max_price)
+            results_df = results_df[results_df['Price'] <= max_price]
 
         if min_size:
-            query += "AND Size >= %s "
-            params.append(min_size)
-            user_search_params['min_size'] = min_size
+            min_size = int(min_size)
+            results_df = results_df[results_df['Size'] >= min_size]
 
         if max_size:
-            query += "AND Size <= %s "
-            params.append(max_size)
-            user_search_params['max_size'] = max_size
+            max_size = int(max_size)
+            results_df = results_df[results_df['Size'] <= max_size]
 
         if min_floor:
-            query += "AND Floor >= %s "
-            params.append(min_floor)
-            user_search_params['min_floor'] = min_floor
+            min_floor = int(min_floor)
+            results_df = results_df[results_df['Floors'] >= min_floor]
 
         if max_floor:
-            query += "AND Floor <= %s "
-            params.append(max_floor)
-            user_search_params['max_floor'] = max_floor
+            max_floor = int(max_floor)
+            results_df = results_df[results_df['Floors'] <= max_floor]
 
+        # Apply sorting to the DataFrame
         if sort_option == 'price_asc':
-            query += "ORDER BY Price ASC"
+            results_df = results_df.sort_values(by='Price')
+        elif sort_option == 'price_desc':
+            results_df = results_df.sort_values(by='Price', ascending=False)
 
-        if sort_option == 'price_desc':
-            query += "ORDER BY Price DESC"
-
-        cursor.execute(query, params)
-        rows = cursor.fetchall()
-
+        # Retrieve data for display
         apartments = []
-        for row in rows:
-            price_int = int(row[0].replace(",", "").replace(" ₪", ""))
-            p_change = calculate_percentage_difference(price_int, int(row[1]))
-            format_pred = f"{row[1]:,} ₪"
-            Images = row[9]
-            Images = Images.split(",")
+        for index, row in results_df.iterrows():
+            price_int = int(row['Price'].replace(",", "").replace(" ₪", ""))
+            p_change = calculate_percentage_difference(price_int, int(row['Predicted']))
+            link = 'https://www.yad2.co.il/' + 'item/' + row['Item_id']
+            Images = row['Images'].split(",")
             first = 'https:' + Images[0][2:-1]
-
-
             if len(first) < 10:
                 first = None
 
-            link = 'https://www.yad2.co.il/' + 'item/' + row[8]
-            apartment = {
-                'Price': row[0],
-                'Predicted': format_pred,
-                'Street': row[2],
-                'Size': row[3],
-                'Floor': int(row[4]),
-                'Room': int(row[5]),
-                'City': row[6],
-                'Neighborhood': row[7],
+            item = {
+                'Price': row['Price'],
+                'Predicted': row['Predicted'],
+                'Street': row['Street'],
+                'Size': row['Size'],
+                'Floor': int(row['Floor']),
+                'Room': int(row['Rooms']),
+                'City': row['City'],
+                'Neighborhood': row['Neighborhood'],
                 'link': link,
                 'Images': first,
                 'p_change': p_change,
             }
-            apartments.append(apartment)
+            apartments.append(item)
 
         # Pagination
-        paginator = Paginator(apartments, 12)  # Show 20 apartments per page
+        paginator = Paginator(apartments, 12)  # Show 12 apartments per page
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
@@ -194,15 +160,9 @@ def search_apartments(request ):
         return render(request, 'search.html', {
             'apartments': page_obj,
             'num_results': num_results,
-            'params': params,
-            'user_search_params': user_search_params,
             'neighborhoods': neighborhoods,
         })
     else:
         return render(request, 'home.html', {
             'neighborhoods': neighborhoods,
-            'user_search_params': {},
         })
-
-def more_details(request):
-    pass

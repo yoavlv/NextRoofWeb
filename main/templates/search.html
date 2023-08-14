@@ -103,10 +103,8 @@
                 <p class="price">מחיר מבוקש: {{ apartment.Price }}</p>
                 <p class="predicted-price">מחיר מוערך: {{ apartment.Predicted }}</p>
                 <p class="location-apartment">{{ apartment.Street }}, {{ apartment.Neighborhood }}, {{ apartment.City }}</p>
+                <p class="apt-size-floor-rooms">  {{ apartment.Size }} מ"ר  | קומה {{ apartment.Floor }} | חדרים {{ apartment.Room }}</p>
 
-                <p class="apt-size">{{ apartment.Size }} מ"ר</p>
-                <p class="apt-floor">קומה {{ apartment.Floor }}</p>
-                <p class="apt-rooms">חדרים {{ apartment.Room }}</p>
                 <div class="button-container">
                   <button class="apt-link">
                     <a href="{{ apartment.link }}" class="btn btn-primary">לפרטים נוספים</a>

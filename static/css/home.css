@@ -1,32 +1,31 @@
-
-
 .daily-find {
     position: relative;
-    top: -60px;
+    top: -3.75rem; /* Converted from 60px */
     background-color: rgba(190, 188, 243, 0.095);
-    position: center;
+    margin: 0 auto; /* To center horizontally */
 }
+
 .day-title {
   position: relative;
-  top: 70px;
-  left: -10px;
+  top: 4.375rem; /* Converted from 70px */
+  left: -0.625rem; /* Converted from -10px */
   transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   border-radius: 0.7rem;
-  width: 450px;
-  padding: 20px;
+  width: 28.125rem; /* Converted from 450px */
+  padding: 1.25rem; /* Converted from 20px */
 }
 
 .day-title h1 {
   color: white;
-  padding: 12px;
+  padding: 0.75rem; /* Converted from 12px */
 }
 
 .day-title p {
-  font-size: 17px;
+  font-size: 1.0625rem; /* Converted from 17px */
   color: white;
-  text-indent: 2px;
+  text-indent: 0.125rem; /* Converted from 2px */
   text-transform: uppercase;
 }
 
@@ -116,8 +115,8 @@
 }
 
 .card-day-right .top-card .triple-card {
-  width: 166px;
-  margin-right: 6.1rem;
+  width: 10.375rem; /* Converted from 166px */
+  margin-right: 6.225rem; /* Converted from 6.1rem */
 }
 
 .card-day-right .down-card {
@@ -178,7 +177,7 @@
 .down-card-text {
   text-align: center;
   background-color: #01080e;
-  border-radius: 3px;
+  border-radius: 0.1875rem; /* Converted from 3px */
 }
 
 .card-day-middle {
@@ -262,7 +261,7 @@
 .down-card-text {
   text-align: center;
   background-color: #01080e;
-  border-radius: 3px;
+  border-radius: 0.1875rem; /* Converted from 3px */
 }
 
 .card-day-left {
@@ -288,8 +287,8 @@
 }
 
 .card-day-left .top-card .triple-card {
-  width: 166px;
-  margin-right: 6.1rem;
+  width: 10.375rem; /* Converted from 166px */
+  margin-right: 6.225rem; /* Converted from 6.1rem */
 }
 
 .card-day-left .down-card {
@@ -351,6 +350,6 @@
 .down-card-text {
   text-align: center;
   background-color: #01080e;
-  border-radius: 3px;
+  border-radius: 0.1875rem; /* Converted from 3px */
 }
 

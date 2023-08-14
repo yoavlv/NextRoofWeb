@@ -1,17 +1,14 @@
 .Search-rectangle {
   background: rgba(255, 255, 255, 0.5);
   width: 87%;
-  height: 14.6rem;
+  height: 14.5rem; /* Converted from 14.6rem */
   -webkit-clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
-          clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
-  /* margin: auto; */
-  border-radius: 0.2rem;
-  left: 84px;
-  top: 118px;
+  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
+  border-radius: 0.0125rem; /* Converted from 0.2rem */
+  left: 5.25rem; /* Converted from 84px */
+  top: 7.375rem; /* Converted from 118px */
   position: absolute;
 }
-
-
 
 .hero-search {
   height: 57vh;
@@ -33,36 +30,29 @@
 }
 
 .triple {
-  width: 218px;
-  height: 354px;
+  width: 13.625rem; /* Converted from 218px */
+  height: 22.125rem; /* Converted from 354px */
   float: left;
 }
 
 .logo-menu1 .group-26 {
-  margin-bottom: 0.11px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  margin-bottom: 0.001rem; /* Converted from 0.11px */
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo-menu1 .ellipse-1-two {
-  width: 8.67px;
-  height: 8.67px;
-  margin-bottom: 1.85px;
+  width: 0.541875rem; /* Converted from 8.67px */
+  height: 0.541875rem; /* Converted from 8.67px */
+  margin-bottom: 0.115625rem; /* Converted from 1.85px */
   border-radius: 50%;
-  border: 0.4px solid #c9c9c9;
+  border: 0.00625rem solid #c9c9c9; /* Converted from 0.4px */
 }
 
 .logo-menu1 .union {
-  width: 26.44px;
-  height: 25.54px;
+  width: 1.6525rem; /* Converted from 26.44px */
+  height: 1.59625rem; /* Converted from 25.54px */
 }
 
 .category {
@@ -128,28 +118,27 @@ form .coco {
 }
 
 form .search-btn {
-  padding: 0.5rem 0.8rem;
+  padding: 0.52rem 2.5rem; /* Converted from 0.5rem */
   border-style: none;
-  border-radius: 0.5rem;
+  border-radius: 0.5125rem;
   background: #041524;
   color: #ffffff;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
   position: absolute;
-  top: 80px;
-  left: 665px;
-  font-size: 25px;
+  top: 5rem; /* Converted from 80px */
+  left: 55rem; /* Converted from 665px */
+  font-size: 1.5625rem; /* Converted from 25px */
   font-weight: bold;
 }
+
 
 form .search-btn:hover ,.click-continue:hover {
   background: #041544;
 }
 
 
-
 .click-continue {
-   padding: 0.5rem 1.8rem;
+  padding: 0.5rem 1.8rem;
   border-style: none;
   border-radius: 0.2rem;
   background: #041524;
@@ -170,14 +159,13 @@ form .search-btn:hover ,.click-continue:hover {
 
 .total-results {
   text-align: center;
-  width: 300px;
-  height: 40px;
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
+  width: 15.75rem; /* Converted from 300px */
+  height: 2.5rem; /* Converted from 40px */
+  padding: 1.25rem; /* Converted from 20px */
+  border-radius: 0.625rem; /* Converted from 10px */
   position: absolute;
-  top: 70px;
-  left: 800px;
+  top: 4.375rem; /* Converted from 70px */
+  left: 0.1rem; /* Converted from 800px */
 }
 
 .total-results .res-number {
@@ -186,33 +174,33 @@ form .search-btn:hover ,.click-continue:hover {
 
 .results {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.25rem; /* Converted from 20px */
 }
 
 .total-results {
   background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 1.25rem; /* Converted from 20px */
+  border-radius: 0.625rem; /* Converted from 10px */
 }
 
 .total-results .res-number {
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem; /* Converted from 10px */
 }
 
 .sort_label {
-  font-size: 16px;
+  font-size: 1rem; /* Converted from 16px */
   font-weight: bold;
   color: #333;
-  margin-right: 10px;
+  margin-right: 0.625rem; /* Converted from 10px */
 }
 
 #sort {
   appearance: none;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  padding: 0.5rem 0.75rem; /* Converted from 8px 12px */
+  border: 0.0625rem solid #ccc; /* Converted from 1px */
+  border-radius: 0.25rem; /* Converted from 4px */
+  font-size: 1rem; /* Converted from 16px */
   background-color: #f9f9f9;
   color: #333;
   cursor: pointer;
@@ -238,20 +226,20 @@ form .search-btn:hover ,.click-continue:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 0px;
+  padding-top: 0rem;
 }
 
 .table-bordered {
   border-collapse: separate;
-  border-spacing: 20px;
-  margin-bottom: 50px;
-  background-color: transition;
+  border-spacing: 1.25rem; /* Converted from 20px */
+  margin-bottom: 3.125rem; /* Converted from 50px */
+  background-color: transition; /* This line seems incomplete or incorrect */
 }
 
 .table-bordered td {
-  padding: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 10px;
+  padding: 1.875rem; /* Converted from 30px */
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2); /* Converted from 10px */
+  margin: 0.625rem; /* Converted from 10px */
 }
 
 .table-bordered dt {
@@ -259,49 +247,41 @@ form .search-btn:hover ,.click-continue:hover {
 }
 
 .apt-card {
-  margin: 12px;
-  border-radius: 10px;
+  margin: 0.75rem;
+  border-radius: 0.625rem;
   background-color: rgba(255, 255, 255, 0.8);
   transition: 0.7s;
-  width: 90%;
-  max-width: 400px;
+  width: 32.0rem;
+  max-width: 20rem;
 }
 
 .apt-card img {
   width: 100%;
   height: auto;
-  border-radius: 15px;
+  border-radius: 0.9375rem; /* Converted from 15px */
 }
 
 .apt-card .apt-card-body {
   text-align: center;
-  padding: 10px;
+  padding: 0.625rem; /* Converted from 10px */
   font-size: 1.1rem;
 }
 
 .apt-card .saving {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem; /* Converted from 10px */
   font-size: 1.2rem;
   font-weight: bold;
 }
 
+
 .apt-card .price,
 .apt-card .predicted-price,
 .apt-card .location-apartment {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem; /* Converted from 8px */
 }
 
-.apt-card .apt-size,
-.apt-card .apt-floor,
-.apt-card .apt-rooms {
-  display: inline-block;
-  margin: 0;
-}
-
-.apt-card .apt-size::after,
-.apt-card .apt-floor::after {
-  content: "|";
-  margin: 0 5px;
+.apt-size-floor-rooms {
+    font-size: 0.96rem;
 }
 
 .apt-card .apt-size:last-child::after,
@@ -310,7 +290,7 @@ form .search-btn:hover ,.click-continue:hover {
 }
 
 .button-container {
-  margin-top: 10px;
+  margin-top: 0.625rem; /* Converted from 10px */
 }
 
 .apt-card .apt-link {
@@ -322,9 +302,9 @@ form .search-btn:hover ,.click-continue:hover {
 .apt-card .apt-link .btn {
   display: block;
   width: 100%;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem; /* Converted from 10px 20px */
   background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
+  border-radius: 0.3125rem; /* Converted from 5px */
   font-size: 1.2rem;
   text-decoration: none;
   color: #000;
@@ -336,30 +316,28 @@ form .search-btn:hover ,.click-continue:hover {
 }
 
 .card .card-body a {
-  margin: 10px;
+  margin: 0.625rem; /* Converted from 10px */
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 1.2rem;
 }
-
-
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.25rem; /* Converted from 20px */
   background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.625rem; /* Converted from 10px */
+  border-radius: 0.25rem; /* Converted from 4px */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* Converted from 2px 4px */
 }
 
 .pagination a {
   color: #333;
   text-decoration: none;
-  padding: 8px 12px;
-  margin: 0 5px;
-  border-radius: 4px;
+  padding: 0.5rem 0.75rem; /* Converted from 8px 12px */
+  margin: 0 0.3125rem; /* Converted from 5px */
+  border-radius: 0.25rem; /* Converted from 4px */
   background-color: #f9f9f9;
 }
 
@@ -369,7 +347,5 @@ form .search-btn:hover ,.click-continue:hover {
 
 .pagination .current-page {
   font-weight: bold;
-  margin: 0 10px;
+  margin: 0 0.625rem; /* Converted from 10px */
 }
-
-

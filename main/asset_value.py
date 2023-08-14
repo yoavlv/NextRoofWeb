@@ -1,7 +1,6 @@
 import matplotlib
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.db import connection
 from django.shortcuts import redirect
 import pandas as pd
 import csv
@@ -19,37 +18,25 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from django.http import JsonResponse
-from django.db import connection
 import io
 import base64
 from .base_functions import lasted_deals_street
 
 def asset_value_page(request):
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT distinct(Neighborhood) From trans ORDER BY Neighborhood")
-        neighborhoods = [neighborhood[0].replace('(', '').replace("'", "") for neighborhood in cursor.fetchall() if neighborhood[0]]
 
-    with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT distinct(Street) From trans ORDER BY Street")
-        streets = [street[0].replace('(', '').replace("'", "") for street in cursor.fetchall() if street[0]]
-
+    df_history_deals = pd.read_csv('data/Nadlan_clean.csv')
+    neighborhoods = sorted(df_history_deals['Neighborhood'].unique())
+    streets = list(sorted(df_history_deals['Street'].unique()))
     Search = False
 
     return render(request, "asset_value.html",{'neighborhoods': neighborhoods , 'Search':Search ,'streets':streets})
 
 
 def calc_asset_value(request):
-    with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT distinct(Neighborhood) From history_deals")
-        neighborhoods = [neighborhood[0].replace('(', '').replace("'", "") for neighborhood in cursor.fetchall() if neighborhood[0]]
 
-    with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT distinct(Street) From history_deals ORDER BY Street")
-        streets = [street[0].replace('(', '').replace("'", "") for street in cursor.fetchall() if street[0]]
-
+    df_history_deals = pd.read_csv('data/Nadlan_clean.csv')
+    neighborhoods = sorted(set(df_history_deals['Neighborhood']))
+    streets = sorted(set(df_history_deals['Street']))
     params = {}
     Search = False
     if request.method == 'GET':
@@ -70,8 +57,8 @@ def calc_asset_value(request):
 
         predicted_price = predict_apt_price(params,model)
         predicted_price = "₪{:,}".format(predicted_price)
-
-        neighborhood_plt = Price_Increases_Neighborhood(db_to_df('history_deals'),params['Neighborhood'])
+        df = pd.read_csv('data/Nadlan_clean.csv')
+        neighborhood_plt = Price_Increases_Neighborhood(df,params['Neighborhood'])
         last_deals = lasted_deals_street( params['Street'])
         return render(request, "asset_value.html", {'predicted_price':predicted_price,'neighborhoods':neighborhoods ,
                                                     'streets':streets ,'params':params, 'Search':Search ,'neighborhood_plt':neighborhood_plt,
@@ -100,7 +87,7 @@ def calc_distance_from_train_station(x, y):
 
 
 def add_neighborhood(search_street):
-    df = db_to_df('history_deals')
+    df = pd.read_csv("data/Nadlan_clean.csv")
     neighborhoods = {}
     for index, row in df.iterrows():
         neighborhood = row['Neighborhood']
@@ -135,8 +122,8 @@ def check_for_match(df, params, number, target, col_1, col_2=None):
                 return match
             except:
                 pass
-    print("Mean")
-    print(target)
+    # print("Mean")
+    # print(target)
     return int(df[target].mean())
 
 
@@ -152,9 +139,7 @@ def calc_missing_values(df, params):
     params['Neighborhood'] = add_neighborhood(params['Street'])
     params['Train'] = calc_distance_from_train_station(params['Long'], params['Lat'])
 
-    # nadlan_df = pd.read_csv("Data/Nadlan_clean.csv", index_col=0)
-    nadlan_df = db_to_df('history_deals')
-
+    nadlan_df = pd.read_csv("data/Nadlan_clean.csv", index_col=0)
     params['Build_year'] = check_for_match(nadlan_df, params, params['Helka'], 'Build_year', 'Gush', 'Helka')
 
     params['Floors'] = check_for_match(nadlan_df, params, params['Helka'], 'Floors', 'Gush', 'Helka')
@@ -168,7 +153,6 @@ def calc_missing_values(df, params):
 
     params['Neighborhood_rank'] = nadlan_df.loc[(nadlan_df['Neighborhood'] == params['Neighborhood']), 'Neighborhood_rank'].max()
 
-    print(params)
     # handle missing valuses Naive solution
     for param in params:
         if params[param] is np.nan:
@@ -179,7 +163,6 @@ def calc_missing_values(df, params):
 
 
 def predict_apt_price(params, model):
-    print(params)
     X = pd.DataFrame([params])
 
     X['Lat'] = X['Lat'].astype(np.int32)
@@ -197,29 +180,15 @@ def predict_apt_price(params, model):
     # Predict prices using the trained model
     y_pred = model.predict(X_scaled)
     y_pred = y_pred * 1.02
-    print(y_pred)
     appraised_price = int(y_pred[0])
 
     return appraised_price
 
 
-def db_to_df(table_name):
-    # Execute the SELECT query
-    with connection.cursor() as cursor:
-        cursor.execute(f"SELECT * FROM {table_name}")
-
-        # Fetch all the rows from the cursor
-        rows = cursor.fetchall()
-        # Get the column names from the cursor description
-        column_names = [desc[0] for desc in cursor.description]
-
-    # Create a DataFrame from the rows and column names
-    df = pd.DataFrame(rows, columns=column_names)
-
-    return df
-
 
 def Price_Increases_Neighborhood(df, neighborhood):
+    print(neighborhood)
+    print(df['Neighborhood'].unique())
     years = range(2017, 2024)
     price_per_meter_by_year = {}
     for year in years:
@@ -237,7 +206,6 @@ def Price_Increases_Neighborhood(df, neighborhood):
     plt.title(text[::-1], fontsize=15)
     plt.xlabel("Year", color='k', fontsize=3)
     plt.ylabel("Price per meter")
-
     # Save the plot as an image
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -247,3 +215,19 @@ def Price_Increases_Neighborhood(df, neighborhood):
 
     plt.close()  # Close the plot to free up memory
     return plot_image
+
+
+# from django.db import connection
+# def db_to_df(table_name):
+#     # Execute the SELECT query
+#     with connection.cursor() as cursor:
+#         cursor.execute(f"SELECT * FROM {table_name}")
+#
+#         # Fetch all the rows from the cursor
+#         rows = cursor.fetchall()
+#         # Get the column names from the cursor description
+#         column_names = [desc[0] for desc in cursor.description]
+#
+#     # Create a DataFrame from the rows and column names
+#     df = pd.DataFrame(rows, columns=column_names)
+#     return df

@@ -75,8 +75,8 @@ nav {
   background-size: 100% 100%;
   background-position: center;
   background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
-  margin-bottom: 3.48px;
-  padding: 40.33px 21.09px 9.28px 30.24px;
+  margin-bottom: 0.174em; /* Converted from 3.48px */
+  padding: 2.686em 1.396em 0.595em 2.432em; /* Converted from 40.33px 21.09px 9.28px 30.24px */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -84,18 +84,16 @@ nav {
       -ms-flex-align: start;
           align-items: flex-start;
 }
-
 .logo-menu .ellipse-1 {
-  width: 1.6px;
-  height: 1.6px;
+  width: 0.1em; /* Converted from 1.6px */
+  height: 0.1em; /* Converted from 1.6px */
   background-color: #f0f0f0;
   border-radius: 50%;
   margin: 0 auto;
 }
-
 .logo-menu .next-roof {
   font-family: "Major Mono Display";
-  font-size: 14px;
+  font-size: 0.875rem; /* Converted from 14px */
   font-weight: 400;
   line-height: normal;
   color: #c9c9c9;
@@ -138,11 +136,11 @@ footer .a-list a {
   color: #ffffff;
   text-decoration: none;
   font-size: 1.3rem;
-  text-shadow: 2px 4px 8px #01080e;
+  text-shadow: 0.125rem 0.25rem 0.5rem #01080e; /* Converted from 2px 4px 8px */
 }
 
 footer .a-list p {
-  padding: 5px 0;
+  padding: 0.3125rem 0; /* Converted from 5px 0 */
 }
 
 .left-logo2 .logo-menu2 {
@@ -161,8 +159,8 @@ footer .a-list p {
   background-size: 100% 100%;
   background-position: center;
   background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
-  margin-bottom: 3.48px;
-  padding: 80px 21.09px 9.28px 30.24px;
+  margin-bottom: 0.174em; /* Converted from 3.48px */
+  padding: 5em 1.396em 0.595em 2.432em; /* Converted from 80px 21.09px 9.28px 30.24px */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,14 +169,14 @@ footer .a-list p {
           align-items: flex-start;
 }
 
+
 .left-logo2 .logo-menu2 .ellipse-1-2 {
-  width: 1.6px;
-  height: 1.6px;
+  width: 0.1em; /* Converted from 1.6px */
+  height: 0.1em; /* Converted from 1.6px */
   background-color: #f0f0f0;
   border-radius: 50%;
   margin: 0 auto;
 }
-
 .left-logo2 .logo-menu2 .next-roof-2 {
   font-family: "Major Mono Display";
   font-size: 1.4rem;
