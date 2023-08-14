@@ -353,3 +353,116 @@
   border-radius: 0.1875rem; /* Converted from 3px */
 }
 
+@media only screen and (max-width: 600px) {
+  .daily-find {
+    top: -2.5rem;
+  }
+
+  .day-title {
+    top: 2.5rem;
+    left: 0;
+    width: 100%;
+  }
+
+  .day-title h1 {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .day-title p {
+    font-size: 0.8rem;
+    text-indent: 0;
+  }
+
+  .day-title button {
+    padding: 0.3rem 1.5rem;
+    width: 90%;
+  }
+
+  .day-deal h1 {
+    font-size: 1.4rem;
+  }
+
+  .day-deal p {
+    font-size: 1rem;
+  }
+
+  .day-deal .btn-day {
+    padding: 0.4rem 1.5rem;
+  }
+
+  .day {
+    width: 100%;
+    display: block;
+    margin-top: 1.5rem;
+  }
+
+  .card-day-right,
+  .card-day-middle,
+  .card-day-left {
+    margin: auto;
+    display: block;
+  }
+
+  .card-day-right .top-card .photo-card,
+  .card-day-middle .top-card .photo-card,
+  .card-day-left .top-card .photo-card {
+    width: 100%;
+    height: auto;
+    clip-path: none;
+    margin-top: 0;
+  }
+
+  .card-day-right .top-card .triple-card {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .card-day-right .down-card,
+  .card-day-middle .down-card,
+  .card-day-left .down-card {
+    padding: 0.2rem 0;
+    font-size: 0.8rem;
+  }
+
+  .card-day-right .down-card .saving,
+  .card-day-middle .down-card .saving,
+  .card-day-left .down-card .saving {
+    font-size: 1.3rem;
+    padding-top: 1rem;
+  }
+
+  .card-day-right .details,
+  .card-day-middle .details,
+  .card-day-left .details {
+    font-size: 0.9rem;
+    padding: 0.6rem 0;
+  }
+
+  .card-day-right .details .line-1,
+  .card-day-middle .details .line-1,
+  .card-day-left .details .line-1 {
+    height: 1rem;
+  }
+
+  .btn-card1,
+  .btn-card2,
+  .btn-card3 {
+    padding: 0.3rem 1.5rem;
+    width: 90%;
+  }
+
+  .down-card-text {
+    border-radius: 0.15rem;
+  }
+}
+
+/* Medium screens (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Add any specific styling for medium screens here */
+}
+
+/* Large screens (desktops) */
+@media only screen and (min-width: 1025px) {
+  /* Add any specific styling for large screens here */
+}

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 
@@ -13,6 +13,9 @@ body {
   background-position: center;
   font-family: "Rubik", sans-serif;
 }
+
+
+
 nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -22,11 +25,11 @@ nav {
 }
 
 .nav2 {
-  width: 80%;
+  max-width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: calc(7.74% - 10px);
+  max-height: calc(7.74% - 10px);
   padding: 0.4rem ;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -105,7 +108,7 @@ nav {
   color: #ffffff;
   text-align: center;
   font-size: 1.2rem;
-  width: 48%;
+  max-width: 48%;
   margin: 8rem auto;
 }
 
@@ -128,7 +131,7 @@ footer .a-list {
   display: flex;
   gap: 2rem;
   margin: auto;
-  width: 38%;
+  max-width: 38%;
 }
 
 footer .a-list a {
@@ -171,8 +174,8 @@ footer .a-list p {
 
 
 .left-logo2 .logo-menu2 .ellipse-1-2 {
-  width: 0.1em; /* Converted from 1.6px */
-  height: 0.1em; /* Converted from 1.6px */
+  max-width: 0.1em; /* Converted from 1.6px */
+  max-height: 0.1em; /* Converted from 1.6px */
   background-color: #f0f0f0;
   border-radius: 50%;
   margin: 0 auto;
@@ -187,7 +190,34 @@ footer .a-list p {
 }
 
 .left-logo2 .hand-footer img {
-  width: 80%;
+  max-width: 80%;
   float: left;
 }
 /*# sourceMappingURL=ready.css.map */
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-size: cover; /* Adjust background size for smaller screens */
+  }
+
+  .nav2 ul {
+    display: block; /* Stack navigation items on small screens */
+    margin: 0; /* Remove horizontal margin for better layout */
+    padding: 1rem 0; /* Add some padding between navigation items */
+  }
+
+  .about-us {
+    max-width: 90%; /* Adjust the width of the about section */
+    margin: 3rem auto; /* Adjust margin for better spacing */
+  }
+}
+
+/* Medium screens (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Add any specific styling for medium screens here */
+}
+
+/* Large screens (desktops) */
+@media only screen and (min-width: 1025px) {
+  /* Add any specific styling for large screens here */
+}
