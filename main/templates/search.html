@@ -3,10 +3,9 @@
 {% block content %}
 
 <div class="hero-search">
-
     <div class="sell-asset-value">
             <div class="buy">
-                <a href="#">קונה</a>
+                <a href="{%url 'home' %}">קונה</a>
             </div>
             <div class="sale">
                 <a href="{% url 'asset_value' %}">שווי הנכס</a>
@@ -33,30 +32,30 @@
 
          <div class="input-search-field">
            <p>חדרים מ-</p>
-          <input class="coco1" type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" value="{{user_search_params.min_rooms}}">
+          <input type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" value="{{user_search_params.min_rooms}}">
         </div>
 
         <div class="input-search-field">
         <p> עד-</p>
-          <input class="coco1" type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="עד- "   value="{{user_search_params.max_rooms}}" >
+          <input type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="עד- "   value="{{user_search_params.max_rooms}}" >
         </div>
 
        <div class="input-search-field">
            <p>קומה מ-</p>
-          <input class="coco1" type="number" name="min-floor" id="min-floor" min="1" max="40" placeholder="קומה"  value="{{user_search_params.min_floor}}"  >
+          <input  type="number" name="min-floor" id="min-floor" min="1" max="40" placeholder="קומה"  value="{{user_search_params.min_floor}}"  >
         </div>
          <div class="input-search-field">
         <p>קומה עד-</p>
-          <input class="coco1" type="number" name="max-floor" id="max-floor" min="1" max="40" placeholder="עד-"  value="{{user_search_params.max_floor}}">
+          <input type="number" name="max-floor" id="max-floor" min="1" max="40" placeholder="עד-"  value="{{user_search_params.max_floor}}">
         </div>
 
             <div class="input-search-field">
        <p>גודל עד-</p>
-          <input class="coco1" type="number" name="min-size" id="min-size" min="0" max="300" placeholder="עד-"  value="{{user_search_params.min_size}}">
+          <input c type="number" name="min-size" id="min-size" min="0" max="300" placeholder="עד-"  value="{{user_search_params.min_size}}">
         </div>
           <div class="input-search-field">
             <p>גודל עד-</p>
-          <input class="coco1" type="number" name="max-size" id="max-size" min="1" max="300" placeholder="מר"  value="{{user_search_params.max_size}}">
+          <input type="number" name="max-size" id="max-size" min="1" max="300" placeholder="מר"  value="{{user_search_params.max_size}}">
         </div>
 
         <div class="search-btn">

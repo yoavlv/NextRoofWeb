@@ -35,10 +35,10 @@ def get_random_deals(num_deals=3):
         first = 'https:'+ Images[0][2:-1]
         if len(first) < 10:
             first =None
-
+        predicted_price = f"₪{row['Predicted']:,.0f}"
         item = {
             'Price':row['Price'],
-            'Predicted': row['Predicted'],
+            'Predicted': predicted_price,
             'Street': row['Street'],
             'Size': row['Size'],
             'Floor': int(row['Floor']),
@@ -134,10 +134,11 @@ def search_apartments(request):
             first = 'https:' + Images[0][2:-1]
             if len(first) < 10:
                 first = None
+            predicted_price = f"₪{row['Predicted']:,.0f}"
 
             item = {
                 'Price': row['Price'],
-                'Predicted': row['Predicted'],
+                'Predicted': predicted_price,
                 'Street': row['Street'],
                 'Size': row['Size'],
                 'Floor': int(row['Floor']),
