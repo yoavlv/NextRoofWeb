@@ -187,8 +187,6 @@ def predict_apt_price(params, model):
 
 
 def Price_Increases_Neighborhood(df, neighborhood):
-    print(neighborhood)
-    print(df['Neighborhood'].unique())
     years = range(2017, 2024)
     price_per_meter_by_year = {}
     for year in years:

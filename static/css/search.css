@@ -1,135 +1,111 @@
-.Search-rectangle {
-  background: rgba(255, 255, 255, 0.5);
-  min-width: 87%;
-  min-height: 15.7rem; /* Converted from 14.6rem */
-  -webkit-clip-path: polygon(7% 0, 100% 0%, 100% 100%, 0 100%);
-  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
-  border-radius: 0.0125rem; /* Converted from 0.2rem */
-  left: 5.25rem; /* Converted from 84px */
-  top: 7.375rem; /* Converted from 118px */
-  position: absolute;
-}
-
-.hero-search {
-  min-height: 57vh;
-}
-
-.bob {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  width: 80%;
-  margin: auto;
-  top: 5rem;
-}
-
-.bob .roof {
-  min-width: 85%;
-  margin: auto;
-}
-
-.triple {
-  min-width: 13.625rem; /* Converted from 218px */
-  min-height: 22.125rem; /* Converted from 354px */
-  float: left;
-}
-
 .logo-menu1 .group-26 {
-  margin-bottom: 0.001rem; /* Converted from 0.11px */
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 0.001rem;
 }
 
 .logo-menu1 .ellipse-1-two {
-  width: 0.541875rem; /* Converted from 8.67px */
-  height: 0.541875rem; /* Converted from 8.67px */
-  margin-bottom: 0.115625rem; /* Converted from 1.85px */
+  width: 0.541875rem;
+  height: 0.541875rem;
+  margin-bottom: 0.115625rem;
+  border: 0.00625rem solid #c9c9c9;
   border-radius: 50%;
-  border: 0.00625rem solid #c9c9c9; /* Converted from 0.4px */
 }
 
 .logo-menu1 .union {
-  width: 1.6525rem; /* Converted from 26.44px */
-  height: 1.59625rem; /* Converted from 25.54px */
+  width: 1.6525rem;
+  height: 1.59625rem;
 }
 
-.category {
-  margin-top: 4.8rem;
-  float: right;
+.Search-rectangle {
+  position: absolute;
+  width: 87%;
+  min-height: 15.7rem;
+  background: rgba(255, 255, 255, 0.5);
+  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
+  border-radius: 0.0125rem;
+  left: 5.25rem;
+  top: 7.375rem;
 }
 
-.category .word-card {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.hero-search {
+  position: relative;
+  min-height: 57vh;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.category a {
+.sell-asset-value {
+  position: absolute;
+  top: 2rem;
+  right: 9rem;
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+
+.buy, .sale {
+  background-color: #fff;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  margin: 0.5rem;
+}
+
+a {
   text-decoration: none;
-  color: #020b13;
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-right: 0.9rem;
+  color: #333;
+  font-weight: bold;
 }
-
-.category .buy a {
-  background-color: rgba(240, 240, 240, 0.692);
-  padding: 0.6rem 1.1rem;
-  border-radius: 0.2rem;
-}
-
-.category .sale a {
-  background-color: rgba(240, 240, 240, 0.315);
-  padding: 0.4rem 0.6rem;
-  border-radius: 0.2rem;
-  margin-right: 0.8rem;
-}
-
 
 form {
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  position: absolute;
-  z-index: 80;
-  gap: 0rem 0.2rem;
-  /* background-color: aqua; */
+  align-items: center;
+  gap: 0 0.2rem;
   right: 1rem;
+  position: flex;
+  z-index: 80;
 }
 
-form input ,form select {
-  border-radius: 0.2rem;
+
+
+.sell-asset-value {
+  position: absolute;
+  top: 2rem;
+  right: 9rem;
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+
+form input, form select {
   border-style: none;
+  border-radius: 0.2rem;
   width: 100%;
   max-height: 2rem;
 }
 
-form .coco1 ,coco {
-  width: 100%;
-}
-
 form .search-btn {
-  padding: 0.52rem 2.5rem; /* Converted from 0.5rem */
+  position: absolute;
+  top: 5rem;
+  left: 55rem;
+  padding: 0.52rem 2.5rem;
   border-style: none;
   border-radius: 0.5125rem;
   background: #041524;
   color: #ffffff;
   transition: 0.3s;
-  position: absolute;
-  top: 5rem; /* Converted from 80px */
-  left: 55rem; /* Converted from 665px */
-  font-size: 1.5625rem; /* Converted from 25px */
+  font-size: 1.5625rem;
   font-weight: bold;
 }
 
-
-form .search-btn:hover ,.click-continue:hover {
+form .search-btn:hover, .click-continue:hover {
   background: #041544;
 }
 
@@ -140,33 +116,31 @@ form .search-btn:hover ,.click-continue:hover {
   border-radius: 0.2rem;
   background: #041524;
   color: #ffffff;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
-
 .search-text {
   font-size: 2rem;
   font-weight: 400;
-  line-height: normal;
   color: #020b13;
   text-align: right;
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 
 .total-results {
-  text-align: center;
-  width: 15.75rem; /* Converted from 300px */
-  height: 2.5rem; /* Converted from 40px */
-  padding: 1.25rem; /* Converted from 20px */
-  border-radius: 0.625rem; /* Converted from 10px */
   position: absolute;
-  top: 4.375rem; /* Converted from 70px */
-  left: 0.1rem; /* Converted from 800px */
+  top: 4.375rem;
+  left: 0.1rem;
+  width: 15.75rem;
+  height: 2.5rem;
+  background-color: #f5f5f5;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  text-align: center;
 }
 
 .total-results .res-number {
   font-weight: bold;
+  margin-bottom: 0.625rem;
 }
 
 .results {
@@ -182,22 +156,22 @@ form .search-btn:hover ,.click-continue:hover {
 
 .total-results .res-number {
   font-weight: bold;
-  margin-bottom: 0.625rem; /* Converted from 10px */
+  margin-bottom: 0.625rem;
 }
 
 .sort_label {
-  font-size: 1rem; /* Converted from 16px */
+  font-size: 1rem;
   font-weight: bold;
   color: #333;
-  margin-right: 0.625rem; /* Converted from 10px */
+  margin-right: 0.625rem;
 }
 
 #sort {
   appearance: none;
-  padding: 0.5rem 0.75rem; /* Converted from 8px 12px */
-  border: 0.0625rem solid #ccc; /* Converted from 1px */
-  border-radius: 0.25rem; /* Converted from 4px */
-  font-size: 1rem; /* Converted from 16px */
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
   background-color: #f9f9f9;
   color: #333;
   cursor: pointer;
@@ -208,8 +182,7 @@ form .search-btn:hover ,.click-continue:hover {
   color: #333;
 }
 
-#sort:hover,
-#sort:focus {
+#sort:hover, #sort:focus {
   border-color: #999;
 }
 
@@ -223,20 +196,18 @@ form .search-btn:hover ,.click-continue:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 0rem;
 }
 
 .table-bordered {
   border-collapse: separate;
-  border-spacing: 1.25rem; /* Converted from 20px */
-  margin-bottom: 3.125rem; /* Converted from 50px */
-  background-color: transition; /* This line seems incomplete or incorrect */
+  border-spacing: 1.25rem;
+  margin-bottom: 3.125rem;
 }
 
 .table-bordered td {
-  padding: 1.875rem; /* Converted from 30px */
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2); /* Converted from 10px */
-  margin: 0.625rem; /* Converted from 10px */
+  padding: 1.875rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
+  margin: 0.625rem;
 }
 
 .table-bordered dt {
@@ -254,13 +225,12 @@ form .search-btn:hover ,.click-continue:hover {
 
 .apt-card img {
   width: 100%;
-  height: auto;
-  border-radius: 0.9375rem; /* Converted from 15px */
+  border-radius: 0.9375rem;
 }
 
 .apt-card .apt-card-body {
   text-align: center;
-  padding: 0.625rem; /* Converted from 10px */
+  padding: 0.625rem;
   font-size: 1.1rem;
 }
 
@@ -271,10 +241,9 @@ form .search-btn:hover ,.click-continue:hover {
 }
 
 
-.apt-card .price,
-.apt-card .predicted-price,
-.apt-card .location-apartment {
-  margin-bottom: 0.5rem; /* Converted from 8px */
+
+.apt-card .saving, .apt-card .price, .apt-card .predicted-price, .apt-card .location-apartment {
+  margin-bottom: 0.5rem;
 }
 
 .apt-size-floor-rooms {
@@ -299,9 +268,9 @@ form .search-btn:hover ,.click-continue:hover {
 .apt-card .apt-link .btn {
   display: block;
   width: 100%;
-  padding: 0.625rem 1.25rem; /* Converted from 10px 20px */
+  padding: 0.625rem 1.25rem;
   background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 0.3125rem; /* Converted from 5px */
+  border-radius: 0.3125rem;
   font-size: 1.2rem;
   text-decoration: none;
   color: #000;
@@ -322,24 +291,31 @@ form .search-btn:hover ,.click-continue:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1.25rem; /* Converted from 20px */
+  margin-top: 1.25rem;
   background-color: #f9f9f9;
-  padding: 0.625rem; /* Converted from 10px */
-  border-radius: 0.25rem; /* Converted from 4px */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* Converted from 2px 4px */
+  padding: 0.625rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
 
 .pagination a {
   color: #333;
   text-decoration: none;
-  padding: 0.5rem 0.75rem; /* Converted from 8px 12px */
-  margin: 0 0.3125rem; /* Converted from 5px */
-  border-radius: 0.25rem; /* Converted from 4px */
-  background-color: #f9f9f9;
+  padding: 0.3125rem 0.625rem;
+  margin: 0.3125rem;
+  border-radius: 0.125rem;
+  transition: background-color 0.3s;
 }
 
 .pagination a:hover {
-  background-color: #e0e0e0;
+  background-color: #e6e6e6;
+}
+
+.pagination a.active {
+  background-color: #041524;
+  color: #ffffff;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.125rem;
 }
 
 .pagination .current-page {
@@ -347,78 +323,110 @@ form .search-btn:hover ,.click-continue:hover {
   margin: 0 0.625rem; /* Converted from 10px */
 }
 
-@media only screen and (max-width: 600px) {
-  .Search-rectangle {
-    width: 90%;
-    height: 12rem;
-    top: 5rem;
-    left: 2rem;
-  }
+@media only screen and (max-width: 768px) {
 
+    .sell-asset-value {
+      position: absolute;
+      top: 0rem;
+      right: 1rem;
+
+    }
+
+  /* Adjusting the hero search section */
   .hero-search {
-    height: 45vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .bob {
-    width: 90%;
-    top: 2.5rem;
-  }
-
-  .triple {
+  /* Adjusting the search rectangle */
+  .Search-rectangle {
+    position: absolute;
     width: 100%;
-    height: 18rem;
-    float: none;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+    left: -3rem;
+    top: 5rem;
+    min-height: 24.2rem;
+
+
   }
 
-  .category {
-    margin-top: 2rem;
-  }
-
+  /* Adjusting the form's layout and components */
   form {
-    right: 0.5rem;
+    flex-direction: row;
+    flex-wrap: wrap; /* in case it needs to wrap */
+    right: auto;
+    gap: 0.1rem;
+  }
+
+  form input, form select {
+    width: 100%;
+    margin-bottom: 0.05rem;
   }
 
   form .search-btn {
-    top: 5.5rem;
-    left: 2rem;
-    font-size: 1.2rem;
+    position: static;
+    width: 40%;
+    left: auto;
+    top: auto;
+    font-size: 0.5rem;
+    padding:0.5rem;
   }
 
+  /* Adjusting the total results positioning */
   .total-results {
-    width: 100%;
-    top: 4.5rem;
-    left: 0.1rem;
+    padding:0.5rem;
+    border-radius: 0.225rem;
+    position: static;
+    width: 90%;
+    margin-top: 0.05rem;
   }
 
+  /* Adjusting table layout */
+  .table-container {
+    flex-direction: column;
+  }
   .table-bordered td {
     padding: 1rem;
-    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.2);
     margin: 0.5rem;
   }
 
   .apt-card {
-    margin: 0.5rem;
-    width: 100%;
-    max-width: none;
+    width: 90%; /* Allows the card to take up more space on mobile screens */
+    margin: 0.2rem auto; /* Centers the card with auto margins */
+    padding: 0.2rem;
+  }
+  .apt-card .apt-card-body {
+    padding: 0.5rem;
+    font-size: 0.7rem;
   }
 
   .apt-card img {
+    width: 5.4rem; /* Set the fixed width here */
+    height: 4.8rem; /* Set the fixed height here */
     border-radius: 0.5rem;
+    object-fit: cover; /* This ensures that the image covers the width and height without stretching */
   }
+
+  .apt-size-floor-rooms {
+    font-size: 0.56rem;
+}
 
   .apt-card .apt-link .btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 0rem 0rem;
+    font-size: 0.8rem;
+
+  }
+  /* Adjusting pagination layout */
+  .pagination {
+    flex-wrap: wrap;
   }
 
-  .pagination {
-    padding: 0.5rem;
-  }
+  /* Here, you can continue adjusting other elements as needed for mobile responsiveness */
 }
 
 /* Medium screens (tablets) */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
-  /* Add any specific styling for medium screens here */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
 }
 
 /* Large screens (desktops) */

@@ -9,44 +9,33 @@
 
 body {
   background: linear-gradient(1deg, rgba(0, 0, 0, 0) 10%, rgba(2, 11, 19, 0.98) 100%), linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.7)), url("/static/img/main-background.jpg");
-  background-size: 110%;
+  background-size: cover;
   background-position: center;
   font-family: "Rubik", sans-serif;
 }
 
 
-
 nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  height: calc(7.74% - 10px);
-  background-color: rgba(2, 11, 19, 0.7);
+  height: 5.2rem; /* Using a fixed height for better clarity */
+  background-color: rgba(9, 30, 40, 0.8);
 }
 
 .nav2 {
-  max-width: 80%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  width: 80%;
   display: flex;
-  max-height: calc(7.74% - 10px);
-  padding: 0.4rem ;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
+  height: 100%; /* Use 100% of the parent's height */
+  padding: 0.4rem;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin: auto;
 }
 
 .nav2 ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   list-style: none;
-  gap: 4rem;
-  margin: 0 50px;
+  gap: 2rem; /* reduced gap for better spacing */
+  margin: 0 2rem; /* reduced margin for better spacing on smaller screens */
 }
 
 .nav2 a {
@@ -195,21 +184,40 @@ footer .a-list p {
 }
 /*# sourceMappingURL=ready.css.map */
 
+@media (max-width: 768px) { /* Tablet and below */
+    nav {
+      display: flex;
+      height: 5.2rem;
+      background-color: rgba(9, 30, 40, 0.8);
+    }
+
+    .nav2 {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: auto;
+    }
+
+    .about-us {
+        max-width: 90%;
+        margin: 4rem auto;
+    }
+
+    footer .a-list {
+        margin-right: 1.2rem;
+        max-width: 90%;
+    }
+
+    .left-logo2 {
+        margin-left: 1rem;
+    }
+}
+
+
+
 @media only screen and (max-width: 600px) {
-  body {
-    background-size: cover; /* Adjust background size for smaller screens */
-  }
 
-  .nav2 ul {
-    display: block; /* Stack navigation items on small screens */
-    margin: 0; /* Remove horizontal margin for better layout */
-    padding: 1rem 0; /* Add some padding between navigation items */
-  }
-
-  .about-us {
-    max-width: 90%; /* Adjust the width of the about section */
-    margin: 3rem auto; /* Adjust margin for better spacing */
-  }
 }
 
 /* Medium screens (tablets) */

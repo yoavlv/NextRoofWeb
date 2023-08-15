@@ -2,24 +2,18 @@
 {% load static %}
 {% block content %}
 
-<section class="hero-search">
-    <div class="bob">
-        <div class="roof">
-            <div class="category">
-                <div class="ana">
-                    <div class="word-card">
-                        <div class="sale">
-                            <a href="{%url 'home' %}">קונה</a>
-                        </div>
-                        <div class="buy">
-                            <a href="{% url 'asset_value' %}">שווי הנכס</a>
-                        </div>
-                    </div>
-                </div>
+<div class="hero-search">
+    <div class="sell-asset-value">
+            <div class="buy">
+              <a href="{%url 'home' %}">קונה</a>
+
             </div>
+            <div class="sale">
+                <a href="{% url 'asset_value' %}">שווי הנכס</a>
+            </div>
+    </div>
 
-
-<section class="Search-rectangle">
+  <div class="Search-rectangle">
         <p class="search-text">חיפוש נכס</p>
             <form action="{% url 'calc_asset_value' %}" method="get">
               <div class="input-search-field">
@@ -78,12 +72,12 @@
               </div>
 
               <div class="search-btn">
-                <button class="click-continue" type="submit">חשב את שווי הנכס</button>
+                <button class="click-continue" type="submit">חשב</button>
               </div>
             </form>
-  </section>
+    </div>
 
-</section>
+</div>
 
 {% if Search %}
 

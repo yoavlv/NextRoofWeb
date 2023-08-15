@@ -2,23 +2,18 @@
 {% load static %}
 {% block content %}
 
-<section class="hero-search">
-    <div class="bob">
-        <div class="roof">
-            <div class="category">
-                <div class="ana">
-                    <div class="word-card">
-                        <div class="buy">
-                            <a href="#">קונה</a>
-                        </div>
-                        <div class="sale">
-                            <a href="{% url 'asset_value' %}">שווי הנכס</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="hero-search">
 
-<section class="Search-rectangle">
+    <div class="sell-asset-value">
+            <div class="buy">
+                <a href="#">קונה</a>
+            </div>
+            <div class="sale">
+                <a href="{% url 'asset_value' %}">שווי הנכס</a>
+            </div>
+    </div>
+
+    <div class="Search-rectangle">
         <p class="search-text">חיפוש</p>
         <h1>{{parmas}}</h1>
         <form action="{% url 'search' %}" method="get">
@@ -77,15 +72,10 @@
                     <option value="price_asc">מחיר - עולה</option>
                     <option value="price_desc">מחיר - יורד</option>
                 </select>
-
         </div>
     </form>
-  </section>
-
-
-
   </div>
-</section>
+</div>
 
 <div class="results">
     <table class="table-container">

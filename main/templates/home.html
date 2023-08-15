@@ -3,75 +3,68 @@
 
 {% block content %}
 
-<section class="hero-search">
-    <div class="bob">
-        <div class="roof">
-            <div class="category">
-                <div class="ana">
-                    <div class="word-card">
-                        <div class="buy">
-                            <a href="#">קונה</a>
-                        </div>
-                        <div class="sale">
-                            <a href="{% url 'asset_value' %}">שווי הנכס</a>
-                        </div>
-                    </div>
-                </div>
+<div class="hero-search">
+    <div class="sell-asset-value">
+            <div class="buy">
+                <a href="#">קונה</a>
+            </div>
+            <div class="sale">
+                <a href="{% url 'asset_value' %}">שווי הנכס</a>
+            </div>
+    </div>
+
+    <div class="Search-rectangle">
+            <p class="search-text">חיפוש</p>
+            <form action="{% url 'search' %}" method="get">
+            <div class="input-search-field">
+               <p>עיר</p>
+              <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
             </div>
 
-<section class="Search-rectangle">
-        <p class="search-text">חיפוש</p>
-        <form action="{% url 'search' %}" method="get">
-        <div class="input-search-field">
-           <p>עיר</p>
-          <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
-        </div>
+            <div class="input-search-field">
+                <p>שכונה</p>
+                <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
+                    {% for neighborhood in neighborhoods %}
+                        <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-        <div class="input-search-field">
-            <p>שכונה</p>
-            <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
-                {% for neighborhood in neighborhoods %}
-                    <option value="{{ neighborhood }}">{{ neighborhood }}</option>
-                {% endfor %}
-            </select>
-        </div>
+             <div class="input-search-field">
+               <p>חדרים מ-</p>
+              <input class="coco1" type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" >
+            </div>
 
-         <div class="input-search-field">
-           <p>חדרים מ-</p>
-          <input class="coco1" type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" >
-        </div>
+            <div class="input-search-field">
+            <p> עד-</p>
+              <input class="coco1" type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="חדרים מ-" >
+            </div>
 
-        <div class="input-search-field">
-        <p> עד-</p>
-          <input class="coco1" type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="חדרים מ-" >
-        </div>
+           <div class="input-search-field">
+               <p>קומה מ-</p>
+              <input class="coco1" type="number" name="min-floor" id="min-floor" min="1" max="10" placeholder="קומה" >
+            </div>
+             <div class="input-search-field">
+            <p>קומה עד-</p>
+              <input class="coco1" type="number" name="max-floor" id="max-floor" min="1" max="10" placeholder="מ-" >
+            </div>
 
-       <div class="input-search-field">
-           <p>קומה מ-</p>
-          <input class="coco1" type="number" name="min-floor" id="min-floor" min="1" max="10" placeholder="קומה" >
-        </div>
-         <div class="input-search-field">
-        <p>קומה עד-</p>
-          <input class="coco1" type="number" name="max-floor" id="max-floor" min="1" max="10" placeholder="מ-" >
-        </div>
+           <div class="input-search-field">
+           <p>גודל עד-</p>
+              <input class="coco1" type="number" name="min-size" id="min-size" min="1" max="10" placeholder="עד-" >
+            </div>
+              <div class="input-search-field">
+                <p>גודל עד-</p>
+              <input class="coco1" type="number" name="max-size" id="max-size" min="1" max="10" placeholder="מר" >
+            </div>
 
-       <div class="input-search-field">
-       <p>גודל עד-</p>
-          <input class="coco1" type="number" name="min-size" id="min-size" min="1" max="10" placeholder="עד-" >
-        </div>
-          <div class="input-search-field">
-            <p>גודל עד-</p>
-          <input class="coco1" type="number" name="max-size" id="max-size" min="1" max="10" placeholder="מר" >
-        </div>
+            <div class="search-btn">
+              <button class="click-continue" type="submit">חפש</button>
+            </div>
+        </form>
+      </div>
 
-        <div class="search-btn">
-          <button class="click-continue" type="submit">חפש</button>
-        </div>
-    </form>
-  </section>
-
-
-</section>
+</div>
 
 
 

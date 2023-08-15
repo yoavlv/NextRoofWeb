@@ -1,19 +1,20 @@
 .daily-find {
+    max-height: auto;
     position: relative;
-    top: -3.75rem; /* Converted from 60px */
+    top: 0rem;
     background-color: rgba(190, 188, 243, 0.095);
-    margin: 0 auto; /* To center horizontally */
+    margin: 0 auto;
 }
 
 .day-title {
   position: relative;
-  top: 4.375rem; /* Converted from 70px */
+  top: 7.8rem; /* Converted from 70px */
   left: -0.625rem; /* Converted from -10px */
   transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   border-radius: 0.7rem;
-  width: 28.125rem; /* Converted from 450px */
+  width: 25%;
   padding: 1.25rem; /* Converted from 20px */
 }
 
@@ -353,116 +354,55 @@
   border-radius: 0.1875rem; /* Converted from 3px */
 }
 
-@media only screen and (max-width: 600px) {
-  .daily-find {
-    top: -2.5rem;
-  }
+
+@media (max-width: 768px) {
+    .daily-find {
+        width: 90%; /* Make it occupy most of the screen width */
+        max-width: none; /* Remove any max-width limitations */
+        padding: 1rem; /* Add some padding to give the content breathing space */
+        top: 0.5rem; /* Give a little top spacing */
+    }
 
   .day-title {
-    top: 2.5rem;
-    left: 0;
-    width: 100%;
+    top: 3.9rem; /* Reduced from 7.8rem */
+    left: 10rem; /* Reduced from -0.625rem */
+    width: 90%; /* Adjusted from 25% to make it wider on mobile screens */
+    padding: 0.625rem; /* Reduced from 1.25rem */
   }
 
   .day-title h1 {
-    font-size: 1.5rem;
-    padding: 0.5rem;
+    font-size: 1.2rem; /* Adjusted for mobile screen */
+    padding: 0.375rem; /* Reduced from 0.75rem */
   }
 
   .day-title p {
-    font-size: 0.8rem;
-    text-indent: 0;
+    font-size: 0.9rem; /* Reduced from 1.0625rem */
   }
 
   .day-title button {
-    padding: 0.3rem 1.5rem;
-    width: 90%;
+    padding: 0.2rem 0.9rem; /* Reduced from 0.4rem 1.8rem */
+    font-size: 1rem; /* Reduced from 1.2rem */
+    width: 85%; /* Adjusted from 71% */
+    margin: 0.45rem 0; /* Reduced from 0.9rem */
   }
 
-  .day-deal h1 {
-    font-size: 1.4rem;
-  }
 
-  .day-deal p {
-    font-size: 1rem;
-  }
+    .day {
+        flex-direction: column;
+        width: 90%;
+        gap: 1.5rem;
+    }
 
-  .day-deal .btn-day {
-    padding: 0.4rem 1.5rem;
-  }
+    .card-day-right, .card-day-middle {
+        /* You may need to adjust some more styles here */
+    }
 
-  .day {
-    width: 100%;
-    display: block;
-    margin-top: 1.5rem;
-  }
-
-  .card-day-right,
-  .card-day-middle,
-  .card-day-left {
-    margin: auto;
-    display: block;
-  }
-
-  .card-day-right .top-card .photo-card,
-  .card-day-middle .top-card .photo-card,
-  .card-day-left .top-card .photo-card {
-    width: 100%;
-    height: auto;
-    clip-path: none;
-    margin-top: 0;
-  }
-
-  .card-day-right .top-card .triple-card {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .card-day-right .down-card,
-  .card-day-middle .down-card,
-  .card-day-left .down-card {
-    padding: 0.2rem 0;
-    font-size: 0.8rem;
-  }
-
-  .card-day-right .down-card .saving,
-  .card-day-middle .down-card .saving,
-  .card-day-left .down-card .saving {
-    font-size: 1.3rem;
-    padding-top: 1rem;
-  }
-
-  .card-day-right .details,
-  .card-day-middle .details,
-  .card-day-left .details {
-    font-size: 0.9rem;
-    padding: 0.6rem 0;
-  }
-
-  .card-day-right .details .line-1,
-  .card-day-middle .details .line-1,
-  .card-day-left .details .line-1 {
-    height: 1rem;
-  }
-
-  .btn-card1,
-  .btn-card2,
-  .btn-card3 {
-    padding: 0.3rem 1.5rem;
-    width: 90%;
-  }
-
-  .down-card-text {
-    border-radius: 0.15rem;
-  }
 }
 
-/* Medium screens (tablets) */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
-  /* Add any specific styling for medium screens here */
-}
+@media (max-width: 480px) {
+    .day-title h1 {
+        font-size: 1.4rem;
+    }
 
-/* Large screens (desktops) */
-@media only screen and (min-width: 1025px) {
-  /* Add any specific styling for large screens here */
+    /* ... any other mobile specific styles ... */
 }
