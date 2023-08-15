@@ -173,7 +173,7 @@ def predict_apt_price(params, model):
     X = X.reindex(columns=["Rooms", "Floor", "Size", "Build_year", "Floors", "Long", "Lat",
                            "Year", "Distance_sea", "Train", 'Age', 'Neighborhood_rank', 'Street_rank', 'Gush_rank',
                            'Helka_rank'])
-
+    print(X)
     scaler = joblib.load('static/scaler.pkl')
     X_scaled = scaler.transform(X)
 
