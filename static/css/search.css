@@ -48,13 +48,19 @@
 }
 
 
-.buy, .sale {
-  background-color: #fff;
+.sale , .buy {
+  background-color: rgba(255,255,255);
   border-radius: 0.8rem;
   padding: 1rem;
   text-align: center;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
   margin: 0.5rem;
+}
+
+
+.buy.active, .sale.active {
+    transform: scale(1.25);  /* This will enlarge the buttons when active */
+    background-color: rgba(220,255,255);; /* Optionally change the background color when active */
 }
 
 a {
@@ -84,17 +90,20 @@ form {
 }
 
 
+
 form input, form select {
   border-style: none;
   border-radius: 0.2rem;
-  width: 100%;
+  width:100%;
   max-height: 2rem;
 }
 
+.short-text-field {
+    width: 5.8rem;
+}
 form .search-btn {
   position: absolute;
   top: 5rem;
-  left: 55rem;
   padding: 0.52rem 2.5rem;
   border-style: none;
   border-radius: 0.5125rem;
@@ -365,13 +374,13 @@ form .search-btn:hover, .click-continue:hover {
   }
 
   form .search-btn {
-    position: static;
-    width: 40%;
-    left: auto;
-    top: auto;
-    font-size: 0.5rem;
-    padding:0.5rem;
-  }
+  position: static;  /* this makes it behave like a normal element */
+  width: 25%;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  padding: 0.4rem;
+}
+
 
   /* Adjusting the total results positioning */
   .total-results {
@@ -381,6 +390,7 @@ form .search-btn:hover, .click-continue:hover {
     width: 90%;
     margin-top: 0.05rem;
   }
+
 
   /* Adjusting table layout */
   .table-container {
