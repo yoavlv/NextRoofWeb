@@ -103,7 +103,7 @@ form input, form select {
 }
 form .search-btn {
   position: absolute;
-  top: 5rem;
+  top: 6rem;
   padding: 0.52rem 2.5rem;
   border-style: none;
   border-radius: 0.5125rem;
@@ -139,15 +139,17 @@ form .search-btn:hover, .click-continue:hover {
   position: absolute;
   top: 4.375rem;
   left: 0.1rem;
-  width: 15.75rem;
+  max-width: 15.75rem;
   height: 2.5rem;
   background-color: #f5f5f5;
-  padding: 1.25rem;
+  padding: 1rem;
   border-radius: 0.625rem;
   text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.625rem;
 }
 
-.total-results .res-number {
+.res-number {
   font-weight: bold;
   margin-bottom: 0.625rem;
 }
@@ -157,16 +159,6 @@ form .search-btn:hover, .click-continue:hover {
   margin-top: 1.25rem; /* Converted from 20px */
 }
 
-.total-results {
-  background-color: #f5f5f5;
-  padding: 1.25rem; /* Converted from 20px */
-  border-radius: 0.625rem; /* Converted from 10px */
-}
-
-.total-results .res-number {
-  font-weight: bold;
-  margin-bottom: 0.625rem;
-}
 
 .sort_label {
   font-size: 1rem;
@@ -350,10 +342,10 @@ form .search-btn:hover, .click-continue:hover {
 
   /* Adjusting the search rectangle */
   .Search-rectangle {
-    position: absolute;
-    width: 100%;
+    position: center;
+    width: 115%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    left: -3rem;
+    left: -6.4rem;
     top: 5rem;
     min-height: 24.2rem;
     border-radius:1rem;
@@ -374,51 +366,82 @@ form .search-btn:hover, .click-continue:hover {
 
   form .search-btn {
   position: static;  /* this makes it behave like a normal element */
+  margin-bottom: -1rem;
+  margin-right: 0.4rem;
   width: 25%;
   border-radius: 0.25rem;
   font-size: 0.7rem;
   padding: 0.4rem;
-}
+    }
 
+  .click-continue {
+   font-size: 1.1rem;
+   }
+
+ .results {
+    position: relative;
+    left: -3rem;   /* Move it 3rem to the left */
+    width: 110%;   /* Make it wider. Adjust as needed. */
+    text-align: center;
+    margin-top: 1.25rem;
+    }
 
   /* Adjusting the total results positioning */
   .total-results {
-    padding:0.5rem;
-    border-radius: 0.225rem;
+    height: 2rem;
+    padding:0.1rem;
+    top:1rem;
+    border-radius: 0.525rem;
     position: static;
-    width: 90%;
-    margin-top: 0.05rem;
+    width: 60%;
+    margin-top: 1rem;     /* Adjusted to provide space above the div */
   }
 
+  .sort-res {
+    padding: 0.35rem;
+  }
 
+  .sort_label {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+      margin-right: 0.625rem;
+      margin-top: 3rem;
+      margin-button :3rem;
+    }
   /* Adjusting table layout */
   .table-container {
+    left: -8rem;
     flex-direction: column;
+    width:100%;
+
   }
   .table-bordered td {
-    padding: 1rem;
-    margin: 0.5rem;
+    padding: 0.2rem;
+    margin: 0.2rem;
   }
 
   .apt-card {
     width: 90%; /* Allows the card to take up more space on mobile screens */
-    margin: 0.2rem auto; /* Centers the card with auto margins */
-    padding: 0.2rem;
+    margin: 0.9rem auto; /* Centers the card with auto margins */
+    padding: 0.7rem;
   }
   .apt-card .apt-card-body {
-    padding: 0.5rem;
+    width: 100%;
+    padding: 0.1rem;
     font-size: 0.7rem;
   }
 
-  .apt-card img {
-    width: 5.4rem; /* Set the fixed width here */
-    height: 4.8rem; /* Set the fixed height here */
-    border-radius: 0.5rem;
-    object-fit: cover; /* This ensures that the image covers the width and height without stretching */
-  }
+    .apt-card img {
+      width: 5.5rem;
+      height: 5.0rem;
+      border-radius: 0.5rem;
+      object-fit: cover;
+      margin-left: 1rem;  /* This will push the image 1rem to the left */
+    }
 
   .apt-size-floor-rooms {
-    font-size: 0.56rem;
+    font-size: 0.7rem;
 }
 
   .apt-card .apt-link .btn {
@@ -428,6 +451,7 @@ form .search-btn:hover, .click-continue:hover {
   }
   /* Adjusting pagination layout */
   .pagination {
+    width:140%;
     flex-wrap: wrap;
   }
 

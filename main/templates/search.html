@@ -65,12 +65,14 @@
 
         <div class="total-results">
             <p class="res-number">נמצאו {{ num_results }} תוצאות</p>
+            <div class="sort-res">
                 <label class = sort_label for="sort">מיין לפי:</label>
                 <select name="sort" id="sort" onchange="this.form.submit()">
                     <option value="">בחר</option>
                     <option value="price_asc">מחיר - עולה</option>
                     <option value="price_desc">מחיר - יורד</option>
                 </select>
+            </div>
         </div>
     </form>
   </div>

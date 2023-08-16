@@ -357,10 +357,11 @@
 
 @media (max-width: 768px) {
     .daily-find {
-        width: 90%; /* Make it occupy most of the screen width */
-        max-width: none; /* Remove any max-width limitations */
-        padding: 1rem; /* Add some padding to give the content breathing space */
-        top: 0.5rem; /* Give a little top spacing */
+        position:center;
+        width: 135%;
+        max-width: none;
+        padding: 1rem;
+        top: 0.5rem;
     }
 
   .day-title {
@@ -389,7 +390,7 @@
 
     .day {
         flex-direction: column;
-        width: 90%;
+        width: 100%;
         gap: 1.5rem;
     }
 

@@ -148,6 +148,7 @@ footer .a-list p {
 }
 
 .left-logo2 .logo-menu2 .group-11-2 {
+
   background-size: 100% 100%;
   background-position: center;
   background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
@@ -192,12 +193,15 @@ footer .a-list p {
     }
 
     .nav2 {
+      background-color: rgba(9, 30, 40, 0.8);
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: auto;
     }
+
+
 
     .about-us {
         max-width: 90%;
