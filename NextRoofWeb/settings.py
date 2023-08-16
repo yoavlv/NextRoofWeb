@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-tvu@wl=2t8=9%9-h9norknjc6+npalwqrw))%^x!0y0!txjsao
 DEBUG = True
 
 # ALLOWED_HOSTS = ['nexroof.online', 'www.nexroof.online', '127.0.0.1']
-ALLOWED_HOSTS = ['nextroof.online', 'www.nextroof.online' ,'*']
+ALLOWED_HOSTS = ['nextroof.online', 'www.nextroof.online' ,'*', 'nextroof.online' , 'www.nextroof.co.il']
 
 # Application definition
 

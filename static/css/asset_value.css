@@ -116,6 +116,7 @@ form input {
   border-radius: 0.5rem;
   background-color: #f9f9f9;
   overflow: auto; /* Enable scrolling if needed */
+  max-width: 50rem;
 }
 
 .button-row {
@@ -179,6 +180,11 @@ form input {
 }
 
 @media only screen and (max-width: 768px) { /* 768px */
+    .result {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
   .algo-res {
     margin: 0.625rem;
     padding: 0.625rem;
@@ -222,6 +228,7 @@ form input {
   #neighborhood_plot {
     margin: 0.325rem;
     padding: 0.325rem;
+
   }
 
   .button-row {

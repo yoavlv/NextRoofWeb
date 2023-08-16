@@ -5,7 +5,9 @@ from .base_functions import lasted_deals_street
 import math
 from django.core.paginator import Paginator
 import pandas as pd
+from datetime import datetime
 
+t = datetime.year.__str__()
 
 def home(request):
     top_deals = get_random_deals()
@@ -56,7 +58,7 @@ def get_random_deals(num_deals=3):
 def calculate_percentage_difference(num1, num2):
     difference = num1 - num2
     average = (num1 + num2) / 2
-    percentage_difference = (difference / average) * 100
+    percentage_difference = ((difference / average) * 100) * -1
     return round(percentage_difference, 2)
 
 def search_apartments(request):

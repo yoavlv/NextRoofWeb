@@ -59,7 +59,7 @@
 
 
 .buy.active, .sale.active {
-    transform: scale(1.25);  /* This will enlarge the buttons when active */
+    transform: scale(1.1);  /* This will enlarge the buttons when active */
     background-color: rgba(220,255,255);; /* Optionally change the background color when active */
 }
 
@@ -336,8 +336,8 @@ form .search-btn:hover, .click-continue:hover {
 
     .sell-asset-value {
       position: absolute;
-      top: 0rem;
-      right: 1rem;
+      top: -0.15rem;
+      right: 1.95rem;
 
     }
 
@@ -356,8 +356,7 @@ form .search-btn:hover, .click-continue:hover {
     left: -3rem;
     top: 5rem;
     min-height: 24.2rem;
-
-
+    border-radius:1rem;
   }
 
   /* Adjusting the form's layout and components */
