@@ -1,33 +1,15 @@
-.logo-menu1 .group-26 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0.001rem;
-}
-
-.logo-menu1 .ellipse-1-two {
-  width: 0.541875rem;
-  height: 0.541875rem;
-  margin-bottom: 0.115625rem;
-  border: 0.00625rem solid #c9c9c9;
-  border-radius: 50%;
-}
-
-.logo-menu1 .union {
-  width: 1.6525rem;
-  height: 1.59625rem;
-}
 
 .Search-rectangle {
   position: absolute;
   width: 87%;
-  min-height: 15.7rem;
-  background: rgba(255, 255, 255, 0.5);
+  min-height: 22.2rem;
+  background: rgba(255, 255, 255, 0.8);
   clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
   border-radius: 0.0125rem;
   left: 5.25rem;
   top: 7.375rem;
 }
+
 
 .hero-search {
   position: relative;
@@ -39,7 +21,7 @@
 }
 
 .sell-asset-value {
-  position: absolute;
+  position: relative;
   top: 2rem;
   right: 9rem;
   display: flex;
@@ -70,15 +52,14 @@ a {
 }
 
 form {
-  display: flex;
-  align-items: center;
-  gap: 0 0.2rem;
-  right: 1rem;
-  position: flex;
-  z-index: 80;
+    display: flex;
+    flex-direction: column;  /* This will stack the children (top-search-row and more-options-section) vertically */
+    align-items: center;
+    gap: 0.2rem;
+    right: 1rem;
+    position: relative;      /* changed from 'flex' */
+    z-index: 80;
 }
-
-
 
 .sell-asset-value {
   position: absolute;
@@ -88,7 +69,6 @@ form {
   align-items: flex-start;
   padding: 1rem;
 }
-
 
 
 form input, form select {
@@ -101,9 +81,12 @@ form input, form select {
 .short-text-field {
     width: 5.8rem;
 }
+
+
+
 form .search-btn {
-  position: absolute;
-  top: 6rem;
+  margin-top:1rem;
+  position: static;
   padding: 0.52rem 2.5rem;
   border-style: none;
   border-radius: 0.5125rem;
@@ -135,65 +118,119 @@ form .search-btn:hover, .click-continue:hover {
   padding: 1rem;
 }
 
+
+.more-options-section {
+    display: none;
+    flex-direction: row; /* Ensure children are arranged in a horizontal line */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem; /* Adjust if needed */
+    flex-wrap: wrap; /* Allows items to wrap to the next line if there's not enough space */
+}
+
+.top-search-row {
+    display: flex;
+    flex-direction: row; /* Ensure children are arranged in a horizontal line */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem; /* Adjust if needed */
+    flex-wrap: wrap; /* Allows items to wrap to the next line if there's not enough space */
+}
+
+.down-search-row {
+    display: flex;
+    flex-direction: row; /* Ensure children are arranged in a horizontal line */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem; /* Adjust if needed */
+    flex-wrap: wrap;
+
+}
+.toggle-options {
+    cursor: pointer;
+    background-color: rgba(220,255,255);
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    align-self: flex-start; /* This aligns the button to the left of its parent container */
+
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+
+}
+
+.toggle-options:hover {
+    background-color: rgba(200,240,255); /* Slightly darker on hover for feedback */
+}
+
+
 .total-results {
-  position: absolute;
-  top: 4.375rem;
-  left: 0.1rem;
-  max-width: 15.75rem;
-  height: 2.5rem;
-  background-color: #f5f5f5;
-  padding: 1rem;
-  border-radius: 0.625rem;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
 }
 
-.res-number {
-  font-weight: bold;
-  margin-bottom: 0.625rem;
+.res-number,
+.sort-res {
+    font-size:1.2rem;
+    flex: 1;  /* allows the elements to grow and take available space */
 }
 
-.results {
-  text-align: center;
-  margin-top: 1.25rem; /* Converted from 20px */
+.sort-res {
+    display: flex;
+    align-items: center;
 }
 
-
-.sort_label {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #333;
-  margin-right: 0.625rem;
+.sort-label {
+    margin-right: 1rem;  /* Space between the label and the select dropdown */
 }
 
 #sort {
-  appearance: none;
-  padding: 0.5rem 0.75rem;
-  border: 0.0625rem solid #ccc;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-  color: #333;
-  cursor: pointer;
+    width: 7.5rem;  /* Adjust for desired width */
+    height: 5.9rem;  /* Adjust for desired height */
+    appearance: none;
+    padding: 0.5rem 0.75rem;  /* Increased vertical padding for more height */
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+}
+
+#sort:hover,
+#sort:focus {
+    border-color: #999;
 }
 
 #sort option {
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-#sort:hover, #sort:focus {
-  border-color: #999;
+    background: #f9f9f9;
+    color: #333;
 }
 
 #sort:hover option,
 #sort:focus option {
-  background-color: #e0e0e0;
-  color: #333;
+    background-color: #e0e0e0;
 }
 
+
+}
+.results {
+   position: relative;  /* Ensure this is set to relative */
+   text-align: center;
+   margin-top: 1.25rem;
+}
+
+
 .table-container {
+  margin-top:7.5rem;
+  width: 100%; /* Ensure it takes full available width */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,6 +240,7 @@ form .search-btn:hover, .click-continue:hover {
   border-collapse: separate;
   border-spacing: 1.25rem;
   margin-bottom: 3.125rem;
+  width: 100%; /* Ensure it takes full available width */
 }
 
 .table-bordered td {
@@ -210,7 +248,6 @@ form .search-btn:hover, .click-continue:hover {
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
   margin: 0.625rem;
 }
-
 .table-bordered dt {
   border-bottom: none;
 }
@@ -343,11 +380,11 @@ form .search-btn:hover, .click-continue:hover {
   /* Adjusting the search rectangle */
   .Search-rectangle {
     position: center;
-    width: 115%;
+    width: 120%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
     left: -6.4rem;
     top: 5rem;
-    min-height: 24.2rem;
+    min-height: 26.2rem;
     border-radius:1rem;
   }
 
@@ -362,6 +399,11 @@ form .search-btn:hover, .click-continue:hover {
   form input, form select {
     width: 100%;
     margin-bottom: 0.05rem;
+  }
+
+  .more-options-section , .top-search-row , .down-search-row{
+    gap: 0.1rem;
+
   }
 
   form .search-btn {

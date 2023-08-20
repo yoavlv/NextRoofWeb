@@ -6,99 +6,120 @@
   box-sizing: border-box;
 }
 
-
 body {
-  background: linear-gradient(1deg, rgba(0, 0, 0, 0) 10%, rgba(2, 11, 19, 0.98) 100%), linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.7)), url("/static/img/main-background.jpg");
-  background-size: cover;
-  background-position: center;
-  font-family: "Rubik", sans-serif;
+    background-color: rgba(233, 242, 250);
+    background-image: url("/static/img/option1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: "Rubik", sans-serif;
+    transform-origin: center center;
 }
 
 
+.btn-container {
+    margin-top:2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-bar-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 2.25rem;
+    height: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.line {
+    width: 100%;
+    height: 0.1875rem;
+    background-color: #000;
+}
+
 nav {
-  display: flex;
-  height: 5.2rem; /* Using a fixed height for better clarity */
-  background-color: rgba(9, 30, 40, 0.8);
+    display: flex;
+    height: 5.2rem;
+    background-color: rgba(9, 30, 40, 0.3);
+    transition: background-color 0.3s;
 }
 
 .nav2 {
-  width: 80%;
-  display: flex;
-  height: 100%; /* Use 100% of the parent's height */
-  padding: 0.4rem;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
+    width: 80%;
+    display: flex;
+    height: 100%;
+    padding: 0.4rem;
+    justify-content: center;  /* Center items horizontally */
+    align-items: center;
+    margin: auto;
+    position: relative;  /* Added for absolute positioning of logo */
 }
 
 .nav2 ul {
-  display: flex;
-  list-style: none;
-  gap: 2rem; /* reduced gap for better spacing */
-  margin: 0 2rem; /* reduced margin for better spacing on smaller screens */
+    color: white;
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0 2rem;
+}
+
+
+
+.nav2 ul li {
+    margin:0.8rem;
+    transition: transform 0.3s ease;  /* Smooth transition for the transform property */
+}
+
+.nav2 ul li:hover {
+    transform: scale(1.2);  /* Scale the list item to 110% of its original size on hover */
 }
 
 .nav2 a {
-  text-decoration: none;
-  color: #f0f0f0;
-  font-size: 1rem;
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
 }
 
 .nav2 .enter {
-  max-width: 35px;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: normal;
-  color: white;
-  text-align: right;
+    max-width: 35px;
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    color: black; /* Changed color to black */
+    text-align: right;
 }
+
+.transparent-nav {
+    background-color: transparent;
+}
+
 
 .logo-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.logo-menu .group-11 {
-  background-size: 100% 100%;
-  background-position: center;
-  background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
-  margin-bottom: 0.174em; /* Converted from 3.48px */
-  padding: 2.686em 1.396em 0.595em 2.432em; /* Converted from 40.33px 21.09px 9.28px 30.24px */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+.logo-img {
+    position:right;
+    width: 3.8rem;
+    height: 3.8rem;
 }
-.logo-menu .ellipse-1 {
-  width: 0.1em; /* Converted from 1.6px */
-  height: 0.1em; /* Converted from 1.6px */
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-.logo-menu .next-roof {
-  font-family: "Major Mono Display";
-  font-size: 0.875rem; /* Converted from 14px */
-  font-weight: 400;
-  line-height: normal;
-  color: #c9c9c9;
-}
-
-
 
 .about-us {
-  color: #ffffff;
+  color: white;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   max-width: 48%;
   margin: 8rem auto;
+  line-height: 2.2rem;
 }
 
 footer {
@@ -164,8 +185,8 @@ footer .a-list p {
 
 
 .left-logo2 .logo-menu2 .ellipse-1-2 {
-  max-width: 0.1em; /* Converted from 1.6px */
-  max-height: 0.1em; /* Converted from 1.6px */
+  max-width: 0.1em;
+  max-height: 0.1em;
   background-color: #f0f0f0;
   border-radius: 50%;
   margin: 0 auto;
@@ -186,20 +207,6 @@ footer .a-list p {
 /*# sourceMappingURL=ready.css.map */
 
 @media (max-width: 768px) { /* Tablet and below */
-    nav {
-      display: flex;
-      height: 5.2rem;
-      background-color: rgba(9, 30, 40, 0.8);
-    }
-
-    .nav2 {
-      background-color: rgba(9, 30, 40, 0.8);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: auto;
-    }
 
 
 
@@ -220,7 +227,11 @@ footer .a-list p {
 
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+    .logo-img {
+        display:none;
+
+    }
 
 }
 
@@ -233,3 +244,4 @@ footer .a-list p {
 @media only screen and (min-width: 1025px) {
   /* Add any specific styling for large screens here */
 }
+

@@ -5,7 +5,7 @@
 <div class="hero-search">
     <div class="sell-asset-value">
             <div class="buy">
-                <a href="{%url 'home' %}">קונה</a>
+                <a href="{%url 'search' %}">קונה</a>
             </div>
             <div class="sale">
                 <a href="{% url 'asset_value' %}">שווי הנכס</a>
@@ -16,19 +16,35 @@
         <p class="search-text">חיפוש</p>
         <h1>{{parmas}}</h1>
         <form action="{% url 'search' %}" method="get">
-        <div class="input-search-field">
-           <p>עיר</p>
-          <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
-        </div>
+            {% csrf_token %}
+            <div class="top-search-row">
+                <div class="input-search-field">
+                    <p>עיר</p>
+                    <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
+                </div>
 
-        <div class="input-search-field">
-            <p>שכונה</p>
-            <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
-                {% for neighborhood in neighborhoods %}
-                    <option value="{{ neighborhood }}">{{ neighborhood }}</option>
-                {% endfor %}
-            </select>
-        </div>
+                <div class="input-search-field">
+                    <p>שכונה</p>
+                    <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
+                        {% for neighborhood in neighborhoods %}
+                            <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-search-field">
+                    <p>מחיר מ-</p>
+                    <input class ='short-text-field' type="number" name="min-rooms" id="min-price"  placeholder="מחיר מ-" value="{{user_search_params.min_price}}">
+                </div>
+
+                <div class="input-search-field">
+                    <p>מחיר עד-</p>
+                    <input class ='short-text-field' type="number" name="min-rooms" id="max-price" placeholder="עד" value="{{user_search_params.max_price}}">
+                </div>
+            </div>
+
+    <button class="toggle-options" onclick="toggleMoreOptions(event)">הצגת אופציות נוספות</button>
+     <div id="more-options-section" class="more-options-section">
 
          <div class="input-search-field">
            <p>חדרים מ-</p>
@@ -58,11 +74,15 @@
           <input class ='short-text-field' type="number" name="max-size" id="max-size" min="1" max="300" placeholder="מר"  value="{{user_search_params.max_size}}">
         </div>
 
-        <div class="search-btn">
-          <button class="click-continue" type="submit">חפש</button>
-        </div>
+    </div>
 
+       <div class="down-search-row">
+          <div class="search-btn">
+             <button class="click-continue" type="submit">חפש</button>
+             </div>
+       </div>
 
+      {%if search %}
         <div class="total-results">
             <p class="res-number">נמצאו {{ num_results }} תוצאות</p>
             <div class="sort-res">
@@ -74,10 +94,12 @@
                 </select>
             </div>
         </div>
+      {%endif%}
     </form>
   </div>
 </div>
 
+{%if search %}
 <div class="results">
     <table class="table-container">
       <tbody>
@@ -128,7 +150,7 @@
         {% endif %}
       </span>
     </div>
-
+{%endif%}
 
 <script>
 

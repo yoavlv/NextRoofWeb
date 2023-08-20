@@ -3,80 +3,20 @@
 
 {% block content %}
 
-<div class="hero-search">
-    <div class="sell-asset-value">
-            <div class="buy">
-                <a href="#">קונה</a>
-            </div>
-            <div class="sale">
-                <a href="{% url 'asset_value' %}">שווי הנכס</a>
-            </div>
-    </div>
-
-    <div class="Search-rectangle">
-            <p class="search-text">חיפוש</p>
-            <form action="{% url 'search' %}" method="get">
-            <div class="input-search-field">
-               <p>עיר</p>
-              <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
-            </div>
-
-            <div class="input-search-field">
-                <p>שכונה</p>
-                <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
-                    {% for neighborhood in neighborhoods %}
-                        <option value="{{ neighborhood }}">{{ neighborhood }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-             <div class="input-search-field">
-               <p>חדרים מ-</p>
-              <input class ='short-text-field' type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" >
-            </div>
-
-            <div class="input-search-field">
-            <p> עד-</p>
-              <input class ='short-text-field' type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="חדרים מ-" >
-            </div>
-
-           <div class="input-search-field">
-               <p>קומה מ-</p>
-              <input class ='short-text-field' type="number" name="min-floor" id="min-floor" min="1" max="10" placeholder="קומה" >
-            </div>
-             <div class="input-search-field">
-            <p>קומה עד-</p>
-              <input class ='short-text-field' type="number" name="max-floor" id="max-floor" min="1" max="10" placeholder="קומה עד-" >
-            </div>
-
-           <div class="input-search-field">
-           <p>גודל מ-</p>
-              <input class ='short-text-field' type="number" name="min-size" id="min-size" min="1" max="10" placeholder="מר" >
-            </div>
-              <div class="input-search-field">
-                <p>עד-</p>
-              <input  class ='short-text-field' type="number" name="max-size" id="max-size" min="1" max="10" placeholder="מר" >
-            </div>
-
-            <div class="search-btn">
-              <button class="click-continue" type="submit">חפש</button>
-            </div>
-        </form>
-      </div>
+<div class="welcome">
+    <h1> ברוכים הבאים לNextRoof</h1>
+    <p>
+        אתר הנדל"ן שמתשמש בבינה מלאוכתית כדי למצוא את הנכס הכי משתלם עבורכם
+    </p>
 </div>
 
 
+
+
 <div class = 'daily-find'>
-<div class="day-title">
-
     <h1>המציאה היומית</h1>
-    <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
 
-    <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
-
-    </div>
-
-<section class="day">
+    <div class="day">
 
 {% for deal in top_deals %}
 
@@ -115,19 +55,31 @@
             </div>
 
             {% if forloop.counter0 %}
-                <button class="btn-card1" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
             {% elif forloop.counter1 %}
-                <button class="btn-card2" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
             {% else %}
-                <button class="btn-card3" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
             {% endif %}
         </div>
+
+
     </div>
+
 
 {% endfor %}
 
-    </section>
+    </div>
+
+   <div class="newsletter">
+        <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
+
+        <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
+    </div>
+
 </div>
+
+
 {% endblock %}
 
 

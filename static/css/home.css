@@ -1,52 +1,76 @@
+.welcome {
+    padding: 7rem;
+    text-align: right;
+    background-color: rgba(255,255,255,0.7);
+    width:100%
+
+    /* border-radius: 1rem;  /* Adjusted from 15px */
+    /* box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.1);  /* Adjusted from 5px and 15px */
+    max-width: 50rem;
+    margin: 3rem auto;
+}
+
+.welcome h1 {
+    color: #333;
+    font-size: 3.5rem;  /* Directly converted from em */
+    margin-bottom: 2.25rem;  /* Adjusted from 20px */
+    font-weight: 700;
+}
+
+.welcome p {
+    color: black;
+    font-size: 2.2rem;
+    line-height: 1.6;
+}
+
+
+
 .daily-find {
     max-height: auto;
     position: relative;
-    top: 0rem;
-    background-color: rgba(190, 188, 243, 0.095);
     margin: 0 auto;
+    text-align: center;  /* Add this line */
 }
 
-.day-title {
-  position: relative;
-  top: 7.8rem; /* Converted from 70px */
-  left: -0.625rem; /* Converted from -10px */
-  transform: translate(-50%, -50%);
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.7rem;
-  width: 25%;
-  padding: 1.25rem; /* Converted from 20px */
+
+.daily-find h1 {
+    font-size: 2.7rem;
 }
 
-.day-title h1 {
-  color: white;
-  padding: 0.75rem; /* Converted from 12px */
+.newsletter{
+    margin-top:7rem;
+    background: rgba(233, 242, 250, 0.8);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1.25rem;
 }
 
-.day-title p {
-  font-size: 1.0625rem; /* Converted from 17px */
-  color: white;
-  text-indent: 0.125rem; /* Converted from 2px */
+
+.newsletter p {
+  font-size: 1.5rem;
+  color: black;
+  text-indent: 0.125rem;
   text-transform: uppercase;
 }
 
-.day-title button {
+.newsletter button {
+  margin-top:1.7rem;
   padding: 0.4rem 1.8rem;
   border-style: none;
   border-radius: 0.7rem;
   background: #072f55;
   color: #ffffff;
-  font-size: 1.2rem;
-  width: 71%;
+  font-size: 1.4rem;
+  max-width:25%
   margin: 0.9rem 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.day-title button:hover {
+.newsletter button:hover {
   background: #0c3476;
 }
-
 
 
 .day-deal {
@@ -67,7 +91,7 @@
 .day-deal .btn-day {
   padding: 0.6rem 1.8rem;
   border-style: none;
-  border-radius: 0.2rem;
+  border-radius: 1.5rem;
   background: #071f35;
   color: #ffffff;
   margin: 0.8rem 0;
@@ -78,7 +102,20 @@
 
 
 .deal-day .btn-day:hover {
-  background: #051727;
+  background: #055727;
+}
+
+
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);  /* or a value of your choice */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .day {
@@ -89,9 +126,11 @@
   gap: 0.8rem;
   margin: auto;
   margin-top: 2.7rem;
+
+  /* Animation properties */
+  animation: slideUp 1.3s ease-in-out forwards;
+
 }
-
-
 
 .card-day-right {
   margin: auto;
@@ -153,34 +192,22 @@
 }
 
 .card-day-right .details .line-1 {
+  color:black;
   width: 0.08rem;
   height: 2rem;
   background-color: #ffffff;
 }
 
-.btn-card1 {
-  padding: 0.4rem 1.8rem;
-  border-style: none;
-  border-radius: 0.2rem;
-  background: #071f35;
-  color: #ffffff;
-  font-size: 1.2rem;
-  width: 82%;
-  margin: 0.9rem 0;
-  -webkit-transition: 00.3s;
-  transition: 00.3s;
-}
-
-.btn-card1:hover {
-  background: #051727;
-}
 
 .down-card-text {
   text-align: center;
-  background-color: #01080e;
+  background-color: rgba(255, 255, 255,0.6);
   border-radius: 0.1875rem; /* Converted from 3px */
 }
 
+.down-card-text p{
+    color:black;
+}
 .card-day-middle {
   margin: auto;
   -webkit-box-pack: center;
@@ -206,7 +233,6 @@
 
 .card-day-middle .down-card {
   text-align: center;
-  color: #ffffff;
 }
 
 .card-day-middle .down-card p {
@@ -236,34 +262,12 @@
   padding: 0.8rem 0;
 }
 
-.card-day-middle .details .line-1 {
+.card-day-middle .details {
   width: 0.08rem;
   height: 2rem;
-  background-color: #ffffff;
 }
 
-.btn-card2 {
-  padding: 0.4rem 1.8rem;
-  border-style: none;
-  border-radius: 0.2rem;
-  background: #071f35;
-  color: #ffffff;
-  font-size: 1.2rem;
-  width: 82%;
-  margin: 0.9rem 0;
-  -webkit-transition: 00.3s;
-  transition: 00.3s;
-}
 
-.btn-card2:hover {
-  background: #051727;
-}
-
-.down-card-text {
-  text-align: center;
-  background-color: #01080e;
-  border-radius: 0.1875rem; /* Converted from 3px */
-}
 
 .card-day-left {
   margin: auto;
@@ -288,8 +292,8 @@
 }
 
 .card-day-left .top-card .triple-card {
-  width: 10.375rem; /* Converted from 166px */
-  margin-right: 6.225rem; /* Converted from 6.1rem */
+  width: 10.375rem;
+  margin-right: 6.225rem;
 }
 
 .card-day-left .down-card {
@@ -331,60 +335,52 @@
 }
 
 
-.btn-card3 {
-  padding: 0.4rem 1.8rem;
-  border-style: none;
-  border-radius: 0.2rem;
-  background: #071f35;
-  color: #ffffff;
-  font-size: 1.2rem;
-  width: 82%;
-  margin: 0.9rem 0;
-  -webkit-transition: 00.3s;
-  transition: 00.3s;
+.btn-card {
+    width: 82%;
+    margin: 0.9rem 0;
+    padding: 0.4rem 1.8rem;
+    border: none;
+    border-radius: 0.2rem;
+    background: #071f35;
+    color: #ffffff;
+    font-size: 1.2rem;
+    transition: 0.3s;
 }
 
-.btn-card3:hover {
-  background: #051727;
+.btn-card:hover {
+    background: #0A2B50;
 }
 
-.down-card-text {
-  text-align: center;
-  background-color: #01080e;
-  border-radius: 0.1875rem; /* Converted from 3px */
+.card-day-right .details .line-1,
+.card-day-middle .details .line-1,
+.card-day-left .details .line-1 {
+    background-color: black;
 }
-
 
 @media (max-width: 768px) {
+
+    .welcome {
+
+        width: 100vw;    /* viewport width */
+        margin: 0;
+        padding: 4rem;
+        box-sizing: border-box;  /* to ensure padding and border are included in width calculation */
+    }
+
+
     .daily-find {
         position:center;
-        width: 135%;
+        width: 100%;
         max-width: none;
         padding: 1rem;
         top: 0.5rem;
     }
 
-  .day-title {
+  .newsletter {
     top: 3.9rem; /* Reduced from 7.8rem */
     left: 10rem; /* Reduced from -0.625rem */
     width: 90%; /* Adjusted from 25% to make it wider on mobile screens */
     padding: 0.625rem; /* Reduced from 1.25rem */
-  }
-
-  .day-title h1 {
-    font-size: 1.2rem; /* Adjusted for mobile screen */
-    padding: 0.375rem; /* Reduced from 0.75rem */
-  }
-
-  .day-title p {
-    font-size: 0.9rem; /* Reduced from 1.0625rem */
-  }
-
-  .day-title button {
-    padding: 0.2rem 0.9rem; /* Reduced from 0.4rem 1.8rem */
-    font-size: 1rem; /* Reduced from 1.2rem */
-    width: 85%; /* Adjusted from 71% */
-    margin: 0.45rem 0; /* Reduced from 0.9rem */
   }
 
 

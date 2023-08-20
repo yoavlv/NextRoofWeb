@@ -58,10 +58,13 @@ def calc_asset_value(request):
         predicted_price = predict_apt_price(params,model)
         predicted_price = "₪{:,}".format(predicted_price)
         df = pd.read_csv('data/Nadlan_clean.csv')
+        print(df.columns)
         neighborhood_plt = Price_Increases_Neighborhood(df,params['Neighborhood'])
+        city_plt = Price_Change_City(df)
         last_deals = lasted_deals_street( params['Street'])
         return render(request, "asset_value.html", {'predicted_price':predicted_price,'neighborhoods':neighborhoods ,
                                                     'streets':streets ,'params':params, 'Search':Search ,'neighborhood_plt':neighborhood_plt,
+                                                    'city_plt':city_plt,
                                                     'last_deals':last_deals})
 
     return render(request, "asset_value.html",{'neighborhoods': neighborhoods,'Search':Search})
@@ -197,8 +200,8 @@ def Price_Increases_Neighborhood(df, neighborhood):
     plt.figure(figsize=(7, 3))
     bars = tuple(price_per_meter_by_year.keys())
     x_pos = np.arange(len(bars))
-    plt.bar(x_pos, price_per_meter_by_year.values(), color='g', width=0.5)
-    plt.xticks(x_pos, bars, rotation=10, color='c')
+    plt.bar(x_pos, price_per_meter_by_year.values(), color='gray', width=0.5)
+    plt.xticks(x_pos, bars, rotation=10)
     text = f"מחיר למטר לפני שנים - {neighborhood} - תל אביב "
     plt.title(text[::-1], fontsize=15)
     plt.xlabel("Year", color='k', fontsize=3)
@@ -213,6 +216,44 @@ def Price_Increases_Neighborhood(df, neighborhood):
     plt.close()  # Close the plot to free up memory
     return plot_image
 
+
+def Price_Change_City(df, city='תל אביב'):
+    years = range(2017, 2024)
+    price_per_meter_by_year = {}
+
+    for year in years:
+        year_data = df[df['Year'] == year]
+        average_price_per_meter = year_data['Price'].sum() / year_data['Size'].sum()
+        price_per_meter_by_year[year] = round(average_price_per_meter)
+
+    df_grouped = pd.DataFrame.from_dict(price_per_meter_by_year, orient='index', columns=['PRICE_PER_METER'])
+
+    plt.figure(figsize=(7, 2.5))
+    plt.title(f'מחיר למטר ב- {city}'[::-1], fontsize=12)
+
+    plt.plot(df_grouped.index, df_grouped['PRICE_PER_METER'], '-D')
+    plt.ylabel('Average Price per Meter (NIS ₪)')
+    plt.xticks(df_grouped.index)
+
+    # Calculate the percentage change
+    price_change = (df_grouped['PRICE_PER_METER'].diff() / df_grouped['PRICE_PER_METER'].shift(1)) * 100
+    price_change.dropna(inplace=True)
+
+    for i, change in enumerate(price_change):
+        x = price_change.index[i]
+        y = df_grouped.loc[x, 'PRICE_PER_METER']
+        plt.annotate("{:.1f}%".format(change), (x, y), textcoords="offset points", xytext=(-5, 5), ha='center',
+                     fontsize=9)
+
+    # Save the plot as an image
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
+    plot_image = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+    plt.close()  # Close the plot to free up memory
+    return plot_image
 
 # from django.db import connection
 # def db_to_df(table_name):

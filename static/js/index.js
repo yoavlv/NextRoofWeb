@@ -1,47 +1,56 @@
 
-function saveSelectedNeighborhood(value) {
-    localStorage.setItem('selectedNeighborhood', value);
+
+
+
+function toggleMoreOptions(event) {
+    event.preventDefault();  // Prevents the form from submitting when the button is clicked
+    const toggleButton = event.target;
+    const moreOptions = document.getElementById("more-options-section");
+
+    if (moreOptions.style.display === "none" || moreOptions.style.display === "") {
+        moreOptions.style.display = "flex";
+        toggleButton.innerText = "הצג פחות";
+    } else {
+        moreOptions.style.display = "none";
+        toggleButton.innerText = "הצגת אופציות נוספות"
+    }
 }
 
-// Function to retrieve the selected neighborhood value from localStorage
-function getSelectedNeighborhood() {
-    return localStorage.getItem('selectedNeighborhood');
+function openNavBar(event) {
+    event.preventDefault();
+    const moreOptions = document.getElementById("nav-bar");
+    if (moreOptions.style.display === "flex") {
+        moreOptions.style.display = "none";
+        localStorage.setItem('navbarState', 'closed');
+    } else {
+        moreOptions.style.display = "flex";
+        localStorage.setItem('navbarState', 'open');
+    }
 }
 
-// Retrieve the selected neighborhood value and set it as the default value in the select field
-document.addEventListener('DOMContentLoaded', function() {
-    var selectedNeighborhood = getSelectedNeighborhood();
-    if (selectedNeighborhood) {
-        var neighborhoodSelect = document.getElementById('neighborhood_id');
-        neighborhoodSelect.value = selectedNeighborhood;
+console.log("DOMContentLoaded event fired");
+console.log("savedState value from localStorage:", savedState);
+
+document.addEventListener("DOMContentLoaded", function() {
+    const savedState = localStorage.getItem('navbarState');
+    const moreOptions = document.getElementById("nav-bar-b");
+
+    if (savedState === "open") {
+        moreOptions.style.display = "flex";
+    }
+    // if savedState is 'closed' or null (i.e., not set), the navbar will be hidden due to the default styles.
+});
+
+
+window.addEventListener("scroll", function() {
+    const navBar = document.querySelector("nav");
+    if(window.scrollY > 10) {
+        navBar.classList.add("transparent-nav");
+    } else {
+        navBar.classList.remove("transparent-nav");
     }
 });
 
 
 
-
-
-//addEventListener('DOMContentLoaded', () => {
-//const selectNeighborhood = document.querySelector('.neighborhood');
-//let neighborhoodValue = selectNeighborhood.value;
-//console.log(neighborhoodValue);
-//selectNeighborhood.addEventListener('change', () => {
-//neighborhoodValue = selectNeighborhood.value;
-//console.log(neighborhoodValue);
-//});});
-
-
-
-
-//addEventListener('DOMContentLoaded', () => {
-//const selectNeighborhood = document.querySelector('.neighborhood');
-//let neighborhoodValue = selectNeighborhood.value;
-//selectNeighborhood.addEventListener('change', () => {
-//neighborhoodValue = selectNeighborhood.value;
-////console.log(neighborhoodValue);
-//const xhr = new XMLHttpRequest();
-//xhr.open('GET', `main/asset_value/get_streets/?neighborhood=${neighborhoodValue}`);
-//console.log(xhr);
-//
-//});});
 

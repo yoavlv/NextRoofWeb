@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/asset_value.css' %}">
-    <link rel="icon" href="{% static 'img/nextroof-icon.png' %}" type="image/png">
+    <link rel="icon" href="{% static 'img/nextroof-black.png' %}" type="image/png">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,7 @@
 
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/asset_value.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -29,30 +30,35 @@
 
 <body dir="rtl">
     <header>
-        <nav>
+        <nav id="nav-bar" class='nav-bar'>>
             <div class="nav2">
-                <div class="logo-menu1">
-                    <div class="group-26">
-                        <div class="ellipse-1-two"></div>
-                        <img alt="" class="union" src="https://static.overlay-tech.com/assets/6f64b59a-46aa-4977-ad27-4a8ac1a475ed.svg">
+
+                <div class="logo-menu">
+                    <div class="menu">
+                        <a href="{% url 'home' %}">
+                          <img class="logo-img" rel="icon" src="{% static 'img/nextroof-white.png' %}" >
+                        </a>
                     </div>
-                    <p class="enter">כניסה</p>
                 </div>
+
                 <ul>
                     <li><a href="{% url 'home' %}"> המציאה היומית</a></li>
                     <li><a href="{% url 'asset_value' %}">שווי הנכס</a></li>
-                    <li><a href="{% url 'home' %}">חיפוש</a></li>
+                    <li><a href="{% url 'search' %}">חיפוש</a></li>
                     <li><a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/">יצירת קשר</a></li>
                     <li><a href="{% url 'home' %}">דף הבית</a></li>
                 </ul>
-                <div class="logo-menu">
-                    <div class="group-11">
-                        <div class="ellipse-1"></div>
-                    </div>
-                    <p class="next-roof">NextRoof</p>
-                </div>
+
             </div>
         </nav>
+        <div class="btn-container">
+        <button class="nav-bar-btn" onclick="openNavBar(event)">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </button>
+
+      </div>
    </header>
 
 
@@ -65,7 +71,7 @@
 
     <div class="about-us">
         <h2>מי אנחנו?</h2>
-        <p>NextRoof הינה מערכת אינטרנטית (web application) המשתמשת באלגוריתם בינה מלאכותית (AI) כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
+        <p>NextRoof הינה מערכת אינטרנטית המשתמשת באלגוריתם בינה מלאכותית כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
     </div>
 
     <footer>
@@ -96,7 +102,6 @@
         </div>
 
         <div class="left-logo2">
-
             <div class="logo-menu2">
                 <div class="group-11-2">
                 <div class="ellipse-1-2"></div>

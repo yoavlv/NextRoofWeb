@@ -5,7 +5,7 @@
 <div class="hero-search">
     <div class="sell-asset-value">
             <div class="buy">
-              <a href="{%url 'home' %}">קונה</a>
+              <a href="{%url 'search' %}">קונה</a>
 
             </div>
             <div class="sale">
@@ -16,6 +16,7 @@
   <div class="Search-rectangle">
         <p class="search-text">חיפוש נכס</p>
             <form action="{% url 'calc_asset_value' %}" method="get">
+             <div class="top-search-row">
               <div class="input-search-field">
                 <p>עיר</p>
                 <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב" required value="תל אביב">
@@ -70,10 +71,13 @@
                   <option value="renovation_needed">צריך שיפוץ</option>
                 </select>
               </div>
+             </div>
 
+          <div class="down-search-row">
               <div class="search-btn">
                 <button class="click-continue" type="submit">חשב</button>
               </div>
+           </div>
             </form>
     </div>
 
@@ -112,7 +116,7 @@
     <div class="button-row">
       <button class="button" id="graph" value="true">גרף שכונה</button>
       <button class="button" id="last-deals" value="false">עסקאות אחרונות</button>
-      <button class="button" id="similar-deals" value="false">עסקאות דומות</button>
+      <button class="button" id="similar-deals" value="false">גרף עיר</button>
     </div>
 
       <div class="user-choice">
@@ -151,7 +155,10 @@
             </tbody>
           </table>
         </div>
-        <div id="similar-deals-content" class="generate-similar-deals">Similar Deals Content</div>
+        <div id="similar-deals-content" class="generate-similar-deals">
+          <img id="city-image" src="data:image/png;base64,{{ city_plt }}" alt="Price Change Plot">
+
+        </div>
       </div>
 
   </div>

@@ -64,7 +64,8 @@ def calculate_percentage_difference(num1, num2):
 def search_apartments(request):
     df_history_deals = pd.read_csv('data/Nadlan_clean.csv')
     neighborhoods = sorted(set(df_history_deals['Neighborhood']))
-
+    neighborhoods.insert(0, 'בחר שכונה')
+    search = False
     if request.method == 'GET':
         sort_option = request.GET.get('sort')
         neighborhood = request.GET.get('neighborhood')
@@ -79,7 +80,7 @@ def search_apartments(request):
         min_floor = request.GET.get('min-floor')
 
         results_df = pd.read_csv('data/Predicted_DB.csv')
-
+        results_df_len = results_df.shape[0]
         if neighborhood:
             neighborhood = str(neighborhood).strip()
             results_df = results_df[results_df['Neighborhood'] == neighborhood]
@@ -160,12 +161,26 @@ def search_apartments(request):
 
         num_results = len(apartments)
 
+        print(num_results)
+        print(results_df_len)
+
+        if results_df_len == num_results:
+            search = False
+
+        else:
+            search = True
+
+        print(search)
         return render(request, 'search.html', {
             'apartments': page_obj,
             'num_results': num_results,
             'neighborhoods': neighborhoods,
+            'search': search,
         })
     else:
-        return render(request, 'home.html', {
+        search = False
+        print(search)
+        return render(request, 'search.html', {
             'neighborhoods': neighborhoods,
+            'search':search,
         })
