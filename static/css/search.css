@@ -3,7 +3,7 @@
   position: absolute;
   width: 87%;
   min-height: 22.2rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(190, 190, 190, 0.7);
   clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
   border-radius: 0.0125rem;
   left: 5.25rem;
@@ -57,7 +57,7 @@ form {
     align-items: center;
     gap: 0.2rem;
     right: 1rem;
-    position: relative;      /* changed from 'flex' */
+    position: relative;
     z-index: 80;
 }
 
@@ -81,7 +81,6 @@ form input, form select {
 .short-text-field {
     width: 5.8rem;
 }
-
 
 
 form .search-btn {

@@ -161,9 +161,6 @@ def search_apartments(request):
 
         num_results = len(apartments)
 
-        print(num_results)
-        print(results_df_len)
-
         if results_df_len == num_results:
             search = False
 
