@@ -2,7 +2,7 @@
 .Search-rectangle {
   position: absolute;
   width: 87%;
-  min-height: 22.2rem;
+  min-height: 23.2rem;
   background: rgba(190, 190, 190, 0.7);
   clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
   border-radius: 0.0125rem;
@@ -177,6 +177,7 @@ form .search-btn:hover, .click-continue:hover {
 
 .res-number,
 .sort-res {
+    padding-top:1.5rem;
     font-size:1.2rem;
     flex: 1;  /* allows the elements to grow and take available space */
 }
@@ -439,8 +440,9 @@ form .search-btn:hover, .click-continue:hover {
   }
 
   .sort-res {
-    padding: 0.35rem;
+    padding-top:2.5rem;
   }
+
 
   .sort_label {
       font-size: 1rem;
@@ -483,7 +485,7 @@ form .search-btn:hover, .click-continue:hover {
 
   .apt-size-floor-rooms {
     font-size: 0.7rem;
-}
+    }
 
   .apt-card .apt-link .btn {
     padding: 0rem 0rem;

@@ -58,7 +58,6 @@ def calc_asset_value(request):
         predicted_price = predict_apt_price(params,model)
         predicted_price = "₪{:,}".format(predicted_price)
         df = pd.read_csv('data/Nadlan_clean.csv')
-        print(df.columns)
         neighborhood_plt = Price_Increases_Neighborhood(df,params['Neighborhood'])
         city_plt = Price_Change_City(df)
         last_deals = lasted_deals_street( params['Street'])
@@ -125,8 +124,7 @@ def check_for_match(df, params, number, target, col_1, col_2=None):
                 return match
             except:
                 pass
-    # print("Mean")
-    # print(target)
+
     return int(df[target].mean())
 
 

@@ -360,9 +360,9 @@
 @media (max-width: 768px) {
 
     .welcome {
-
-        width: 100vw;    /* viewport width */
-        margin: 0;
+        margin-top:3rem;
+        width: 100%;    /* viewport width */
+        margin: 1;
         padding: 4rem;
         box-sizing: border-box;  /* to ensure padding and border are included in width calculation */
     }

@@ -81,6 +81,9 @@ def search_apartments(request):
 
         results_df = pd.read_csv('data/Predicted_DB.csv')
         results_df_len = results_df.shape[0]
+
+        results_df['Price_int'] = results_df['Predicted'] + results_df['Difference']
+        results_df['Price_int'] = results_df['Price_int'].astype(int)
         if neighborhood:
             neighborhood = str(neighborhood).strip()
             results_df = results_df[results_df['Neighborhood'] == neighborhood]
@@ -99,11 +102,11 @@ def search_apartments(request):
 
         if min_price:
             min_price = int(min_price)
-            results_df = results_df[results_df['Price'] >= min_price]
+            results_df = results_df[results_df['Price_int'] >= min_price]
 
         if max_price:
             max_price = int(max_price)
-            results_df = results_df[results_df['Price'] <= max_price]
+            results_df = results_df[results_df['Price_int'] <= max_price]
 
         if min_size:
             min_size = int(min_size)
@@ -167,7 +170,6 @@ def search_apartments(request):
         else:
             search = True
 
-        print(search)
         return render(request, 'search.html', {
             'apartments': page_obj,
             'num_results': num_results,
@@ -176,7 +178,6 @@ def search_apartments(request):
         })
     else:
         search = False
-        print(search)
         return render(request, 'search.html', {
             'neighborhoods': neighborhoods,
             'search':search,

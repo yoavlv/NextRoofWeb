@@ -2,20 +2,6 @@
 
 
 
-function toggleMoreOptions(event) {
-    event.preventDefault();  // Prevents the form from submitting when the button is clicked
-    const toggleButton = event.target;
-    const moreOptions = document.getElementById("more-options-section");
-
-    if (moreOptions.style.display === "none" || moreOptions.style.display === "") {
-        moreOptions.style.display = "flex";
-        toggleButton.innerText = "הצג פחות";
-    } else {
-        moreOptions.style.display = "none";
-        toggleButton.innerText = "הצגת אופציות נוספות"
-    }
-}
-
 function openNavBar(event) {
     event.preventDefault();
     const moreOptions = document.getElementById("nav-bar");

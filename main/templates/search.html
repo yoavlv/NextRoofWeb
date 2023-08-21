@@ -15,8 +15,7 @@
     <div class="Search-rectangle">
         <p class="search-text">חיפוש</p>
         <h1>{{parmas}}</h1>
-        <form action="{% url 'search' %}" method="get">
-            {% csrf_token %}
+        <form action="{% url 'search' %}"  id="searchForm" method="get">
             <div class="top-search-row">
                 <div class="input-search-field">
                     <p>עיר</p>
@@ -34,12 +33,12 @@
 
                 <div class="input-search-field">
                     <p>מחיר מ-</p>
-                    <input class ='short-text-field' type="number" name="min-rooms" id="min-price"  placeholder="מחיר מ-" value="{{user_search_params.min_price}}">
+                    <input class ='short-text-field' type="number" name="min-price" id="min-price"  placeholder="מחיר מ-" value="{{user_search_params.min_price}}">
                 </div>
 
                 <div class="input-search-field">
                     <p>מחיר עד-</p>
-                    <input class ='short-text-field' type="number" name="min-rooms" id="max-price" placeholder="עד" value="{{user_search_params.max_price}}">
+                    <input class ='short-text-field' type="number" name="max-price" id="max-price" placeholder="עד" value="{{user_search_params.max_price}}">
                 </div>
             </div>
 
