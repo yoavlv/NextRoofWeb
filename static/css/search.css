@@ -1,18 +1,7 @@
 
-.Search-rectangle {
-  position: absolute;
-  width: 87%;
-  min-height: 23.2rem;
-  background: rgba(190, 190, 190, 0.7);
-  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
-  border-radius: 0.0125rem;
-  left: 5.25rem;
-  top: 7.375rem;
-}
-
-
 .hero-search {
-  position: relative;
+  position: flex;
+  margin-top:3rem;
   min-height: 57vh;
   display: flex;
   flex-wrap: wrap;
@@ -20,23 +9,33 @@
   align-items: flex-start;
 }
 
-.sell-asset-value {
-  position: relative;
-  top: 2rem;
-  right: 9rem;
-  display: flex;
-  align-items: flex-start;
-  padding: 1rem;
+.Search-rectangle {
+  justify-content: center;
+  align-items: center;
+  width: 87%;
+  margin-right: 6rem;
+  margin-top:-2rem;
+  min-height: 23.2rem;
+  background: rgba(190, 190, 190, 0.7);
+  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
+  border-radius: 0.0125rem;
+
 }
 
+.sell-asset-value {
+  margin-right: 6rem;
+  display: flex;
+}
 
 .sale , .buy {
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255,255,255);
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 1.2rem;
   text-align: center;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
-  margin: 0.5rem;
+  margin: 0.6rem;
 }
 
 
@@ -52,22 +51,12 @@ a {
 }
 
 form {
-    display: flex;
+    display: flex;           /* This is correct for flexbox, replaced 'display: relative;' */
     flex-direction: column;  /* This will stack the children (top-search-row and more-options-section) vertically */
     align-items: center;
     gap: 0.2rem;
-    right: 1rem;
-    position: relative;
-    z-index: 80;
-}
-
-.sell-asset-value {
-  position: absolute;
-  top: 2rem;
-  right: 9rem;
-  display: flex;
-  align-items: flex-start;
-  padding: 1rem;
+    margin-right: 6rem;
+    z-index: 1001;
 }
 
 
@@ -222,7 +211,7 @@ form .search-btn:hover, .click-continue:hover {
 
 }
 .results {
-   position: relative;  /* Ensure this is set to relative */
+   position: flex;  /* Ensure this is set to relative */
    text-align: center;
    margin-top: 1.25rem;
 }
@@ -294,7 +283,7 @@ form .search-btn:hover, .click-continue:hover {
 }
 
 .button-container {
-  margin-top: 0.625rem; /* Converted from 10px */
+  margin-top: 0.625rem;
 }
 
 .apt-card .apt-link {
@@ -304,7 +293,7 @@ form .search-btn:hover, .click-continue:hover {
 }
 
 .apt-card .apt-link .btn {
-  display: block;
+  display: flex;
   width: 100%;
   padding: 0.625rem 1.25rem;
   background-color: rgba(255, 255, 255, 0.8);
@@ -362,15 +351,13 @@ form .search-btn:hover, .click-continue:hover {
 }
 
 @media only screen and (max-width: 768px) {
-
+    body {
+      overflow-x: hidden;
+    }
     .sell-asset-value {
-      position: absolute;
-      top: -0.15rem;
-      right: 1.95rem;
-
+        margin-right: 0rem;
     }
 
-  /* Adjusting the hero search section */
   .hero-search {
     flex-direction: column;
     align-items: center;
@@ -379,17 +366,15 @@ form .search-btn:hover, .click-continue:hover {
 
   /* Adjusting the search rectangle */
   .Search-rectangle {
-    position: center;
-    width: 120%;
+    margin-right: 0rem;
+    margin-top:1rem;
+    width: 100%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    left: -6.4rem;
-    top: 5rem;
-    min-height: 26.2rem;
-    border-radius:1rem;
+    min-height: 27.2rem;
   }
 
-  /* Adjusting the form's layout and components */
   form {
+    margin-right: 0rem;
     flex-direction: row;
     flex-wrap: wrap; /* in case it needs to wrap */
     right: auto;
@@ -408,7 +393,7 @@ form .search-btn:hover, .click-continue:hover {
 
   form .search-btn {
   position: static;  /* this makes it behave like a normal element */
-  margin-bottom: -1rem;
+  margin-bottom: 0rem;
   margin-right: 0.4rem;
   width: 25%;
   border-radius: 0.25rem;
@@ -421,53 +406,34 @@ form .search-btn:hover, .click-continue:hover {
    }
 
  .results {
-    position: relative;
-    left: -3rem;   /* Move it 3rem to the left */
-    width: 110%;   /* Make it wider. Adjust as needed. */
-    text-align: center;
-    margin-top: 1.25rem;
+    left: 0rem;
     }
 
-  /* Adjusting the total results positioning */
   .total-results {
     height: 2rem;
     padding:0.1rem;
     top:1rem;
     border-radius: 0.525rem;
-    position: static;
     width: 60%;
-    margin-top: 1rem;     /* Adjusted to provide space above the div */
-  }
-
-  .sort-res {
-    padding-top:2.5rem;
+    margin-top: 2rem;
   }
 
 
-  .sort_label {
-      font-size: 1rem;
-      font-weight: bold;
-      color: #333;
-      margin-right: 0.625rem;
-      margin-top: 3rem;
-      margin-button :3rem;
-    }
-  /* Adjusting table layout */
   .table-container {
-    left: -8rem;
+    left: 0rem;
     flex-direction: column;
     width:100%;
 
   }
   .table-bordered td {
-    padding: 0.2rem;
-    margin: 0.2rem;
+    padding: 0rem;
+    margin: 0rem;
   }
 
   .apt-card {
     width: 90%; /* Allows the card to take up more space on mobile screens */
     margin: 0.9rem auto; /* Centers the card with auto margins */
-    padding: 0.7rem;
+    padding: 0rem;
   }
   .apt-card .apt-card-body {
     width: 100%;
@@ -480,7 +446,6 @@ form .search-btn:hover, .click-continue:hover {
       height: 5.0rem;
       border-radius: 0.5rem;
       object-fit: cover;
-      margin-left: 1rem;  /* This will push the image 1rem to the left */
     }
 
   .apt-size-floor-rooms {
@@ -492,9 +457,8 @@ form .search-btn:hover, .click-continue:hover {
     font-size: 0.8rem;
 
   }
-  /* Adjusting pagination layout */
   .pagination {
-    width:140%;
+    width:100%;
     flex-wrap: wrap;
   }
 

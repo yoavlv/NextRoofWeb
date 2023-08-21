@@ -127,88 +127,43 @@ nav {
   line-height: 2.2rem;
 }
 
+
+
 footer {
-  height: 40vh;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 10rem;
-  background-size: 100%;
-  background-position: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+
+    border-top: 0.25rem solid #fff;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    height: 35vh;
+    align-items: center;
+    padding-top: 1rem;
+    background-size: 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    margin-top:4rem;
+
 }
 
-footer .a-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 2rem;
-  margin: auto;
-  max-width: 38%;
+.footer-link {
+    padding-left:4rem;
 }
 
-footer .a-list a {
-  list-style: none;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.3rem;
-  text-shadow: 0.125rem 0.25rem 0.5rem #01080e; /* Converted from 2px 4px 8px */
-}
-
-footer .a-list p {
-  padding: 0.3125rem 0; /* Converted from 5px 0 */
-}
-
-.left-logo2 .logo-menu2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-left: 6rem;
-  margin-bottom: -3.4rem;
-}
-
-.left-logo2 .logo-menu2 .group-11-2 {
-
-  background-size: 100% 100%;
-  background-position: center;
-  background-image: url("https://static.overlay-tech.com/assets/e60148ad-fcec-47a1-b9a4-f501bfe36b52.svg");
-  margin-bottom: 0.174em; /* Converted from 3.48px */
-  padding: 5em 1.396em 0.595em 2.432em; /* Converted from 80px 21.09px 9.28px 30.24px */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+.linkedin-icon {
+    width: 3rem;
+    height: 3rem;
 }
 
 
-.left-logo2 .logo-menu2 .ellipse-1-2 {
-  max-width: 0.1em;
-  max-height: 0.1em;
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-.left-logo2 .logo-menu2 .next-roof-2 {
-  font-family: "Major Mono Display";
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: normal;
-  color: #ffffff;
-  margin: auto;
+.logo-footer {
+    width: 7rem;
+    height: 7rem;
 }
 
-.left-logo2 .hand-footer img {
-  max-width: 80%;
-  float: left;
-}
+.logo-img-footer {
+    width: 100%;
+    height: auto;
+    }
+
 
 
 @media (max-width: 768px) { /* Tablet and below */
@@ -220,7 +175,7 @@ footer .a-list p {
         background-color: #333;
         position: fixed;
         top: 0;
-        left: 10rem;
+        left: 5rem;
         z-index: 1000;
         flex-direction: column;
         align-items: center;
@@ -231,7 +186,7 @@ footer .a-list p {
         z-index: 1001;
         margin-top:1rem;
         display: flex;
-        margin-left:5.5rem;
+        margin-left:6.5rem;
         justify-content: right;
         align-items: right;
     }
@@ -251,13 +206,9 @@ footer .a-list p {
         margin: 4rem auto;
     }
 
-    footer .a-list {
-        margin-right: 1.2rem;
-        max-width: 90%;
-    }
+    footer {
+    margin-top: 10rem;
 
-    .left-logo2 {
-        margin-left: 1rem;
     }
 
 }

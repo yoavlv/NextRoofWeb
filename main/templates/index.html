@@ -59,62 +59,27 @@
       </div>
    </header>
 
+    <div>
+    {% block content %}
 
-{% block content %}
-
-{% endblock %}
+    {% endblock %}
+    </div>
 
 
 <div class=close-sec>
 
-    <div class="about-us">
-        <h2>מי אנחנו?</h2>
-        <p>NextRoof הינה מערכת אינטרנטית המשתמשת באלגוריתם בינה מלאכותית כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
-    </div>
-
     <footer>
-        <div class="a-list">
-                    <div class="one-right">
-
-                        <p><a href="#">דף הבית</a></p>
-                        <p><a href="#">שווי הנכס</a></p>
-                        <p><a href="#">חיפוש</a></p>
-
-                    </div>
-
-                    <div class="one-middle">
-
-                        <p><a href="#">תקנון האתר</a></p>
-                        <p><a href="#">מדיניות פרטיות</a></p>
-                        <p><a href="#">אודות</a></p>
-
-                    </div>
-
-                    <div class="one-left">
-
-                        <p><a href="#">המציאה היומית</a></p>
-                        <p><a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/">יצירת קשר</a></p>
-
-                    </div>
-
-        </div>
-
-        <div class="left-logo2">
-            <div class="logo-menu2">
-                <div class="group-11-2">
-                <div class="ellipse-1-2"></div>
-                </div>
-                <p class="next-roof-2">NextRoof</p>
+        <div class="footer-link">
+            <div class="linkedin-section">
+                <a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">
+                    <img class="linkedin-icon" rel="icon" src="{% static 'img/linkedin.png' %}" >
+                </a>
             </div>
-
-            <div class="hand-footer">
-                <img src="{% static '/img/hand.png' %}" alt="">
-            </div>
-
         </div>
-
+        <div class="logo-footer">
+            <img class="logo-img-footer" rel="icon" src="{% static 'img/nextroof-white.png' %}" >
+        </div>
     </footer>
-
   </div>
 
 </body>

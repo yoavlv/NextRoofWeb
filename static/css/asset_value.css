@@ -180,11 +180,7 @@ form input {
 }
 
 @media only screen and (max-width: 768px) { /* 768px */
-    .result {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
+
   .algo-res {
     margin: 0.625rem;
     padding: 0.625rem;

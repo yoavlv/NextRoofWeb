@@ -35,7 +35,7 @@ function toggleMoreOptions(event) {
         localStorage.setItem("moreOptionsState", "expanded");
     } else {
         moreOptions.style.display = "none";
-        toggleButton.innerText = "הצגת אופציות נוספות";
+        toggleButton.innerText = "חיפוש מתקדם";
         localStorage.setItem("moreOptionsState", "collapsed");
     }
 }

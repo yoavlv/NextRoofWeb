@@ -379,8 +379,7 @@
   .newsletter {
     top: 3.9rem; /* Reduced from 7.8rem */
     left: 10rem; /* Reduced from -0.625rem */
-    width: 90%; /* Adjusted from 25% to make it wider on mobile screens */
-    padding: 0.625rem; /* Reduced from 1.25rem */
+    width: 100%;/* Adjusted from 25% to make it wider on mobile screens */
   }
 
 
