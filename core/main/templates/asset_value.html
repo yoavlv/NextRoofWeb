@@ -1,0 +1,201 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<div class="hero-search">
+    <div class="sell-asset-value">
+            <div class="buy">
+              <a href="{%url 'search' %}">קונה</a>
+
+            </div>
+            <div class="sale">
+                <a href="{% url 'asset_value' %}">שווי הנכס</a>
+            </div>
+    </div>
+
+  <div class="Search-rectangle">
+        <p class="search-text">חיפוש נכס</p>
+            <form action="{% url 'calc_asset_value' %}" method="get">
+             <div class="top-search-row">
+              <div class="input-search-field">
+                <p>עיר</p>
+                <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב" required value="תל אביב">
+              </div>
+
+              <div class="input-search-field">
+                <p>רחוב</p>
+                <select class="street" name="street" autocomplete="off" id="street_id" onchange="saveSelectedStreet(this.value)">
+                  {% for street in streets %}
+                  <option value="{{ street|lower }}">{{ street }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="input-search-field">
+                <p>מספר בית</p>
+                <input type="text" class="home-number" name="home-number" autocomplete="off" id="home-number" placeholder="מספר בית" value="{{params.Home_number}}" required>
+              </div>
+
+              <div class="input-search-field">
+                <p>מספר חדרים</p>
+                <input class="short-text-field" type="number" name="rooms" id="rooms" min="1" max="10" placeholder="חדרים" value="{{params.Rooms}}" required>
+              </div>
+
+              <div class="input-search-field">
+                <p>קומה</p>
+                <input class="short-text-field" type="number" name="floor" id="mim-floor" min="0" max="40" placeholder="קומה" value="{{params.Floor}}" required>
+              </div>
+
+              <div class="input-search-field">
+                <p>מטר רבוע</p>
+                <input class="short-text-field" type="number" name="size" id="min-size" min="10" max="300" placeholder="מטר" value="{{params.Size}}" required>
+              </div>
+
+              <div class="input-search-field">
+                <p>חניה</p>
+                <select class="parking" name="parking" autocomplete="off" id="parking">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+
+              <div class="input-search-field">
+                <p>מצב הנכס</p>
+                <select class="condition" name="condition" autocomplete="off" id="condition">
+                  <option value="new_contractor">חדש מקבלן</option>
+                  <option value="new">חדש</option>
+                  <option value="renovated">משופץ</option>
+                  <option value="good_condition">מצב טוב</option>
+                  <option value="renovation_needed">צריך שיפוץ</option>
+                </select>
+              </div>
+             </div>
+
+          <div class="down-search-row">
+              <div class="search-btn">
+                <button class="click-continue" type="submit">חשב</button>
+              </div>
+           </div>
+            </form>
+    </div>
+
+</div>
+
+{% if Search %}
+
+<div class="result">
+  <div class="algo-res">
+    <h2>כתובת: {{params.City}}, {{params.Street}} {{params.Home_number}}</h2>
+    <div class="algo-price">
+      <h3>לפי החישוב של NextRoof</h3>
+      <h2>שווי הנכס הינו:</h2>
+      <h2>{{predicted_price}}</h2>
+    </div>
+    <div class="algo-card-in">
+      <div class="algo-right">
+        <ul>
+          <li>גודל הנכס: {{params.Size}}</li>
+          <li>{{params.Rooms}}: חדרים</li>
+          <li>קומה: {{params.Floor}}</li>
+          <li>סוג הנכס: דירה</li>
+        </ul>
+      </div>
+      <div class="algo-left">
+        <ul>
+          <li>שכונה: {{params.Neighborhood}}</li>
+          <li>גוש: {{params.Gush}}</li>
+          <li>חלקה: {{params.Helka}}</li>
+          <li>תת-חלקה: {{params.Size}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="neighborhood_plot">
+    <div class="button-row">
+      <button class="button" id="graph" value="true">גרף שכונה</button>
+      <button class="button" id="last-deals" value="false">עסקאות אחרונות</button>
+      <button class="button" id="similar-deals" value="false">גרף עיר</button>
+    </div>
+
+      <div class="user-choice">
+        <img id="neighborhood-image" src="data:image/png;base64,{{ neighborhood_plt }}" alt="Neighborhood Plot">
+        <div id="last-deals-content" class="generate-last-deals">
+          <h3>עסקאות אחרונות ברחוב {{params.Street}}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>תאריך</th>
+                <th>סוג הנכס</th>
+                <th>מספרים חדרים</th>
+                <th>קןמה</th>
+                <th> גודל (מ"ר)</th>
+                <th>שנת בנייה</th>
+                <th>מספר קומות</th>
+                <th>מספר בית</th>
+                <th>מחיר</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in last_deals %}
+                <tr>
+                  <td>{{ item.Date }}</td>
+                  <td>{{ item.Type }}</td>
+                  <td>{{ item.Rooms }}</td>
+                  <td>{{ item.Floor }}</td>
+                  <td>{{ item.Size }}</td>
+                  <td>{{ item.Build_year }}</td>
+                  <td>{{ item.Floors }}</td>
+                  <td>{{ item.Home_number }}</td>
+                  <td>{{ item.Price }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div id="similar-deals-content" class="generate-similar-deals">
+          <img id="city-image" src="data:image/png;base64,{{ city_plt }}" alt="Price Change Plot">
+
+        </div>
+      </div>
+
+  </div>
+</div>
+
+{%endif%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttonGraph = document.querySelector('#graph');
+    const buttonLast = document.querySelector('#last-deals');
+    const buttonSimilar = document.querySelector('#similar-deals');
+
+    const neighborhoodImage = document.querySelector('#neighborhood-image');
+    const lastDealsContent = document.querySelector('#last-deals-content');
+    const similarDealsContent = document.querySelector('#similar-deals-content');
+    neighborhoodImage.style.display = 'block';
+    lastDealsContent.style.display = 'none';
+    similarDealsContent.style.display = 'none';
+
+    buttonGraph.addEventListener('click', () => {
+      neighborhoodImage.style.display = 'block';
+      lastDealsContent.style.display = 'none';
+      similarDealsContent.style.display = 'none';
+    });
+
+    buttonLast.addEventListener('click', () => {
+      neighborhoodImage.style.display = 'none';
+      lastDealsContent.style.display = 'block';
+      similarDealsContent.style.display = 'none';
+    });
+
+    buttonSimilar.addEventListener('click', () => {
+      neighborhoodImage.style.display = 'none';
+      lastDealsContent.style.display = 'none';
+      similarDealsContent.style.display = 'block';
+    });
+  });
+</script>
+{% endblock %}

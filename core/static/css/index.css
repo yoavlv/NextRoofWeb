@@ -1,0 +1,224 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+
+body {
+    background-color: rgba(233, 242, 250);
+    background-image: url("/static/img/option1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: "Rubik", sans-serif;
+    transform-origin: center center;
+
+}
+
+
+.hamburger-btn {
+    margin-top:2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-bar-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 2.25rem;
+    height: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.line {
+    width: 100%;
+    height: 0.1875rem;
+    background-color: #000;
+}
+
+nav {
+    display: flex;
+    height: 5.2rem;
+    background-color: rgba(9, 30, 40, 0.3);
+    transition: background-color 0.3s;
+}
+
+.nav2 {
+    width: 80%;
+    display: flex;
+    height: 100%;
+    padding: 0.4rem;
+    justify-content: center;  /* Center items horizontally */
+    align-items: center;      /* Center items vertically */
+    margin: auto;
+    position: relative;  /* Added for absolute positioning of logo */
+}
+
+.nav2 ul {
+    margin-top:1rem;
+    color: white;
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0 2rem;
+    align-items: center;   /* Added to align items vertically in the center */
+}
+
+.nav-link{
+    margin-top:1rem;
+}
+
+.nav2 ul li {
+    margin:0.8rem;
+    transition: transform 0.3s ease;  /* Smooth transition for the transform property */
+}
+
+.nav2 ul li:hover {
+    transform: scale(1.2);  /* Scale the list item to 110% of its original size on hover */
+}
+
+.nav2 a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+}
+.nav2 .enter {
+    max-width: 35px;
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    color: black; /* Changed color to black */
+    text-align: right;
+}
+
+.transparent-nav {
+    background-color: transparent;
+}
+
+
+.logo-menu {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo-img {
+    position:right;
+    width: 3.8rem;
+    height: 3.8rem;
+}
+
+.about-us {
+  color: white;
+  text-align: center;
+  font-size: 1.4rem;
+  max-width: 48%;
+  margin: 8rem auto;
+  line-height: 2.2rem;
+}
+
+
+
+footer {
+
+    border-top: 0.25rem solid #fff;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    height: 35vh;
+    align-items: center;
+    padding-top: 1rem;
+    background-size: 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    margin-top:4rem;
+
+}
+
+.footer-link {
+    padding-left:4rem;
+}
+
+.linkedin-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+
+.logo-footer {
+    width: 7rem;
+    height: 7rem;
+}
+
+.logo-img-footer {
+    width: 100%;
+    height: auto;
+    }
+
+
+
+@media (max-width: 768px) { /* Tablet and below */
+
+    #nav-bar {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        left: 5rem;
+        z-index: 1000;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hamburger-btn {
+        position: relative;
+        z-index: 1001;
+        margin-top:1rem;
+        display: flex;
+        margin-left:6.5rem;
+        justify-content: right;
+        align-items: right;
+    }
+
+
+    .nav2 ul {
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 2.5rem;
+        align-items: center;
+        margin-bottom: auto;
+    }
+
+
+    .about-us {
+        max-width: 100%;
+        margin: 4rem auto;
+    }
+
+    footer {
+    margin-top: 10rem;
+
+    }
+
+}
+
+/* Medium screens (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Add any specific styling for medium screens here */
+}
+
+/* Large screens (desktops) */
+@media only screen and (min-width: 1025px) {
+  /* Add any specific styling for large screens here */
+}

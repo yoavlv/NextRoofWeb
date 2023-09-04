@@ -1,0 +1,480 @@
+
+.hero-search {
+  position: flex;
+  margin-top:3rem;
+  min-height: 57vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Search-rectangle {
+  justify-content: center;
+  align-items: center;
+  width: 87%;
+  margin-right: 6rem;
+  margin-top:-2rem;
+  min-height: 23.2rem;
+  background: rgba(190, 190, 190, 0.7);
+  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
+  border-radius: 0.0125rem;
+
+}
+
+.sell-asset-value {
+  margin-right: 6rem;
+  display: flex;
+}
+
+.sale , .buy {
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  margin: 0.6rem;
+}
+
+
+.buy.active, .sale.active {
+    transform: scale(1.1);  /* This will enlarge the buttons when active */
+    background-color: rgba(220,255,255);; /* Optionally change the background color when active */
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+form {
+    display: flex;           /* This is correct for flexbox, replaced 'display: relative;' */
+    flex-direction: column;  /* This will stack the children (top-search-row and more-options-section) vertically */
+    align-items: center;
+    gap: 0.2rem;
+    margin-right: 6rem;
+    z-index: 1001;
+}
+
+
+form input, form select {
+  border-style: none;
+  border-radius: 0.2rem;
+  width:100%;
+  max-height: 2rem;
+}
+
+.short-text-field {
+    width: 5.8rem;
+}
+
+
+form .search-btn {
+  margin-top: 1rem;
+  position: static;
+  border-style: none;
+  border-radius: 0.5125rem;
+  background: #041524;
+  transition: 0.3s;
+  display: block;
+  cursor: pointer;
+}
+
+form .search-btn:hover {
+  background: #041544;
+}
+
+
+.click-continue {
+  padding: 0.52rem 2.5rem;
+  border: none;
+  border-radius: 0.5125rem; /* Made consistent with the container's border-radius */
+  background: inherit; /* Inherits the background color from its parent */
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.search-text {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #020b13;
+  text-align: right;
+  padding: 1rem;
+}
+
+
+.more-options-section {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.top-search-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.down-search-row {
+    display: flex;
+    flex-direction: row; /* Ensure children are arranged in a horizontal line */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem; /* Adjust if needed */
+    flex-wrap: wrap;
+}
+.toggle-options {
+    cursor: pointer;
+    background-color: rgba(220,255,255);
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    align-self: flex-start; /* This aligns the button to the left of its parent container */
+
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+
+}
+
+.toggle-options:hover {
+    background-color: rgba(200,240,255); /* Slightly darker on hover for feedback */
+}
+
+
+.total-results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.res-number,
+.sort-res {
+    padding-top:1.5rem;
+    font-size:1.2rem;
+    flex: 1;
+}
+
+.sort-res {
+    display: flex;
+    align-items: center;
+}
+
+.sort-label {
+    margin-right: 1rem;
+}
+
+#sort {
+    width: 7.5rem;
+    height: 5.9rem;
+    appearance: none;
+    padding: 0.5rem 0.75rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+}
+
+#sort:hover,
+#sort:focus {
+    border-color: #999;
+}
+
+#sort option {
+    background: #f9f9f9;
+    color: #333;
+}
+
+#sort:hover option,
+#sort:focus option {
+    background-color: #e0e0e0;
+}
+
+
+}
+.results {
+   position: flex;
+   text-align: center;
+   margin-top: 1.25rem;
+}
+
+
+.table-container {
+  margin-top:7.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-bordered {
+  border-collapse: separate;
+  border-spacing: 1.25rem;
+  margin-bottom: 3.125rem;
+  width: 100%;
+}
+
+.table-bordered td {
+  padding: 1.875rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
+  margin: 0.625rem;
+}
+.table-bordered dt {
+  border-bottom: none;
+}
+
+.apt-card {
+  margin: 0.75rem;
+  border-radius: 0.625rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: 0.7s;
+  width: 32.0rem;
+  max-width: 20rem;
+}
+
+.apt-card img {
+  width: 100%;
+  border-radius: 0.9375rem;
+}
+
+.apt-card .apt-card-body {
+  text-align: center;
+  padding: 0.625rem;
+  font-size: 1.1rem;
+}
+
+.apt-card .saving {
+  margin-bottom: 0.625rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+
+.apt-card .saving, .apt-card .price, .apt-card .predicted-price, .apt-card .location-apartment {
+  margin-bottom: 0.5rem;
+}
+
+.apt-size-floor-rooms {
+    font-size: 0.96rem;
+}
+
+.apt-card .apt-size:last-child::after,
+.apt-card .apt-floor:last-child::after {
+  display: none;
+}
+
+.button-container {
+  margin-top: 0.625rem;
+}
+
+.apt-card .apt-link a {
+  display: block;
+  text-align: center;
+  line-height: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #000;
+}
+
+.apt-card .apt-link .btn {
+  display: flex;
+  padding: 0.625rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 0.3125rem;
+  transition: background-color 0.3s;
+}
+
+.apt-card .apt-link .btn:hover {
+  background-color: rgba(220, 220, 220, 1);
+}
+
+.card .card-body a {
+  margin: 0.625rem; /* Converted from 10px */
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.25rem;
+  background-color: #f9f9f9;
+  padding: 0.625rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.pagination a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.3125rem 0.625rem;
+  margin: 0.3125rem;
+  border-radius: 0.125rem;
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #e6e6e6;
+}
+
+.pagination a.active {
+  background-color: #041524;
+  color: #ffffff;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.125rem;
+}
+
+.pagination .current-page {
+  font-weight: bold;
+  margin: 0 0.625rem; /* Converted from 10px */
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+      overflow-x: hidden;
+    }
+    .sell-asset-value {
+        margin-right: 0rem;
+    }
+
+  .hero-search {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Adjusting the search rectangle */
+  .Search-rectangle {
+    margin-right: 0rem;
+    margin-top:1rem;
+    width: 100%;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+    min-height: 27.2rem;
+  }
+
+  form {
+    margin-right: 0rem;
+    flex-direction: row;
+    flex-wrap: wrap; /* in case it needs to wrap */
+    right: auto;
+    gap: 0.1rem;
+  }
+
+  form input, form select {
+    width: 100%;
+    margin-bottom: 0.05rem;
+  }
+
+  .more-options-section , .top-search-row , .down-search-row{
+    gap: 0.1rem;
+
+  }
+
+  form .search-btn {
+  position: static;  /* this makes it behave like a normal element */
+  margin-bottom: 0rem;
+  margin-right: 0.4rem;
+  width: 25%;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  padding: 0.4rem;
+    }
+
+  .click-continue {
+   font-size: 1.1rem;
+   }
+
+ .results {
+    left: 0rem;
+    }
+
+  .total-results {
+    height: 2rem;
+    padding:0.1rem;
+    top:1rem;
+    border-radius: 0.525rem;
+    width: 60%;
+    margin-top: 2rem;
+  }
+
+
+  .table-container {
+    left: 0rem;
+    flex-direction: column;
+    width:100%;
+
+  }
+  .table-bordered td {
+    padding: 0rem;
+    margin: 0rem;
+  }
+
+  .apt-card {
+    width: 90%; /* Allows the card to take up more space on mobile screens */
+    margin: 0.9rem auto; /* Centers the card with auto margins */
+    padding: 0rem;
+  }
+  .apt-card .apt-card-body {
+    width: 100%;
+    padding: 0.1rem;
+    font-size: 0.7rem;
+  }
+
+    .apt-card img {
+      width: 5.5rem;
+      height: 5.0rem;
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+
+  .apt-size-floor-rooms {
+    font-size: 0.7rem;
+    }
+
+  .apt-card .apt-link .btn {
+    padding: 0rem 0rem;
+    font-size: 0.8rem;
+
+  }
+  .pagination {
+    width:100%;
+    flex-wrap: wrap;
+  }
+
+  /* Here, you can continue adjusting other elements as needed for mobile responsiveness */
+}
+
+/* Medium screens (tablets) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* Large screens (desktops) */
+@media only screen and (min-width: 1025px) {
+  /* Add any specific styling for large screens here */
+}

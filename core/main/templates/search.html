@@ -1,0 +1,157 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<div class="hero-search">
+    <div class="sell-asset-value">
+            <div class="buy">
+                <a href="{%url 'search' %}">קונה</a>
+            </div>
+            <div class="sale">
+                <a href="{% url 'asset_value' %}">שווי הנכס</a>
+            </div>
+    </div>
+
+    <div class="Search-rectangle">
+        <p class="search-text">חיפוש</p>
+        <h1>{{parmas}}</h1>
+        <form action="{% url 'search' %}"  id="searchForm" method="get">
+            <div class="top-search-row">
+                <div class="input-search-field">
+                    <p>עיר</p>
+                    <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
+                </div>
+
+                <div class="input-search-field">
+                    <p>שכונה</p>
+                    <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
+                        {% for neighborhood in neighborhoods %}
+                            <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-search-field">
+                    <p>מחיר מ-</p>
+                    <input class ='short-text-field' type="number" name="min-price" id="min-price"  placeholder="מחיר מ-" value="{{user_search_params.min_price}}">
+                </div>
+
+                <div class="input-search-field">
+                    <p>מחיר עד-</p>
+                    <input class ='short-text-field' type="number" name="max-price" id="max-price" placeholder="עד" value="{{user_search_params.max_price}}">
+                </div>
+            </div>
+
+    <button class="toggle-options" onclick="toggleMoreOptions(event)">חיפוש מתקדם</button>
+     <div id="more-options-section" class="more-options-section">
+
+         <div class="input-search-field">
+           <p>חדרים מ-</p>
+          <input class ='short-text-field' type="number" name="min-rooms" id="min-room-number" min="1" max="10" placeholder="חדרים מ-" value="{{user_search_params.min_rooms}}">
+        </div>
+
+        <div class="input-search-field">
+        <p> עד-</p>
+          <input class ='short-text-field' type="number" name="max-rooms" id="max-room-number" min="1" max="10" placeholder="עד- "   value="{{user_search_params.max_rooms}}" >
+        </div>
+
+       <div class="input-search-field">
+           <p>קומה מ-</p>
+          <input  class ='short-text-field' type="number" name="min-floor" id="min-floor" min="1" max="40" placeholder="קומה"  value="{{user_search_params.min_floor}}"  >
+        </div>
+         <div class="input-search-field">
+        <p>קומה עד-</p>
+          <input class ='short-text-field' type="number" name="max-floor" id="max-floor" min="1" max="40" placeholder="עד-"  value="{{user_search_params.max_floor}}">
+        </div>
+
+            <div class="input-search-field">
+       <p>גודל מ-</p>
+          <input class ='short-text-field' type="number" name="min-size" id="min-size" min="0" max="300" placeholder="מר"  value="{{user_search_params.min_size}}">
+        </div>
+          <div class="input-search-field">
+            <p>גודל עד-</p>
+          <input class ='short-text-field' type="number" name="max-size" id="max-size" min="1" max="300" placeholder="מר"  value="{{user_search_params.max_size}}">
+        </div>
+
+    </div>
+
+       <div class="down-search-row">
+          <div class="search-btn">
+             <button class="click-continue" type="submit">חפש</button>
+             </div>
+       </div>
+
+      {%if search %}
+        <div class="total-results">
+            <p class="res-number">נמצאו {{ num_results }} תוצאות</p>
+            <div class="sort-res">
+                <label class = sort_label for="sort">מיין לפי:</label>
+                <select name="sort" id="sort" onchange="this.form.submit()">
+                    <option value="">בחר</option>
+                    <option value="price_asc">מחיר - עולה</option>
+                    <option value="price_desc">מחיר - יורד</option>
+                </select>
+            </div>
+        </div>
+      {%endif%}
+    </form>
+  </div>
+</div>
+
+{%if search %}
+<div class="results">
+    <table class="table-container">
+      <tbody>
+        {% for apartment in apartments %}
+          {% if forloop.counter0|divisibleby:4 %}
+            <tr>
+          {% endif %}
+          <td>
+            <div class="apt-card">
+              <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/default-asset-img.jpg' %}';">
+              <div class="apt-card-body">
+                <p class="saving">חיסכון: {{ apartment.p_change }}%</p>
+                <p class="price">מחיר מבוקש: {{ apartment.Price }}</p>
+                <p class="predicted-price">מחיר מוערך: {{ apartment.Predicted }}</p>
+                <p class="location-apartment">{{ apartment.Street }}, {{ apartment.Neighborhood }}, {{ apartment.City }}</p>
+                <p class="apt-size-floor-rooms">  {{ apartment.Size }} מ"ר  | קומה {{ apartment.Floor }} | חדרים {{ apartment.Room }}</p>
+
+                <div class="button-container">
+                  <button class="apt-link">
+                    <a href="{{ apartment.link }}" class="btn btn-primary">לפרטים נוספים</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          {% if forloop.counter|divisibleby:4 or forloop.last %}
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+<div class="pagination">
+      <span class="step-links">
+        {% if apartments.has_previous %}
+          <a href="?{{ request.GET.urlencode }}&page=1">&laquo;  חזרה לעמוד הראשון </a>
+          <a href="?{{ request.GET.urlencode }}&page={{ apartments.previous_page_number }}">הקודם</a>
+        {% endif %}
+
+        <span class="current-page">
+          עמוד {{ apartments.number }} מתוך {{ apartments.paginator.num_pages }}
+        </span>
+
+        {% if apartments.has_next %}
+          <a href="?{{ request.GET.urlencode }}&page={{ apartments.next_page_number }}">הבא</a>
+          <a href="?{{ request.GET.urlencode }}&page={{ apartments.paginator.num_pages }}"> לעמוד האחרון &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+{%endif%}
+
+<script>
+
+</script>
+{% endblock %}

@@ -1,0 +1,19 @@
+#version: '3.9'
+#
+#services:
+#
+#  db:
+#    image: postgres:14.2-alpine
+#    restart: unless-stopped
+#    ports:
+#      - '5432:5432'
+#    environment:
+#      POSTGRES_DB: railway
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: XbEZZ7ze9Sl78z96TU54
+#    volumes:
+#      - postgresql-data:/var/lib/postgresql/data
+#
+#volumes:
+#  postgresql-data:
+#    driver: local

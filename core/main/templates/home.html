@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="welcome">
+    <h1> ברוכים הבאים לNextRoof</h1>
+    <p>
+        אתר הנדל"ן שמתשמש בבינה מלאוכתית כדי למצוא את הנכס הכי משתלם עבורכם
+    </p>
+</div>
+
+
+
+
+<div class = 'daily-find'>
+    <h1>המציאה היומית</h1>
+
+    <div class="day">
+
+{% for deal in top_deals %}
+
+    {% if forloop.counter0 %}
+        <div class="card-day-right">
+    {% elif forloop.counter1 %}
+        <div class="card-day-middle">
+    {% else %}
+        <div class="card-day-left">
+    {% endif %}
+
+        <div class="top-card">
+            {% if deal.Images %}
+                <img class="photo-card" src="{{ deal.Images }}" alt="">
+            {% else %}
+                <img class="photo-card" src="{% static '/img/default-asset-img.jpg' %}" alt="">
+            {% endif %}
+
+            <img alt="" class="triple-card" src="https://static.overlay-tech.com/assets/1caae834-6301-4529-9963-b5b4ddb1b780.svg">
+        </div>
+
+        <div class="down-card-text">
+            <div class="down-card">
+                <p class="saving">חיסכון: {{ deal.p_change }}%</p>
+                <p class="price">מחיר מבוקש : {{ deal.Price }}</p>
+                <p class="predicted-price">מחיר מוערך: {{ deal.Predicted }}</p>
+                <p class="location-apartment">{{ deal.Street }}, {{ deal.Neighborhood }}, {{ deal.City }}</p>
+            </div>
+
+            <div class="details">
+                <p class="num-90">{{ deal.Size }} מ"ר</p>
+                <p class="line-1"></p>
+                <p class="num-5">קומה {{ deal.Floor }}</p>
+                <p class="line-1"></p>
+                <p class="num-4">חדרים {{ deal.Room }}</p>
+            </div>
+
+            {% if forloop.counter0 %}
+                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+            {% elif forloop.counter1 %}
+                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+            {% else %}
+                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+            {% endif %}
+        </div>
+
+
+    </div>
+
+
+{% endfor %}
+
+    </div>
+
+   <div class="newsletter">
+        <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
+
+        <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
+    </div>
+
+</div>
+
+    <div class="about-us">
+        <h2>מי אנחנו?</h2>
+        <p>NextRoof הינה מערכת אינטרנטית המשתמשת באלגוריתם בינה מלאכותית כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
+    </div>
+
+{% endblock %}
