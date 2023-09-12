@@ -30,7 +30,7 @@ def get_random_deals(num_deals=3):
 
     df_deals = pd.read_csv('core/data/Predicted_DB.csv')
     df_filtered = df_deals[df_deals['Images'].apply(lambda x: len(x) > 10)]
-    df_filtered['PriceInt'] = df_filtered['Price'].apply(
+    df_filtered.loc[:, 'PriceInt'] = df_filtered['Price'].apply(
         lambda x: str(x).replace(",", "").replace(" ₪", ""))
     df_filtered.loc[:, 'PriceInt'] = df_filtered['PriceInt'].astype(int)
     df_worth = df_filtered[df_filtered['PriceInt'] < df_filtered['Predicted']]
