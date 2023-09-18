@@ -2,8 +2,8 @@
 
 NextRoof is a sophisticated web system leveraging artificial intelligence to predict real estate asset values in Israel.
 
-![NextRoof Image 1](static/img/nextroof1.png)
-![NextRoof Image 2](static/img/nextroof2.png)
+![NextRoof Image 1](core/static/img/nextroof1.png)
+![NextRoof Image 2](core/static/img/nextroof2.png)
 
 ## Objective :dart:
 
