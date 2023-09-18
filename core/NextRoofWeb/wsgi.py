@@ -16,6 +16,6 @@ sys.path.append('/')
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'NextRoofWeb.settings'
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NextRoofWeb.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.NextRoofWeb.settings')
 
 application = get_wsgi_application()

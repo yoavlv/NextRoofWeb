@@ -120,8 +120,9 @@ USE_TZ = True
 
 # poetry run python -m core.manage collectstatic
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # type: ignore # noqa: F821
+STATIC_ROOT = BASE_DIR / 'static'  # type: ignore # noqa: F821
 STATICFILES_DIRS = [BASE_DIR / 'core' / 'static']  # type: ignore # noqa: F821
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

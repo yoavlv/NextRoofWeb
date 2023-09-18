@@ -1,7 +1,7 @@
 
 .PHONY: run-server
 run-server:
-	poetry run python -m core.manage runserver
+	poetry run python -m core.manage runserver 0.0.0.0:8000
 
 
 .PHONY: superuser

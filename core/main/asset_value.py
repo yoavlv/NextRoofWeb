@@ -54,9 +54,9 @@ def calc_asset_value(request):
         params['Floor'] = int(request.GET.get('floor'))
         params['Year'] = 2023
         # df = db_to_df('address')
-        df = pd.read_csv("static/Address.csv")
+        df = pd.read_csv("core/data/Address.csv")
         params = calc_missing_values(df, params)
-        models = joblib.load('static/saved_models.pkl')
+        models = joblib.load('core/static/saved_models.pkl')
         model = models['stacking']
 
         predicted_price = predict_apt_price(params, model)
@@ -210,7 +210,7 @@ def predict_apt_price(params, model):
         "Year", "Distance_sea", "Train", 'Age', 'Neighborhood_rank',
         'Street_rank', 'Gush_rank', 'Helka_rank'
     ])
-    scaler = joblib.load('static/scaler.pkl')
+    scaler = joblib.load('core/static/scaler.pkl')
     X_scaled = scaler.transform(X)
 
     # Predict prices using the trained model
