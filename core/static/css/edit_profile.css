@@ -1,0 +1,64 @@
+/* Global Styles */
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+.edit-profile-container {
+    max-width: 37.5rem;
+    margin: 5rem auto;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.profile-title {
+    margin-bottom: 1.875rem;
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+.form-field-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.field-label {
+    margin-bottom: 0.625rem;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.text-field,
+.date-field,
+.user-type-dropdown {
+    padding: 0.875rem;
+    width: 100%;
+    border: 1px solid #e3e8ee;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+}
+
+.update-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.875rem 2.375rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.3125rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.update-button:hover {
+    background-color: #45a049;
+}
+
+.newsletter-checkbox {
+    margin-right: 0.625rem;
+}

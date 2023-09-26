@@ -8,9 +8,9 @@
 #    ports:
 #      - '5432:5432'
 #    environment:
-#      POSTGRES_DB: railway
+#      POSTGRES_DB: nextroof_db
 #      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: XbEZZ7ze9Sl78z96TU54
+#      POSTGRES_PASSWORD: 43234323
 #    volumes:
 #      - postgresql-data:/var/lib/postgresql/data
 #

@@ -1,0 +1,146 @@
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 3rem;
+    padding: 1rem;
+    min-height: 80vh;
+    background: linear-gradient(to left, rgba(190, 190, 190, 0.7) 0%, rgba(190, 190, 190, 0.7) 80%, rgba(190, 190, 190, 0) 100%);
+    border-radius: 0.0125rem;
+}
+
+.left, .right {
+    flex: 1;
+    padding: 1rem;
+}
+.left-header h1 {
+    font-size: 1.9rem;
+    margin-bottom: 1rem;
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100vw);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.left {
+    animation: slideFromLeft 1.5s ease-out forwards;
+}
+.left-symbols ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-symbols li {
+    margin-bottom: 0.5rem;
+}
+
+
+.left-symbols li img {
+    margin:2rem;
+    width: 6.1rem;
+    height: auto;
+
+}
+.fieldRow {
+    display: flex;
+    gap: 1.2rem;
+}
+.fieldWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 16rem;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.0625rem solid #ccc;
+}
+
+.fieldWrapper label {
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+}
+
+.fieldWrapper input[type="text"],
+.fieldWrapper input[type="password"],
+.fieldWrapper input[type="email"],
+.fieldWrapper input[type="date"],
+.fieldWrapper select {
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+
+.fieldWrapper input[type="checkbox"] {
+    width: 2rem;
+    height:  2rem;
+}
+
+
+.fieldWrapper .help {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.fieldWrapper .errorlist {
+    color: red;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.register-button {
+    padding: 0.9rem 4.25rem;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+    cursor: pointer;
+
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive handling */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left, .right {
+        flex: none;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .fieldRow {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fieldWrapper {
+        width: 100%; /* make each field take the full width on mobile screens */
+        padding: 0.3rem;
+    }
+
+    .register-button {
+        width: 100%; /* make the button take the full width */
+        margin-top: 1rem;
+    }
+
+    .left-symbols li img {
+        margin: 1rem;
+        width: 5rem;
+    }
+}

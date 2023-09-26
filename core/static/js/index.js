@@ -1,7 +1,4 @@
 
-
-
-
 function openNavBar(event) {
     event.preventDefault();
     const moreOptions = document.getElementById("nav-bar");
@@ -34,5 +31,15 @@ window.addEventListener("scroll", function() {
         navBar.classList.add("transparent-nav");
     } else {
         navBar.classList.remove("transparent-nav");
+    }
+});
+
+
+window.addEventListener("scroll", function() {
+    const navbar = document.getElementById("nav-bar");
+    if (window.pageYOffset > 50) { // You can adjust this value
+        navbar.classList.add("transparent");
+    } else {
+        navbar.classList.remove("transparent");
     }
 });

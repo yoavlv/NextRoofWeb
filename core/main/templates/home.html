@@ -11,11 +11,10 @@
 </div>
 
 
-
-
 <div class = 'daily-find'>
-    <h1>המציאה היומית</h1>
-
+    <div class = 'daily-find-title'>
+        <h1>המציאה היומית</h1>
+    </div>
     <div class="day">
 
 {% for deal in top_deals %}
@@ -34,7 +33,6 @@
             {% else %}
                 <img class="photo-card" src="{% static '/img/default-asset-img.jpg' %}" alt="">
             {% endif %}
-
             <img alt="" class="triple-card" src="https://static.overlay-tech.com/assets/1caae834-6301-4529-9963-b5b4ddb1b780.svg">
         </div>
 
@@ -55,11 +53,11 @@
             </div>
 
             {% if forloop.counter0 %}
-                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+                <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
             {% elif forloop.counter1 %}
-                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+                <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
             {% else %}
-                <button class="btn-card" onclick="window.location.href='{{ deal.link }}'">לפרטים נוספים</button>
+                <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
             {% endif %}
         </div>
 
@@ -71,11 +69,13 @@
 
     </div>
 
-   <div class="newsletter">
+    <div class="newsletter">
         <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
-
-        <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
+        <a href="{% url 'register' %}">
+            <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
+        </a>
     </div>
+
 
 </div>
 

@@ -1,0 +1,184 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+{% if user_logged_in %}
+<div class="post-sec">
+    <div class="post-header">
+        <h1>פרסם את הנכס שלך למכירה</h1>
+    </div>
+
+    <form method="post" class="post-form"  enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row">
+            <!-- City -->
+            <div class="col">
+                <label for="city">עיר:</label>
+                <input type="text" name="city" class="form-control" id="city" required>
+            </div>
+
+            <!-- Neighborhood -->
+            <div class="col">
+                <label>שכונה:</label>
+                <select class="form-control" name="neighborhood" id='neighborhood' autocomplete="off" onchange="saveSelectedNeighborhood(this.value)">
+                    {% for neighborhood in neighborhoods %}
+                        <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Street -->
+            <div class="col">
+                <label >רחוב:</label>
+                <select class="form-control" name="street" id='street' autocomplete="off" onchange="saveSelectedStreet(this.value)">
+                    {% for street in streets %}
+                        <option value="{{ street }}">{{ street }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <!-- Price -->
+            <div class="col">
+                <label for="price">מחיר:</label>
+                <input type="number" name="price" class="form-control" id="price"  min="0" max="20000000" required>
+            </div>
+
+            <!-- Floor -->
+            <div class="col">
+                <label for="floor">קומה:</label>
+                <input type="number" name="floor" class="form-control" id="floor" min="-1" max="70"  required>
+            </div>
+
+            <!-- Size -->
+            <div class="col">
+                <label for="size">גודל (מ"ר):</label>
+                <input type="number" name="size" class="form-control" id="size" min="10" max="1000" required>
+            </div>
+
+            <!-- Number of Rooms -->
+            <div class="col">
+                <label for="rooms">מספר חדרים:</label>
+                <input type="number" name="rooms" class="form-control" id="rooms" min="1" max="15" required>
+            </div>
+
+        </div>
+
+        <!-- Second Row for Select Fields -->
+        <div class="row">
+
+            <!-- Property Type -->
+            <div class="col">
+                <label for="type">סוג הנכס:</label>
+                <select name="type" class="form-control" id="type">
+                    <option value="apartment">דירה</option>
+                    <option value="house">בית פרטי</option>
+                    <option value="other">קוטג'</option>
+                </select>
+            </div>
+
+            <!-- Property Condition -->
+            <div class="col">
+                <label for="condition">מצב הנכס:</label>
+                <select name="condition" class="form-control" id="condition">
+                    <option value="very-new">חדש מקבל"ן</option>
+                    <option value="new">חדש</option>
+                    <option value="renovated">משופץ</option>
+                    <option value="need-renovated">צריך שיפוץ</option>
+                </select>
+            </div>
+
+            <!-- Entry Date -->
+            <div class="col">
+                <label for="entry_date">תאריך כניסה:</label>
+                <input type="date" name="entry_date" class="form-control" id="entry_date" required>
+            </div>
+
+            <!-- Parking -->
+            <div class="col">
+                <label for="parking">מספר חניות:</label>
+                <input type="number" name="parking" class="form-control" id="parking"  min="0" max="5"required>
+            </div>
+
+            <!-- Floors in the Building -->
+            <div class="col">
+                <label for="floors">קומות בבניין:</label>
+                <input type="number" name="floors" class="form-control" id="floors"  min="0" max="90">
+            </div>
+
+        </div>
+
+        <!-- Third Row for Checkbox Fields -->
+        <div class="row">
+            <div class="form-group">
+                <div class="checkbox-container">
+                    <label for="elevators">מעלית:</label>
+                    <input type="checkbox" name="elevators" id="elevators">
+                </div>
+                <div class="checkbox-container">
+                    <label for="storage">אחסון:</label>
+                    <input type="checkbox" name="storage" id="storage">
+                </div>
+                <div class="checkbox-container">
+                    <label for="balcony">מרפסת:</label>
+                    <input type="checkbox" name="balcony" id="balcony">
+                </div>
+                <div class="checkbox-container">
+                    <label for="accessibility">נגישות:</label>
+                    <input type="checkbox" name="accessibility" id="accessibility">
+                </div>
+                <div class="checkbox-container">
+                    <label for="renovated">משופצת:</label>
+                    <input type="checkbox" name="renovated" id="renovated">
+                </div>
+            </div>
+
+        </div>
+<div class="row">
+    <!-- Free Text -->
+    <div class="text-div">
+        <label for="text">טקסט:</label>
+        <textarea name="text" class="form-control" id="text" maxlength="500" placeholder="עד 500 אותיות"></textarea>
+    </div>
+
+    <div class="contact">
+        <!-- Name -->
+        <div class="form-inline mb-3">
+            <label for="contact_name" class="contact-label">שם:</label>
+            <input type="text" name="contact_name" class="form-control" id="contact_name" value="{{ user_name }}" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-inline mb-3">
+            <label for="contact_phone" class="contact-label">טלפון:</label>
+            <input type="tel" name="contact_phone" class="form-control" id="contact_phone"  value="{{ user.phone_number }}" required>
+        </div>
+
+        <!-- Email -->
+        <div class="form-inline">
+            <label for="contact_email" class="contact-label">דוא"ל:</label>
+            <input type="email" name="contact_email" class="form-control" id="contact_email"  value="{{ user.email }}" required>
+        </div>
+    </div>
+</div>
+
+        <div class="row">
+            <div class="col-12">
+                <label for="property_image">העלאת תמונה:</label>
+                <input type="file" name="property_image" class="form-control" id="property_image" accept="image/*">
+            </div>
+        </div>
+        <button type="submit" class='post-apt-btn'>פרסם</button>
+
+
+    </form>
+</div>
+{%else%}
+<div>
+    <h1> התחבר על מנת לפרסם</h1>
+    <a href="{% url 'login' %}">התחבר</a>
+</div>
+{%endif%}
+{% endblock %}

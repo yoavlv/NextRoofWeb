@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    {% if user_logged_in %}
+        <div class="profile-container">
+            <div class="div-profile">
+                <h1 class="profile-title">המודעות שאהבתי</h1>
+            </div>
+            <div class="results">
+                <div class="table-container">
+                    {% for apartment in liked_properties  %}
+                        <div class="apt-card">
+                        <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/nextroof-icon.png' %}';">
+
+                          <div class="apt-card-body">
+                            <p class="saving">חיסכון: {{ apartment.p_change }}%</p>
+                            <p class="price">מחיר מבוקש: {{ apartment.Price }}</p>
+                            <p class="predicted-price">מחיר מוערך: {{ apartment.Predicted }}</p>
+                            <p class="location-apartment">{{ apartment.Street }}, {{ apartment.Neighborhood }}, {{ apartment.City }}</p>
+                            <p class="apt-size-floor-rooms">  {{ apartment.Size }} מ"ר  | קומה {{ apartment.Floor }} | חדרים {{ apartment.Room }}</p>
+
+                                <div class="button-container">
+                                    <a href="{{ apartment.link }}" class="btn-primary" target="_blank">לפרטים נוספים</a>
+                                    <button class="like-btn" onclick="toggleLike(this, '{{ apartment.Item_id }}')">
+                                        <img src="{% static 'img/liked.png' %}" class="like-icon" alt="Like Icon">
+                                    </button>
+                                </div>
+                          </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <section class="user-details">
+                <h3 class="section-title">פרטים אישיים</h3>
+                <p class="user-attribute">שם: {{ user_name }}</p>
+                <p class="user-attribute">דוא"ל: {{ user.email }}</p>
+                <p class="user-attribute">עיר: {{ user.city }}</p>
+                <p class="user-attribute">מספר טלפון: {{ user.phone_number }}</p>
+                <p class="user-attribute">תאריך לידה: {{ user.birthday }}</p>
+                <p><a href="{% url 'edit_profile' %}">ערוך את הפרופיל</a></p>
+            </section>
+
+    {% else %}
+        <div>
+            <h1>Please login to view this page.</h1>
+        </div>
+    {% endif %}
+
+
+
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function toggleLike(button, itemId) {
+    var img = button.querySelector('.like-icon');
+
+    // Perform an AJAX call to toggle like status
+    fetch(`/toggle_like/${itemId}/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.liked) {
+            img.src = '{% static "img/liked.png" %}';
+        } else {
+            img.src = '{% static "img/like.png" %}';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+</script>
+
+{% endblock %}

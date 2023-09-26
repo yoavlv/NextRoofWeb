@@ -1,6 +1,12 @@
 # NextRoof :house_with_garden:
 
-NextRoof is a sophisticated web system leveraging artificial intelligence to predict real estate asset values in Israel.
+NextRoof is a cutting-edge web platform that utilizes artificial intelligence to provide real-time estimations of real estate asset values in Israel. Designed with a dynamic recommendation engine, NextRoof employs intricate machine learning algorithms that continually update to mirror market dynamics. Beyond its predictive prowess, our system proactively identifies and showcases lucrative market deals from various online sources.
+This repository encompasses the website's frontend and backend, developed using the Django Framework.
+
+## link for the algorithm:
+1. Visit [NextRoof]([https://github.com/yoavlv/NextRoof](https://github.com/yoavlv/NextRoof))  https://github.com/yoavlv/NextRoof
+
+
 
 ![NextRoof Image 1](core/static/img/nextroof1.png)
 ![NextRoof Image 2](core/static/img/nextroof2.png)
@@ -11,7 +17,7 @@ The core mission of NextRoof is to deliver trustworthy and pinpoint valuations f
 
 ## Features :gear:
 
-- **AI-Driven Estimations:** Leveraging advanced algorithms to provide accurate asset valuations.
+- **AI-Driven Estimations:**  Advanced algorithms deliver spot-on real estate asset evaluations.
 - **User-Friendly Interface:** Ensuring users of all tech-savviness levels can navigate and understand their property's estimated value.
 - **Up-to-date Data:** Constantly refreshed data ensuring users get the most recent and relevant information.
 
@@ -21,9 +27,11 @@ The core mission of NextRoof is to deliver trustworthy and pinpoint valuations f
 2. Enter the details of the property you wish to evaluate.
 3. Get your estimated valuation instantly!
 
-## Feedback :mailbox:
 
-We're always looking to improve! If you have any suggestions, issues, or just want to let us know how we're doing, please [submit an issue](https://github.com/YOUR_USERNAME/NEXTROOF_REPO_NAME/issues) or contact us directly.
+## Tech:
+Primary Development Language: Python (using the Django framework)
+Backend: Django ,Postgeqsl
+Frontend: JavaScript, HTML, CSS
 
 ## License :scroll:
 

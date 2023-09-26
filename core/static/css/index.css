@@ -17,13 +17,26 @@ body {
     transform-origin: center center;
 
 }
+.main-container {
+    padding-top: 6rem;
+}
 
 
-.hamburger-btn {
-    margin-top:2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#nav-bar  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6.5rem;
+    z-index:1001;
+    background-color: rgba(9, 30, 40, 0.3);
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+#nav-bar.transparent {
+    background: transparent;
 }
 
 .nav-bar-btn {
@@ -38,47 +51,36 @@ body {
     cursor: pointer;
 }
 
-.line {
-    width: 100%;
-    height: 0.1875rem;
-    background-color: #000;
-}
-
-nav {
-    display: flex;
-    height: 5.2rem;
-    background-color: rgba(9, 30, 40, 0.3);
-    transition: background-color 0.3s;
-}
-
 .nav2 {
     width: 80%;
     display: flex;
     height: 100%;
     padding: 0.4rem;
-    justify-content: center;  /* Center items horizontally */
-    align-items: center;      /* Center items vertically */
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    position: relative;  /* Added for absolute positioning of logo */
+    position: relative;
 }
 
 .nav2 ul {
-    margin-top:1rem;
+    margin-top:0rem;
     color: white;
     display: flex;
     list-style: none;
     gap: 2rem;
     margin: 0 2rem;
-    align-items: center;   /* Added to align items vertically in the center */
+    align-items: center;
 }
 
 .nav-link{
-    margin-top:1rem;
+    margin-top:0rem;
 }
 
 .nav2 ul li {
     margin:0.8rem;
-    transition: transform 0.3s ease;  /* Smooth transition for the transform property */
+    transition: transform 0.3s ease;
+    height: 6.5rem;
+    line-height: 6.5rem;
 }
 
 .nav2 ul li:hover {
@@ -92,7 +94,6 @@ nav {
 }
 .nav2 .enter {
     max-width: 35px;
-
     font-size: 14px;
     font-weight: 300;
     line-height: normal;
@@ -126,7 +127,6 @@ nav {
   margin: 8rem auto;
   line-height: 2.2rem;
 }
-
 
 
 footer {
@@ -171,34 +171,39 @@ footer {
     #nav-bar {
         display: none;
         width: 100%;
-        height: 100%;
+        height: 140%;
         background-color: #333;
-        position: fixed;
+        position: absolute;
         top: 0;
-        left: 5rem;
         z-index: 1000;
         flex-direction: column;
         align-items: center;
     }
 
     .hamburger-btn {
-        position: relative;
+        position: absolute;
         z-index: 1001;
-        margin-top:1rem;
-        display: flex;
-        margin-left:6.5rem;
-        justify-content: right;
-        align-items: right;
+        margin-top: 1rem;
+        right: 1rem; /* Changed from margin-left to right */
+        cursor: pointer;
+    }
+
+    .line {
+        width: 2.5rem; /* Increased width for visibility */
+        height: 0.1875rem;
+        background-color: #000;
+        margin: 0.25rem 0; /* Added to create a gap between lines */
     }
 
 
     .nav2 ul {
         flex-direction: column;
-        padding: 1rem 0;
-        gap: 2.5rem;
+        padding: 0rem 0;
+        gap: 0.0rem;
         align-items: center;
         margin-bottom: auto;
     }
+
 
 
     .about-us {

@@ -15,18 +15,30 @@
     <div class="Search-rectangle">
         <p class="search-text">חיפוש</p>
         <h1>{{parmas}}</h1>
-        <form action="{% url 'search' %}"  id="searchForm" method="get">
+        <form action="{% url 'search' %}"  id="searchForm" method="get" class="calc-form">
             <div class="top-search-row">
                 <div class="input-search-field">
                     <p>עיר</p>
-                    <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב">
+                    <select class="city" name="city" autocomplete="off" id="city" onchange="saveSelectedCity(this.value)">
+                        {% for city in cities %}
+                            <option value="{{ city }}">{{ city }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-search-field">
+                    <p>שכונה</p>
+                    <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood" onchange="saveSelectedNeighborhood(this.value)">
+                        {% for neighborhood in neighborhoods %}
+                            <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
 
                 <div class="input-search-field">
-                    <p>שכונה</p>
-                    <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood_id" onchange="saveSelectedNeighborhood(this.value)">
-                        {% for neighborhood in neighborhoods %}
-                            <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                    <p>רחוב</p>
+                    <select class="street" name="street" autocomplete="off" id="street"  onchange="saveSelectedStreet(this.value)">
+                        {% for street in streets %}
+                            <option value="{{ street }}">{{ street }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -75,11 +87,11 @@
 
     </div>
 
-       <div class="down-search-row">
-          <div class="search-btn">
-             <button class="click-continue" type="submit">חפש</button>
-             </div>
-       </div>
+    <div class="down-search-row">
+        <div class="search-btn-s">
+           <button class="calc-form search-btn" type="submit">חפש</button>
+        </div>
+    </div>
 
       {%if search %}
         <div class="total-results">
@@ -100,16 +112,12 @@
 
 {%if search %}
 <div class="results">
-    <table class="table-container">
-      <tbody>
+    <div class="table-container">
         {% for apartment in apartments %}
-          {% if forloop.counter0|divisibleby:4 %}
-            <tr>
-          {% endif %}
-          <td>
-            <div class="apt-card">
-              <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/nextroof-icon.png' %}';">
-              <div class="apt-card-body">
+        <div class="apt-card">
+            <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/nextroof-icon.png' %}';">
+
+            <div class="apt-card-body">
                 <p class="saving">חיסכון: {{ apartment.p_change }}%</p>
                 <p class="price">מחיר מבוקש: {{ apartment.Price }}</p>
                 <p class="predicted-price">מחיר מוערך: {{ apartment.Predicted }}</p>
@@ -117,19 +125,19 @@
                 <p class="apt-size-floor-rooms">  {{ apartment.Size }} מ"ר  | קומה {{ apartment.Floor }} | חדרים {{ apartment.Room }}</p>
 
                 <div class="button-container">
-                  <button class="apt-link">
-                    <a href="{{ apartment.link }}" class="btn btn-primary">לפרטים נוספים</a>
-                  </button>
+                    <a href="{{ apartment.link }}" class="btn-primary" target="_blank">לפרטים נוספים</a>
+                    <button class="like-btn" onclick="toggleLike(this, '{{ apartment.Item_id }}')">
+                        {% if apartment.Liked %}
+                        <img src="{% static 'img/liked.png' %}" class="like-icon" alt="Liked">
+                        {% else %}
+                        <img src="{% static 'img/like.png' %}" class="like-icon" alt="Like">
+                        {% endif %}
+                    </button>
                 </div>
-              </div>
             </div>
-          </td>
-          {% if forloop.counter|divisibleby:4 or forloop.last %}
-            </tr>
-          {% endif %}
+        </div>
         {% endfor %}
-      </tbody>
-    </table>
+    </div>
 </div>
 
 <div class="pagination">
@@ -152,6 +160,54 @@
 {%endif%}
 
 <script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
+function toggleLike(button, itemId) {
+    var img = button.querySelector('.like-icon');
+
+    // Perform an AJAX call to toggle like status
+    fetch(`/toggle_like/${itemId}/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else if (response.status === 403) {
+            // Redirect to the login page if user is not logged in
+            window.location.href = '/login/';
+        } else {
+            throw new Error('Something went wrong');
+        }
+    })
+    .then(data => {
+        if (data && data.liked) {
+            img.src = '{% static "img/liked.png" %}';
+        } else {
+            img.src = '{% static "img/like.png" %}';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 </script>
+
+
+
 {% endblock %}

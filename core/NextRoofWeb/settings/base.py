@@ -1,11 +1,14 @@
-DEBUG = True
+DEBUG = False
 SECRET_KEY = NotImplemented
+from ...main.session import session_middleware
+from .dev import db
+
+CSRF_TRUSTED_ORIGINS = ['https://www.nextroof.co.il']
 
 ALLOWED_HOSTS = [
     'nextroof.online', 'www.nextroof.online', '*', 'nextroof.online',
     'www.nextroof.co.il'
 ]
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -18,6 +21,8 @@ INSTALLED_APPS = [
     'core.main.apps.MainConfig',
     'django_extensions',
 ]
+# Remove-Item C:\Users\yoavl\NextRoofWeb\core\main\migrations\* -Force -Recurse
+# New-Item -Path C:\Users\yoavl\NextRoofWeb\core\main\migrations\__init__.py -ItemType File
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -27,6 +32,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.main.session.session_middleware',
 ]
 
 ROOT_URLCONF = 'core.NextRoofWeb.urls'
@@ -42,6 +48,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.NextRoofWeb.settings.templates.user_context_processor.user_info',
             ],
         },
     },
@@ -49,45 +56,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.NextRoofWeb.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+DATABASES = db
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'nextroofweb_db',
-#         'USER': 'root',
-#         'PASSWORD': pass,
-#         'PORT':3306,
-#         'HOST':'127.0.0.1',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'XbEZZ7ze9Sl78z96TU54',
-        'HOST': 'containers-us-west-60.railway.app',
-        'PORT': '6919',
-        # 'ATOMIC_REQUESTS': True,
-        # 'CONN_MAX_AGE': 0,
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': o s.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': '\Users\yoavl\NextRoofWeb\db.sqlite3',
-#     }
-# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -122,6 +92,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'  # type: ignore # noqa: F821
 STATICFILES_DIRS = [BASE_DIR / 'core' / 'static']  # type: ignore # noqa: F821
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  # type: ignore # noqa: F821
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

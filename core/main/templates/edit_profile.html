@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="edit-profile-container">
+    <h2>Edit Profile</h2>
+
+    <form action="{% url 'edit_profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" value="{{ user.city }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" value="{{ user.phone_number }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="birthday">Date of Birth:</label>
+            <input type="date" id="birthday" name="birthday" value="{{ user.birthday }}">
+        </div>
+
+
+        <div class="form-group">
+            <label for="subscribie">Subscribe to Newsletter:</label>
+            <input type="checkbox" id="subscribie" name="subscribie" {% if user.subscribie %} checked {% endif %}>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Update">
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

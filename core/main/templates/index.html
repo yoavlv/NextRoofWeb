@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/asset_value.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ad.css' %}">
+
     <link rel="icon" href="{% static 'img/nextroof-black.png' %}" type="image/png">
 
 
@@ -23,6 +30,7 @@
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/asset_value.js' %}"></script>
     <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/like.js' %}"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -42,24 +50,37 @@
                     <li class="nav-link"><a href="{% url 'home' %}"> המציאה היומית</a></li>
                     <li class="nav-link"><a href="{% url 'asset_value' %}">שווי הנכס</a></li>
                     <li class="nav-link"><a href="{% url 'search' %}">חיפוש</a></li>
-                    <li class="nav-link"><a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/">יצירת קשר</a></li>
-                    <li class="nav-link"><a href="{% url 'home' %}">דף הבית</a></li>
+                    <li class="nav-link"><a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">יצירת קשר</a></li>
+                    {% if user_logged_in %}
+                        <ul>
+                            <li><a href="{% url 'profile' %}">ברוך הבא, {{ user_name }} </a></li>
+                            <li><a href="{% url 'logout' %}">התנתק</a></li>
+                        </ul>
+                    {% else %}
+                        <ul>
+                            <li><a href="{% url 'login' %}">התחבר</a></li>
+                        </ul>
+                    {% endif %}
+
                 </ul>
 
+
             </div>
+
         </nav>
 
-        <div class="hamburger-btn">
-        <button class="nav-bar-btn" onclick="openNavBar(event)">
+        <div class="hamburger-btn" onclick="openNavBar(event)">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
-        </button>
+        </div>
+
+
 
       </div>
    </header>
 
-    <div>
+    <div class="main-container">
     {% block content %}
 
     {% endblock %}

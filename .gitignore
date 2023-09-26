@@ -5,15 +5,15 @@
 __pycache__
 db.sqlite3
 media
-
+core/NextRoofWeb/settings/dev.py
 # Backup files
 *.bak
 *.txt
-
+nginx.conf
 # Python
 *.py[cod]
 *$py.class
-
+core/static/models/
 # Distribution / packaging
 *.egg
 *.egg-info/
@@ -53,6 +53,7 @@ nosetests.xml
 
 # Environments
 /local
+/media
 /.env
 .venv
 ENV/

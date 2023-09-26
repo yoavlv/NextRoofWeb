@@ -1,0 +1,86 @@
+.container-ad {
+    max-width: 60rem;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 4rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+}
+
+.house-image {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    display: block;
+    margin: 0 auto 2rem;
+    border-radius: 0.25rem;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.details, .additional-details {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+.details ul, .additional-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.details ul li, .additional-details ul li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.title, .section-heading {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.description p, .contact-ad p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.contact-ad {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .details-container {
+        flex-direction: column;
+    }
+
+    .details, .additional-details {
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .section-heading {
+        font-size: 1.25rem;
+    }
+}

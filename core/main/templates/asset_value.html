@@ -13,23 +13,29 @@
             </div>
     </div>
 
-  <div class="Search-rectangle">
+  <div class="search-rectangle">
         <p class="search-text">חיפוש נכס</p>
-            <form action="{% url 'calc_asset_value' %}" method="get">
+            <form action="{% url 'calc_asset_value' %}" method="get" class="calc-form">
              <div class="top-search-row">
-              <div class="input-search-field">
-                <p>עיר</p>
-                <input type="text" name="city" autocomplete="off" id="city_id" placeholder="לדוגמה, תל אביב" required value="תל אביב">
-              </div>
 
-              <div class="input-search-field">
-                <p>רחוב</p>
-                <select class="street" name="street" autocomplete="off" id="street_id" onchange="saveSelectedStreet(this.value)">
-                  {% for street in streets %}
-                  <option value="{{ street|lower }}">{{ street }}</option>
-                  {% endfor %}
-                </select>
-              </div>
+                <div class="input-search-field">
+                    <p>עיר</p>
+                    <select class="city" name="city" autocomplete="off" id="city_calc" onchange="saveSelectedCityCalc()" required>
+                        {% for city in cities %}
+                            <option value="{{ city }}">{{ city }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <div class="input-search-field">
+                    <p>רחוב</p>
+                    <select class="street" name="street" autocomplete="off" id="street_calc"  onchange="saveSelectedStreetCalc(this.value)" required>
+                        {% for street in streets %}
+                            <option value="{{ street }}">{{ street }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
               <div class="input-search-field">
                 <p>מספר בית</p>
@@ -43,12 +49,12 @@
 
               <div class="input-search-field">
                 <p>קומה</p>
-                <input class="short-text-field" type="number" name="floor" id="mim-floor" min="0" max="40" placeholder="קומה" value="{{params.Floor}}" required>
+                <input class="short-text-field" type="number" name="floor" id="floor" min="0" max="40" placeholder="קומה" value="{{params.Floor}}" required>
               </div>
 
               <div class="input-search-field">
                 <p>מטר רבוע</p>
-                <input class="short-text-field" type="number" name="size" id="min-size" min="10" max="300" placeholder="מטר" value="{{params.Size}}" required>
+                <input class="short-text-field" type="number" name="size" id="size" min="10" max="300" placeholder="מטר" value="{{params.Size}}" required>
               </div>
 
               <div class="input-search-field">
@@ -64,30 +70,39 @@
               <div class="input-search-field">
                 <p>מצב הנכס</p>
                 <select class="condition" name="condition" autocomplete="off" id="condition">
-                  <option value="new_contractor">חדש מקבלן</option>
-                  <option value="new">חדש</option>
-                  <option value="renovated">משופץ</option>
-                  <option value="good_condition">מצב טוב</option>
-                  <option value="renovation_needed">צריך שיפוץ</option>
+                  <option value="1">חדש מקבלן</option>
+                  <option value="1">חדש</option>
+                  <option value="0">משופץ</option>
+                  <option value="0">מצב טוב</option>
+                  <option value="0">צריך שיפוץ</option>
                 </select>
               </div>
              </div>
 
-          <div class="down-search-row">
-              <div class="search-btn">
-                <button class="click-continue" type="submit">חשב</button>
-              </div>
-           </div>
+            <div class="down-search-row">
+               <button class="calc-form search-btn" type="submit">חפש</button>
+            </div>
+                <div id="loading-popup" class="loading-popup">
+                <div class="loading-content">
+                    <img src="{% static 'img/loading.gif' %}" alt="Loading" class="loading-spinner">
+                    <p>Calculating...</p>
+                </div>
+            </div>
             </form>
     </div>
 
 </div>
+{%if error_message %}
+<div class="error-calc">
+    <h1> {{error_message}}</h1>
+</div>
 
+{% endif %}
 {% if Search %}
 
-<div class="result">
+<div class="result-container">
   <div class="algo-res">
-    <h2>כתובת: {{params.City}}, {{params.Street}} {{params.Home_number}}</h2>
+    <h2>כתובת: {{params.city}}, {{params.street}} {{params.home_number}}</h2>
     <div class="algo-price">
       <h3>לפי החישוב של NextRoof</h3>
       <h2>שווי הנכס הינו:</h2>
@@ -96,33 +111,33 @@
     <div class="algo-card-in">
       <div class="algo-right">
         <ul>
-          <li>גודל הנכס: {{params.Size}}</li>
-          <li>{{params.Rooms}}: חדרים</li>
-          <li>קומה: {{params.Floor}}</li>
+          <li>גודל הנכס: {{params.size}}</li>
+          <li>{{params.rooms}}: חדרים</li>
+          <li>קומה: {{params.floor}}</li>
           <li>סוג הנכס: דירה</li>
         </ul>
       </div>
       <div class="algo-left">
         <ul>
-          <li>שכונה: {{params.Neighborhood}}</li>
-          <li>גוש: {{params.Gush}}</li>
-          <li>חלקה: {{params.Helka}}</li>
-          <li>תת-חלקה: {{params.Size}}</li>
+          <li>שכונה: {{params.neighborhood}}</li>
+          <li>גוש: {{params.gush}}</li>
+          <li>חלקה: {{params.helka}}</li>
+          <li>תת-חלקה: {{params.size}}</li>
         </ul>
       </div>
     </div>
   </div>
   <div id="neighborhood_plot">
     <div class="button-row">
-      <button class="button" id="graph" value="true">גרף שכונה</button>
-      <button class="button" id="last-deals" value="false">עסקאות אחרונות</button>
-      <button class="button" id="similar-deals" value="false">גרף עיר</button>
+      <button class="button-choose" id="graph" value="true">גרף שכונה</button>
+      <button class="button-choose" id="last-deals" value="false">עסקאות אחרונות</button>
+      <button class="button-choose" id="similar-deals" value="false">גרף עיר</button>
     </div>
 
       <div class="user-choice">
         <img id="neighborhood-image" src="data:image/png;base64,{{ neighborhood_plt }}" alt="Neighborhood Plot">
         <div id="last-deals-content" class="generate-last-deals">
-          <h3>עסקאות אחרונות ברחוב {{params.Street}}</h3>
+          <h3>עסקאות אחרונות ברחוב {{params.street}}</h3>
           <table>
             <thead>
               <tr>
@@ -167,6 +182,12 @@
 {%endif%}
 
 <script>
+    document.querySelector('.calc-form').addEventListener('submit', function() {
+    document.getElementById('loading-popup').style.display = 'flex';
+});
+</script>
+
+<script>
   document.addEventListener('DOMContentLoaded', () => {
     const buttonGraph = document.querySelector('#graph');
     const buttonLast = document.querySelector('#last-deals');
@@ -198,4 +219,33 @@
     });
   });
 </script>
+
+<script type="text/javascript">
+    function updateStreets() {
+        var selectedCity = document.getElementById('city_calc').value;
+        var tableName = 'nadlan_rank'; // Fixed table name
+        var url = `{% url 'get-streets-city' %}?city=${encodeURIComponent(selectedCity)}&table_name=${encodeURIComponent(tableName)}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                var streetSelect = document.getElementById('street_calc');
+                streetSelect.innerHTML = ''; // Clear existing options
+                streetSelect.add(new Option('בחר רחוב', ''));
+
+                data.streets.forEach(function(street) {
+                    var option = new Option(street, street);
+                    streetSelect.add(option);
+                });
+            })
+            .catch(error => console.error('Error fetching streets:', error));
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('city_calc').addEventListener('change', updateStreets);
+    });
+</script>
+
+
+
 {% endblock %}

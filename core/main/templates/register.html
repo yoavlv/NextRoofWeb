@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="form-container">
+
+    <div class="right">
+        <form method="post" class="form-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">שם פרטי</label>
+                <input type="text" name="first_name" id="first_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">דוא״ל</label>
+                <input type="email" name="email" id="email" required>
+                <small>נדרש. הזן כתובת דוא״ל תקנית.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="password1">סיסמא</label>
+                <input type="password" name="password1" id="password1" required>
+                <small>נדרש. 30 תווים או פחות. רק אותיות, מספרים ו@/./+/-/_</small>
+            </div>
+
+            <div class="form-group">
+                <label for="password2">אימות סיסמא</label>
+                <input type="password" name="password2" id="password2" required>
+                <small>נדרש. הזן את אותה הסיסמה שוב לאימות.</small>
+            </div>
+
+            <div>
+                <button class ='register-button' type="submit">הירשם</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="left">
+        <div class="left-header">
+            <h1>NextRoof עובדים בשבילך</h1>
+        </div>
+    <div class="left-symbols">
+        <ul>
+        <li><img src="{% static 'img/fast.png' %}" alt="Fast"> </li>
+        <li><img src="{% static 'img/smart.png' %}" alt="smart"> </li>
+        <li><img src="{% static 'img/accuracy.png' %}" alt="Fast"> </li>
+        </ul>
+    </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

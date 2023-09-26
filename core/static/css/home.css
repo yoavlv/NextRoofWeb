@@ -1,19 +1,26 @@
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .welcome {
-    padding: 7rem;
+    padding: 5rem;
     text-align: right;
     background-color: rgba(255,255,255,0.7);
     width:100%
-
-    /* border-radius: 1rem;  /* Adjusted from 15px */
-    /* box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.1);  /* Adjusted from 5px and 15px */
     max-width: 50rem;
     margin: 3rem auto;
+
 }
 
 .welcome h1 {
     color: #333;
-    font-size: 3.5rem;  /* Directly converted from em */
-    margin-bottom: 2.25rem;  /* Adjusted from 20px */
+    font-size: 3.5rem;
+    margin-bottom: 2.25rem;
     font-weight: 700;
 }
 
@@ -22,19 +29,31 @@
     font-size: 2.2rem;
     line-height: 1.6;
 }
-
+.welcome h1, .welcome p {
+    animation: 1.7s ease-out 0s 1 slideInFromRight;
+}
 
 
 .daily-find {
     max-height: auto;
     position: relative;
     margin: 0 auto;
-    text-align: center;  /* Add this line */
+    text-align: center;
 }
 
-
-.daily-find h1 {
-    font-size: 2.7rem;
+.daily-find-title {
+    animation: slideUp 1.3s ease-in-out forwards;
+    font-size: 2.3rem;
+    color: #2a2a2a;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0.5rem 0;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .newsletter{
@@ -78,31 +97,8 @@
   color: alicee-blue;
   margin: 0 auto;
   text-align: center;
-}
+  animation: slideUp 1.3s ease-in-out forwards;
 
-.day-deal h1 {
-  font-size: 1.8rem;
-}
-
-.day-deal p {
-  font-size: 1.2rem;
-}
-
-.day-deal .btn-day {
-  padding: 0.6rem 1.8rem;
-  border-style: none;
-  border-radius: 1.5rem;
-  background: #071f35;
-  color: #ffffff;
-  margin: 0.8rem 0;
-  font-size: 1rem;
-  -webkit-transition: 00.3s;
-  transition: 00.3s;
-}
-
-
-.deal-day .btn-day:hover {
-  background: #055727;
 }
 
 
@@ -126,8 +122,6 @@
   gap: 0.8rem;
   margin: auto;
   margin-top: 2.7rem;
-
-  /* Animation properties */
   animation: slideUp 1.3s ease-in-out forwards;
 
 }
@@ -345,6 +339,7 @@
     color: #ffffff;
     font-size: 1.2rem;
     transition: 0.3s;
+    cursor:pointer;
 }
 
 .btn-card:hover {
@@ -357,6 +352,11 @@
     background-color: black;
 }
 
+.btn-daily {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
 @media (max-width: 768px) {
 
     .welcome {

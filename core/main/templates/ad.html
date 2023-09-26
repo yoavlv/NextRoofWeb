@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="container-ad">
+        <h1 class="title">{{home_number}} {{street}},{{city}}</h1>
+        <img src="{{img}}" alt="בית משפחתי אלגנטי" class="house-image">
+
+        <div class="details-container">
+            <div class="details">
+                <h2 class="section-heading">פרטי הנכס:</h2>
+                <ul>
+                    <li>כתובת: {{home_number}} {{street}},{{city}}</li>
+                    <li>מחיר: {{price}}</li>
+                    <li>חדרי שינה: {{rooms}}</li>
+                    <li>שטח במ"ר: {{size}}</li>
+                    <li>קומה: {{floor}}</li>
+
+                </ul>
+            </div>
+
+            <div class="additional-details">
+                <h2 class="section-heading">פרטים נוספים:</h2>
+                <ul>
+                    <li>מצב הנכס: {{new}}</li>
+                    <li>תאריך כניסה: {{entry_date}}</li>
+                    <li>קומות בבניין: {{floors}}</li>
+                    <li>חנייה: {{parking}}</li>
+                    {%if balcony %}
+                    <li>מרפסת: {{balcony}}</li>
+                    {% endif %}
+                    {%if protected_space %}
+                    <li>ממ"ד: {{protected_space}}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+      {%if description %}
+        <div class="description">
+            <h2 class="section-heading">תיאור:</h2>
+            <p>{{description}}</p>
+        </div>
+      {% endif %}
+
+
+        <div class="contact-ad">
+            <h2 class="section-heading">לפרטים נוספים:</h2>
+            <p>דואר אלקטרוני: {{email}}</p>
+            <p>טלפון: {{phone_number}}</p>
+        </div>
+    </div>
+{% endblock %}

@@ -2,14 +2,36 @@
 
 {% load static %}
 
-
 {% block content %}
 
-<h1>Hello  </h1>
-<h1>Hello  </h1>
-<h1>Hello  </h1>
-<h1>Hello  </h1>
-<h1>Hello  </h1>
-<h1>Hello  </h1>
-<h1>Hello  </h1>
+<div class="login-container">
+    <h2>התחבר</h2>
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+        <div class="form-group">
+            <label for="password">סיסמא:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Login">
+        </div>
+
+    </form>
+    <div class="register-link">
+        Don't have an account? <a href="{% url 'register' %}">Register</a>
+    </div>
+</div>
+
 {% endblock %}

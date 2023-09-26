@@ -1,0 +1,43 @@
+/* Base font size for the document */
+html {
+    font-size: 16px; /* This is typically 16px by default */
+}
+
+/* Style for div-profile */
+.div-profile {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    padding: 1.45rem;
+    margin: 2rem;
+    margin-left: 12rem;
+    margin-right: 12rem;
+    border-radius: 0.3125rem;
+}
+
+.user-details {
+    margin: 2rem;
+    margin-left: 12rem;
+    margin-right: 12rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+    font-size: 1.0rem;
+
+}
+
+.user-attribute {
+    margin-bottom: 0.625rem;
+    font-size: 1.2rem;
+}
+
+.section-title {
+    margin-bottom: 1.1rem;
+    font-size: 1.5rem;
+    color: #333333;
+}
