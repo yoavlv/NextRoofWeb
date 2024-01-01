@@ -10,32 +10,21 @@ from core.main.utils.plots import *
 
 from ..utils.calc_utils import city_dict
 from ..utils.sql_utils import cities_list_query
-from .api import apt_data_complete
+from .api import apt_data_complete, read_model_scaler_from_db
 
 
-def asset_value_page(request):
-    Search = False
+def asset_value_view(request):
     city_list = cities_list_query(table_name='nadlan_rank')
-
-    return render(request, "asset_value.html", {
-        'cities': city_list,
-        'Search': Search
-    })
-
-
-def calc_asset_value(request):
-    city_list = cities_list_query(table_name='nadlan_rank')
-    if request.method != 'GET':
-        Search = False
-        return render(request, "asset_value.html", {
-            'cities': city_list,
-            'Search': Search,
-        })
-
+    search = False
+    predicted_price = None
+    neighborhood_plt = None
+    city_plt = None
+    last_deals = None
     params = {}
-    Search = False
-    if request.method == 'GET':
-        Search = True
+
+    # Handle the GET request
+    if request.method == 'GET' and request.GET:
+        search = True
         params['city'] = str(request.GET.get('city')).strip()
         params['street'] = str(request.GET.get('street')).strip()
         params['home_number'] = int(request.GET.get('home-number'))
@@ -47,45 +36,40 @@ def calc_asset_value(request):
 
         apt_params = apt_data_complete(params)
         if not apt_params:
-
             addr = f"{params['city']}, {params['street'], params['home_number']}"
-
             error_message = f"לא מצאנו תוצאות עבור: {addr}"
-            print(error_message)
             return render(
                 request, "asset_value.html", {
                     'error_message': error_message,
+                    'params': params,
+                    'search': False,
                     'cities': city_list,
-                    'Search': False,
                 })
-        city = str(apt_params['city']).strip()
 
-        models = joblib.load(
-            f'core/static/models/{city_dict[city]}_saved_models.pkl')
-        model = models['stacking']
+        else:
+            city = str(apt_params['city']).strip()
+            # Uncomment and modify this line as necessary to load your model
+            # model = joblib.load(f'core/static/models/{city_dict[city]}_saved_models.pkl')['stacking']
+            model = read_model_scaler_from_db(city_dict[city], model=True)
 
-        predicted_price = predict_apt_price(apt_params, model)
-        predicted_price = "₪{:,}".format(predicted_price)
+            predicted_price = predict_apt_price(apt_params, model)
+            predicted_price = "₪{:,}".format(predicted_price)
 
-        neighborhood_plt = neighborhood_plot(params['city'],
-                                             params['neighborhood'])
-        city_plt = city_plot(params['city'])
-        last_deals = lasted_deals_street(params['city'], params['street'])
-        return render(
-            request, "asset_value.html", {
-                'predicted_price': predicted_price,
-                'params': params,
-                'Search': Search,
-                'neighborhood_plt': neighborhood_plt,
-                'city_plt': city_plt,
-                'last_deals': last_deals,
-                'cities': city_list,
-            })
+            neighborhood_plt = neighborhood_plot(params['city'],
+                                                 params['neighborhood'])
+            city_plt = city_plot(params['city'])
+            last_deals = lasted_deals_street(params['city'], params['street'])
 
-    return render(request, "asset_value.html", {
-        'cities': city_list,
-        'Search': Search
-    })
+    return render(
+        request, "asset_value.html", {
+            'predicted_price': predicted_price,
+            'params': params,
+            'search': search,
+            'neighborhood_plt': neighborhood_plt,
+            'city_plt': city_plt,
+            'last_deals': last_deals,
+            'cities': city_list,
+        })
 
 
 def predict_apt_price(params, model):
@@ -95,8 +79,8 @@ def predict_apt_price(params, model):
         "neighborhood_rank", "street_rank", "helka_rank", "new"
     ])
     city_code = city_dict[params['city']]
-    scaler = joblib.load(f"core/static/models/{city_code}_scaler.pkl")
-
+    # scaler = joblib.load(f"core/static/models/{city_code}_scaler.pkl")
+    scaler = read_model_scaler_from_db(city_code, scaler=True)
     X_scaled = scaler.transform(df)
     y_pred = model.predict(X_scaled)
     appraised_price = int(y_pred[0])

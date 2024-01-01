@@ -3,13 +3,14 @@ function saveSelectedCity(value) {
     fetchAndUpdateNeighborhoods(value);
 }
 
-function getSelectedCity() {
-    return localStorage.getItem('selectedCity');
-}
 
 function saveSelectedNeighborhood(value) {
     localStorage.setItem('selectedNeighborhood', value);
     fetchAndUpdateStreets(value);
+}
+
+function getSelectedCity() {
+    return localStorage.getItem('selectedCity');
 }
 
 function getSelectedNeighborhood() {
@@ -77,29 +78,37 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-//function getSelectedNeighborhood() {
-//    if (!window.location.href.includes('city')) {
-//        localStorage.clear();
-//        return;
-//    }
-//    return localStorage.getItem('selectedNeighborhood');
-//}
-
-
 
 function toggleMoreOptions(event) {
     event.preventDefault();  // Prevents the form from submitting when the button is clicked
     const toggleButton = event.target;
+    const searchRectangle = document.getElementById("search-rectangle")
     const moreOptions = document.getElementById("more-options-section");
-
+    const isMobileView = window.innerWidth <= 768;
     if (moreOptions.style.display === "none" || moreOptions.style.display === "") {
         moreOptions.style.display = "flex";
         toggleButton.innerText = "הצג פחות";
         localStorage.setItem("moreOptionsState", "expanded");
+        if (isMobileView) {
+           searchRectangle.style.minHeight = '35.7rem';
+
+        }
+        else {
+            searchRectangle.style.minHeight = '25rem';
+        }
+
     } else {
         moreOptions.style.display = "none";
         toggleButton.innerText = "חיפוש מתקדם";
         localStorage.setItem("moreOptionsState", "collapsed");
+        if (isMobileView) {
+           searchRectangle.style.minHeight = '29rem';
+
+        }
+        else {
+            searchRectangle.style.minHeight = '20rem';
+        }
+
     }
 }
 
@@ -200,3 +209,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 .catch(error => console.error('Error fetching streets:', error));
         });
     });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const expectedUrl = "http://127.0.0.1:8000/search/";
+    const expectedUrl2 = "https://www.nextroof.co.il/search/";
+    if (window.location.href === expectedUrl || window.location.href === expectedUrl2) {
+        document.getElementById("city").value = 'בחר עיר';
+        document.getElementById("neighborhood").value = 'בחר שכונה';
+        document.getElementById("street").value = 'בחר רחוב';
+
+
+    }
+});

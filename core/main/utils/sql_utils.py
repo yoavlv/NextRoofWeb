@@ -14,6 +14,8 @@ def get_streets_for_neighborhood(request):
     with engine.connect() as connection:
         result = connection.execute(query, {'neighborhood': neighborhood})  #
         streets = [row[0] for row in result]
+    streets.insert(0, 'בחר רחוב')
+
     return JsonResponse({'streets': streets})
 
 
@@ -27,16 +29,18 @@ def get_neighborhoods_for_city(request):
     with engine.connect() as connection:
         result = connection.execute(query, {'city': city})
         neighborhoods = [row[0] for row in result]
+    neighborhoods.insert(0, 'בחר שכונה')
+
     return JsonResponse({'neighborhoods': neighborhoods})
 
 
 def get_streets_for_city(request):
-    city = request.GET.get('city')
-    table_name = request.GET.get('table_name',
-                                 'madlan_rank')  # Default to 'madlan_rank'
+    city = request.GET.get('city_calc')
+    print(city)
+
     engine = get_db_engine()
     query = text(
-        f"SELECT DISTINCT(street) FROM {table_name} WHERE city = :city order by street"
+        "SELECT DISTINCT(street) FROM nadlan_rank WHERE city = :city order by street"
     )
     with engine.connect() as connection:
         result = connection.execute(query, {'city': city})

@@ -12,7 +12,7 @@
             </div>
     </div>
 
-    <div class="Search-rectangle">
+    <div class="Search-rectangle" id="search-rectangle">
         <p class="search-text">חיפוש</p>
         <h1>{{parmas}}</h1>
         <form action="{% url 'search' %}"  id="searchForm" method="get" class="calc-form">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="input-search-field">
                     <p>שכונה</p>
-                    <select class="neighborhood" name="neighborhood" autocomplete="off" id="neighborhood" onchange="saveSelectedNeighborhood(this.value)">
+                    <select class="neighborhood" name="neighborhood" autocomplete="on" id="neighborhood" onchange="saveSelectedNeighborhood(this.value)">
                         {% for neighborhood in neighborhoods %}
                             <option value="{{ neighborhood }}">{{ neighborhood }}</option>
                         {% endfor %}
@@ -36,7 +36,7 @@
 
                 <div class="input-search-field">
                     <p>רחוב</p>
-                    <select class="street" name="street" autocomplete="off" id="street"  onchange="saveSelectedStreet(this.value)">
+                    <select class="street" name="street" autocomplete="on" id="street"  onchange="saveSelectedStreet(this.value)">
                         {% for street in streets %}
                             <option value="{{ street }}">{{ street }}</option>
                         {% endfor %}
@@ -158,6 +158,9 @@
       </span>
     </div>
 {%endif%}
+
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/buy_sell.js' %}"></script>
 
 <script>
 function getCookie(name) {

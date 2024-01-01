@@ -1,45 +1,53 @@
+function toggleNavBar() {
+    var navBar = document.getElementById('nav-bar');
+    var body = document.body;
+    var hamburgerBtn = document.querySelector('.hamburger-btn');
+    navBar.classList.toggle('open');
+    navBar.classList.toggle('opening');
+    hamburgerBtn.classList.toggle('active');
+    body.classList.toggle('no-scroll');
+    var navItems = document.querySelectorAll('.nav-container ul li');
 
-function openNavBar(event) {
-    event.preventDefault();
-    const moreOptions = document.getElementById("nav-bar");
-    if (moreOptions.style.display === "flex") {
-        moreOptions.style.display = "none";
-        localStorage.setItem('navbarState', 'closed');
+    var displayStyle = window.getComputedStyle(navBar).display; // Get computed style
+
+    if (displayStyle === "flex") {
+        navBar.style.display = "none";
+        body.classList.remove('no-scroll');
+        // Reset styles for nav items
+        navItems.forEach(item => item.style.opacity = "0");
     } else {
-        moreOptions.style.display = "flex";
-        localStorage.setItem('navbarState', 'open');
+        navBar.style.display = "flex";
+        body.classList.add('no-scroll');
+        // Animate nav items
+        navItems.forEach(item => item.style.opacity = "0");
+        navItems.forEach((item, index) => {
+            // Set initial position to the left
+            item.style.transform = "translateX(-100px)";
+            item.style.opacity = "0";
+            setTimeout(() => {
+                // Animate to the right and then to the center
+                item.style.opacity = "1";
+                item.style.transform = "translateX(0)";
+            }, 100 * (index + 1)); // Delay each item's animation
+        });
     }
 }
-
-console.log("DOMContentLoaded event fired");
-console.log("savedState value from localStorage:", savedState);
+document.querySelector('.hamburger-btn').addEventListener('click', toggleNavBar);
 
 document.addEventListener("DOMContentLoaded", function() {
     const savedState = localStorage.getItem('navbarState');
-    const moreOptions = document.getElementById("nav-bar-b");
-
     if (savedState === "open") {
-        moreOptions.style.display = "flex";
-    }
-    // if savedState is 'closed' or null (i.e., not set), the navbar will be hidden due to the default styles.
-});
-
-
-window.addEventListener("scroll", function() {
-    const navBar = document.querySelector("nav");
-    if(window.scrollY > 10) {
-        navBar.classList.add("transparent-nav");
-    } else {
-        navBar.classList.remove("transparent-nav");
+        const navBar = document.getElementById("nav-bar");
+        navBar.style.display = "flex";
+        document.body.classList.add('no-scroll');
     }
 });
 
-
 window.addEventListener("scroll", function() {
-    const navbar = document.getElementById("nav-bar");
-    if (window.pageYOffset > 50) { // You can adjust this value
-        navbar.classList.add("transparent");
+    const navBar = document.getElementById("nav-bar");
+    if (window.pageYOffset > 50) {
+        navBar.classList.add("transparent");
     } else {
-        navbar.classList.remove("transparent");
+        navBar.classList.remove("transparent");
     }
 });

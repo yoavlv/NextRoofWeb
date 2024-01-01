@@ -1,9 +1,3 @@
-/* Base font size for the document */
-html {
-    font-size: 16px; /* This is typically 16px by default */
-}
-
-/* Style for div-profile */
 .div-profile {
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -28,7 +22,6 @@ html {
     font-family: 'Arial', sans-serif;
     line-height: 1.8;
     font-size: 1.0rem;
-
 }
 
 .user-attribute {
@@ -40,4 +33,18 @@ html {
     margin-bottom: 1.1rem;
     font-size: 1.5rem;
     color: #333333;
+}
+
+@media only screen and (max-width: 768px) {
+    .div-profile,
+    .user-details {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .user-attribute,
+    .section-title {
+        font-size: 1rem;
+    }
+
 }

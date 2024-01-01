@@ -1,39 +1,41 @@
+/* Keyframes */
 @keyframes slideInFromRight {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
 }
 
+
+@keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Welcome Section */
 .welcome {
     padding: 5rem;
     text-align: right;
-    background-color: rgba(255,255,255,0.7);
-    width:100%
-    max-width: 50rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
     margin: 3rem auto;
+}
 
+.welcome h1, .welcome p {
+    color: #333;
+    animation: slideInFromRight 1.7s ease-out;
 }
 
 .welcome h1 {
-    color: #333;
     font-size: 3.5rem;
     margin-bottom: 2.25rem;
     font-weight: 700;
 }
 
 .welcome p {
-    color: black;
     font-size: 2.2rem;
     line-height: 1.6;
 }
-.welcome h1, .welcome p {
-    animation: 1.7s ease-out 0s 1 slideInFromRight;
-}
 
-
+/* Daily Find Section */
 .daily-find {
     max-height: auto;
     position: relative;
@@ -42,22 +44,25 @@
 }
 
 .daily-find-title {
+    width: 100%;
     animation: slideUp 1.3s ease-in-out forwards;
-    font-size: 2.3rem;
-    color: #2a2a2a;
+    font-size: 3rem; /* Increased font size for more prominence */
+    color: #2a2a2a; /* Consider a different color if it matches your color scheme */
     font-family: 'Helvetica Neue', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 0.5rem 0;
-    letter-spacing: 0.05rem;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    font-weight: bold; /* Changed from 1rem to 'bold' for more impact */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* Enhanced text shadow for depth */
+    margin-top: 1rem; /* Adjusted margin for better spacing */
+    margin-bottom: 1rem;
+    letter-spacing: 0.1rem; /* Increased letter spacing for elegance */
+    transition: all 0.35s ease;
+    padding: 1rem; /* Padding for better spacing */
+    display: inline-block; /* To respect padding and border */
+    background-color: rgba(255, 255, 255, 0.2); /* Optional: subtle background */
 }
 
-.newsletter{
-    margin-top:7rem;
+/* Newsletter Section */
+.newsletter {
+    margin-top: 7rem;
     background: rgba(233, 242, 250, 0.8);
     justify-content: center;
     align-items: center;
@@ -65,81 +70,136 @@
     padding: 1.25rem;
 }
 
-
 .newsletter p {
-  font-size: 1.5rem;
-  color: black;
-  text-indent: 0.125rem;
-  text-transform: uppercase;
+    font-size: 1.5rem;
+    color: black;
+    text-transform: uppercase;
 }
 
 .newsletter button {
-  margin-top:1.7rem;
-  padding: 0.4rem 1.8rem;
-  border-style: none;
-  border-radius: 0.7rem;
-  background: #072f55;
-  color: #ffffff;
-  font-size: 1.4rem;
-  max-width:25%
-  margin: 0.9rem 0;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+    border: none;
+    border-radius: 0.7rem;
+    background: #072f55;
+    color: white;
+    font-size: 1.4rem;
+    max-width: 25%;
+    margin: 1.7rem 0;
+    transition: background 0.3s;
 }
 
 .newsletter button:hover {
-  background: #0c3476;
+    background: #0c3476;
 }
 
-
+/* Day Deal Section */
 .day-deal {
-  width: 75%;
-  color: alicee-blue;
-  margin: 0 auto;
-  text-align: center;
-  animation: slideUp 1.3s ease-in-out forwards;
-
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    animation: slideUp 1.3s ease-in-out forwards;
 }
 
-
-
-@keyframes slideUp {
-    from {
-        transform: translateY(100px);  /* or a value of your choice */
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 .day {
-  width: 80%;
+    width: 80%;
+    display: flex;
+    gap: 0.8rem;
+    margin: auto;
+    margin-top: 2.7rem;
+    animation: slideUp 1.9s ease-in-out forwards;
+}
+
+.card-day {
+    margin: auto;
+    justify-content: center;
+}
+
+.card-day .top-card {
+    display: flex;
+}
+
+.card-day .top-card .photo-card {
+    width: 18.6rem;
+    height: 12.3rem;
+    clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
+    position: absolute;
+    margin-top: 2.7rem;
+}
+
+.card-day .top-card .triple-card {
+    width: 10.375rem;
+    margin-right: 6.225rem;
+}
+
+.card-day .card {
+    text-align: center;
+    color: white;
+}
+
+.card-day .card p {
+    padding: 0.2rem 0;
+    font-size: 1rem;
+}
+
+.card-day .card .saving {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-top: 1.4rem;
+}
+
+.card-day .details {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    align-items: center;
+    color: white;
+    padding: 0.8rem 0;
+}
+
+.card-day .details .line-1 {
+    width: 0.08rem;
+    height: 2rem;
+    background-color: white;
+}
+
+.card-text {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 0.1875rem;
+}
+
+.card-text p {
+    color: black;
+}
+
+.btn-card, .btn-daily {
+    padding: 0.4rem 1.8rem;
+    border: none;
+    border-radius: 0.2rem;
+    background: #071f35;
+    color: white;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.btn-card:hover, .btn-daily:hover {
+    background: #0A2B50;
+}
+
+.btn-daily {
+    display: inline-block;
+    text-align: center;
+}
+
+.card-day .top-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.8rem;
-  margin: auto;
-  margin-top: 2.7rem;
-  animation: slideUp 1.3s ease-in-out forwards;
-
 }
 
-.card-day-right {
-  margin: auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.card-day-right .top-card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.card-day-right .top-card .photo-card {
+.card-day .top-card .photo-card {
   width: 18.6rem;
   height: 12.3rem;
   -webkit-clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
@@ -148,28 +208,28 @@
   margin-top: 2.7rem;
 }
 
-.card-day-right .top-card .triple-card {
-  width: 10.375rem; /* Converted from 166px */
-  margin-right: 6.225rem; /* Converted from 6.1rem */
+.card-day .top-card .triple-card {
+  width: 10.375rem;
+  margin-right: 6.225rem;
 }
 
-.card-day-right .down-card {
+.card-day .card {
   text-align: center;
   color: #ffffff;
 }
 
-.card-day-right .down-card p {
+.card-day .card p {
   padding: 0.2rem 0;
   font-size: 1rem;
 }
 
-.card-day-right .down-card .saving {
+.card-day .card .saving {
   font-size: 1.8rem;
   font-weight: 700;
   padding-top: 1.4rem;
 }
 
-.card-day-right .details {
+.card-day .details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -185,7 +245,7 @@
   padding: 0.8rem 0;
 }
 
-.card-day-right .details .line-1 {
+.card-day .details .line-1 {
   color:black;
   width: 0.08rem;
   height: 2rem;
@@ -193,141 +253,15 @@
 }
 
 
-.down-card-text {
+.card-text {
   text-align: center;
   background-color: rgba(255, 255, 255,0.6);
-  border-radius: 0.1875rem; /* Converted from 3px */
+  border-radius: 0.1875rem;
 }
 
-.down-card-text p{
+.card-text p{
     color:black;
 }
-.card-day-middle {
-  margin: auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.card-day-middle .top-card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.card-day-middle .top-card .photo-card {
-  width: 18.6rem;
-  height: 12.3rem;
-  -webkit-clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
-          clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
-  position: absolute;
-  margin-top: 2.7rem;
-}
-
-
-.card-day-middle .down-card {
-  text-align: center;
-}
-
-.card-day-middle .down-card p {
-  padding: 0.2rem 0;
-  font-size: 1rem;
-}
-
-.card-day-middle .down-card .saving {
-  font-size: 1.8rem;
-  font-weight: 700;
-  padding-top: 1.4rem;
-}
-
-.card-day-middle .details {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #ffffff;
-  padding: 0.8rem 0;
-}
-
-.card-day-middle .details {
-  width: 0.08rem;
-  height: 2rem;
-}
-
-
-
-.card-day-left {
-  margin: auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.card-day-left .top-card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.card-day-left .top-card .photo-card {
-  width: 18.6rem;
-  height: 12.3rem;
-  -webkit-clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
-          clip-path: polygon(47% 0, 100% 1%, 100% 100%, 13.2% 100%);
-  position: absolute;
-  margin-top: 2.7rem;
-}
-
-.card-day-left .top-card .triple-card {
-  width: 10.375rem;
-  margin-right: 6.225rem;
-}
-
-.card-day-left .down-card {
-  text-align: center;
-  color: #ffffff;
-}
-
-.card-day-left .down-card p {
-  padding: 0.2rem 0;
-  font-size: 1rem;
-}
-
-.card-day-left .down-card .saving {
-  font-size: 1.8rem;
-  font-weight: 700;
-  padding-top: 1.4rem;
-}
-
-.card-day-left .details {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #ffffff;
-  padding: 0.8rem 0;
-}
-
-.card-day-left .details .line-1 {
-  width: 0.08rem;
-  height: 2rem;
-  background-color: #ffffff;
-}
-
 
 .btn-card {
     width: 82%;
@@ -346,9 +280,7 @@
     background: #0A2B50;
 }
 
-.card-day-right .details .line-1,
-.card-day-middle .details .line-1,
-.card-day-left .details .line-1 {
+.card-day .details .line-1 {
     background-color: black;
 }
 
@@ -357,31 +289,34 @@
     text-align: center;
     cursor: pointer;
 }
+
 @media (max-width: 768px) {
 
-    .welcome {
-        margin-top:3rem;
-        width: 100%;    /* viewport width */
-        margin: 1;
+     .welcome {
+        margin-top: 3rem;
+        width: 100%;
         padding: 4rem;
-        box-sizing: border-box;  /* to ensure padding and border are included in width calculation */
+        box-sizing: border-box;
+    }
+    .welcome h1 {
+        font-size: 2.5rem;
     }
 
+    .welcome p {
+        font-size: 1.2rem;
+    }
 
     .daily-find {
-        position:center;
         width: 100%;
         max-width: none;
         padding: 1rem;
-        top: 0.5rem;
     }
 
-  .newsletter {
-    top: 3.9rem; /* Reduced from 7.8rem */
-    left: 10rem; /* Reduced from -0.625rem */
-    width: 100%;/* Adjusted from 25% to make it wider on mobile screens */
-  }
+    .newsletter {
+        width: 100%;
+        padding: 1rem; /* Adjust as needed */
 
+    }
 
     .day {
         flex-direction: column;
@@ -389,16 +324,25 @@
         gap: 1.5rem;
     }
 
-    .card-day-right, .card-day-middle {
-        /* You may need to adjust some more styles here */
+    .btn-card {
+        display: block; /* Ensuring it's a block-level element */
+        margin-left: auto;
+        margin-right: auto;
+
+        /* Other styles */
     }
 
-}
 
-@media (max-width: 480px) {
-    .day-title h1 {
-        font-size: 1.4rem;
+    .card-day {
+        /* Add styles for .card-day if needed */
+        width: 75%; /* Example to ensure full width */
+        display: block; /* Ensuring it's a block-level element */
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    /* ... any other mobile specific styles ... */
+    .newsletter button {
+        max-width: 65%;
+    }
+
 }

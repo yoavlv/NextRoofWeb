@@ -19,7 +19,6 @@
 
     <link rel="icon" href="{% static 'img/nextroof-black.png' %}" type="image/png">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,8 +27,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap" rel="stylesheet">
 
     <script src="{% static 'js/index.js' %}"></script>
-    <script src="{% static 'js/asset_value.js' %}"></script>
-    <script src="{% static 'js/search.js' %}"></script>
     <script src="{% static 'js/like.js' %}"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -39,8 +36,7 @@
 <body dir="rtl">
     <header>
         <nav id="nav-bar" class='nav-bar'>>
-            <div class="nav2">
-
+            <div class="nav-container">
                 <ul>
                      <li>
                         <a href="{% url 'home' %}">
@@ -63,18 +59,14 @@
                     {% endif %}
 
                 </ul>
-
-
             </div>
-
         </nav>
 
-        <div class="hamburger-btn" onclick="openNavBar(event)">
+        <div class="hamburger-btn" onclick="toggleNavBar(event)">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </div>
-
 
 
       </div>
@@ -88,18 +80,38 @@
 
 
 <div class=close-sec>
-
     <footer>
-        <div class="footer-link">
+
+        <div class="social">
             <div class="linkedin-section">
                 <a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">
                     <img class="linkedin-icon" rel="icon" src="{% static 'img/linkedin.png' %}" >
                 </a>
             </div>
+            <div class="github-section">
+                <a href="https://github.com/yoavlv/NextRoof" target="_blank">
+                    <img class="github-icon" rel="icon" src="{% static 'img/github-icon.png' %}" >
+                </a>
+            </div>
+            <div class="email-section">
+                <a href="mailto:yoavlv12@gmail.com" target="_blank">
+                    <img class="email-icon" rel="icon" src="{% static 'img/email-icon.png' %}">
+                </a>
+            </div>
+             <div class="nextroof-section">
+                <a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">
+                    <img class="nextroof-icon" rel="icon" src="{% static 'img/nextroof-black.png' %}" >
+                </a>
+            </div>
+
         </div>
-        <div class="logo-footer">
-            <img class="logo-img-footer" rel="icon" src="{% static 'img/nextroof-white.png' %}" >
+
+        <div class="about-me">
+            <h3>Yoav Lavie</h3>
+            <p>A Data Solution Engineer & Full Stack developer dedicated to exploring challenges and crafting the finest solutions with innovation and efficiency</p>
         </div>
+        <hr>
+        <p class="copyrights"> Copyrights 2024. Made by <Bold>Yoav Lavie</Bold>  ©</p>
     </footer>
   </div>
 

@@ -1,9 +1,6 @@
 import datetime
 import uuid
 
-import psycopg2
-
-from ..NextRoofWeb.settings.dev import db
 from .utils.sql_utils import get_connection
 
 
@@ -13,7 +10,7 @@ def create_session(user_id):
     try:
         session_token = str(uuid.uuid4())  # Generate a unique session token
         # Calculate expiration timestamp 2 hours from now
-        expiration = datetime.datetime.now() + datetime.timedelta(hours=5)
+        expiration = datetime.datetime.now() + datetime.timedelta(hours=48)
 
         query = """
         INSERT INTO custom_sessions (user_id, session_token, expiration)
@@ -80,9 +77,42 @@ def get_user_from_session(token):
         conn.close()
 
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[
+            0]  # In case of multiple IPs, take the first one
+    else:
+        ip = request.META.get(
+            'REMOTE_ADDR', ''
+        )  # Fallback to REMOTE_ADDR if HTTP_X_FORWARDED_FOR is not available
+    return ip
+
+
+def entrance_count_middleware(session_id, page, user_agent, ip_address):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(
+            "INSERT INTO entrance (session_id, page, time, user_agent, ip_address) VALUES (%s, %s, CURRENT_TIMESTAMP, %s, %s)",
+            (session_id, page, user_agent, ip_address))
+        conn.commit()
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        cursor.close()
+        conn.close()
+
+
 def session_middleware(get_response):
     def middleware(request):
         session_token = request.COOKIES.get('session_token')
+        page = request.path
+        ip_address = get_client_ip(request)
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        if len(page) < 2:
+            entrance_count_middleware(session_token, page, user_agent,
+                                      ip_address)
         if session_token:
             user_data = get_user_from_session(session_token)
             if user_data:

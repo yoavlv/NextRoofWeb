@@ -1,6 +1,6 @@
 
 .hero-search {
-  margin-top:3rem;
+  margin-top:1rem;
   min-height: 67vh;
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +13,7 @@
   width: 87%;
   margin-right: 6rem;
   margin-top:0rem;
-  min-height: 25.2rem;
+  min-height: 20rem;
   background: rgba(190, 190, 190, 0.7);
   clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
   border-radius: 0.0125rem;
@@ -65,7 +65,7 @@ a {
 }
 
 .short-text-field {
-    width: 5.8rem;
+    width: 5.5rem;
 }
 
 
@@ -285,7 +285,7 @@ a {
     background-color: transparent;
 }
 .card-img-top {
-    position: relative;  /* ensures the image respects the stacking order */
+    position: relative;
     z-index: 1;
 }
 .apt-card img {
@@ -394,7 +394,6 @@ a {
     }
 
   .hero-search {
-
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -405,10 +404,11 @@ a {
     margin-top:1rem;
     width: 100%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    min-height: 35.2rem;
+    min-height: 29rem;
   }
 
   .calc-form {
+    padding: 0.95rem;
     margin-right: 0rem;
     flex-direction: row;
     flex-wrap: wrap;
@@ -433,6 +433,10 @@ a {
       font-size: 0.7rem;
       padding: 0.4rem;
     }
+
+   #min-price ,#max-price {
+    width: 6rem;
+   }
 
   .click-continue {
    font-size: 1.1rem;

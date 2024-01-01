@@ -1,4 +1,5 @@
 import datetime
+import pickle
 import re
 
 import httpx
@@ -249,7 +250,8 @@ def search_in_nadlan_clean(user_dict):
         results['floors'] = floor_avg
 
     if results['build_year'] is None:
-        results['build_year'] = build_year_avg
+        print('avg')
+        results['build_year'] = int(build_year_avg)
 
     return results
 
@@ -268,3 +270,18 @@ def read_from_nadlan_clean_calc_avg(city, street):
     floors_avg = df['floors'].mean()
     build_year_avg = df['build_year'].mean()
     return floors_avg, build_year_avg
+
+
+def read_model_scaler_from_db(city_id, model=False, scaler=False):
+    engine = get_db_engine()
+    with engine.connect() as conn:
+        if model:
+            query = text(
+                "SELECT model_data FROM ml_models WHERE city_code = :city_id AND model_name = 'stacking'"
+            )
+        if scaler:
+            query = text(
+                "SELECT model_scaler FROM ml_models WHERE city_code = :city_id AND model_name = 'stacking'"
+            )
+        data = conn.execute(query, {'city_id': city_id}).fetchone()[0]
+        return pickle.loads(data)

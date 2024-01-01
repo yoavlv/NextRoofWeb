@@ -225,7 +225,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    z-index: 2000;
+    z-index: 20000;
 
 }
 
@@ -242,7 +242,11 @@
     margin-top:1rem;
     width: 100%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    min-height: 35.2rem;
+    min-height: 23rem;
+  }
+  .result-container {
+     margin-top: 1rem;
+     flex-direction: column;
   }
   .algo-res {
     margin: 0.625rem;
@@ -270,11 +274,12 @@
   }
 
   .algo-card-in {
-    flex-direction: column; /* stack items on top of each other */
+    flex-direction: column;
   }
 
   .result-container .algo-right,
   .result-container .algo-left {
+    margin-top 1rem;
     flex-basis: auto;
     margin: 0.3125rem;
   }
@@ -291,8 +296,8 @@
   }
 
   .button-row {
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center the buttons */
+    flex-direction: column;
+    align-items: center;
   }
 
   .button {
@@ -306,7 +311,9 @@
     padding: 0.425rem;
   }
 
-
+  #home-number {
+    width: 4rem;
+  }
 
   .generate-last-deals h3 {
     font-size: 1rem;

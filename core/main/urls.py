@@ -1,6 +1,6 @@
 from django.urls import path
 
-from core.main.calculator.calculator_view import asset_value_page, calc_asset_value
+from core.main.calculator.calculator_view import asset_value_view
 
 from .utils.sql_utils import get_neighborhoods_for_city, get_streets_for_city, get_streets_for_neighborhood
 from .views.post_form import create_post
@@ -12,9 +12,8 @@ from .views.user_view import login_view, logout_view, register, toggle_like
 urlpatterns = [
     path("", home, name="home"),
     path("search/", search_apartments, name="search"),
-    path("asset_value/", asset_value_page, name="asset_value"),
     path("login/", login_view, name="login"),
-    path("calc/", calc_asset_value, name="calc_asset_value"),
+    path("asset_value/", asset_value_view, name="asset_value"),
     # path('api/', predict_price, name='predict_price'),
     path('post/', create_post, name='create_post'),
     path('register/', register, name='register'),

@@ -15,12 +15,12 @@
 
   <div class="search-rectangle">
         <p class="search-text">חיפוש נכס</p>
-            <form action="{% url 'calc_asset_value' %}" method="get" class="calc-form">
+            <form action="{% url 'asset_value' %}" method="get" class="calc-form">
              <div class="top-search-row">
 
                 <div class="input-search-field">
                     <p>עיר</p>
-                    <select class="city" name="city" autocomplete="off" id="city_calc" onchange="saveSelectedCityCalc()" required>
+                    <select class="city" name="city" autocomplete="on" id="city_calc" onchange="saveSelectedCityCalc()" required>
                         {% for city in cities %}
                             <option value="{{ city }}">{{ city }} </option>
                         {% endfor %}
@@ -30,7 +30,7 @@
 
                 <div class="input-search-field">
                     <p>רחוב</p>
-                    <select class="street" name="street" autocomplete="off" id="street_calc"  onchange="saveSelectedStreetCalc(this.value)" required>
+                    <select class="street" name="street" autocomplete="on" id="street_calc"  onchange="saveSelectedStreetCalc(this.value)" required>
                         {% for street in streets %}
                             <option value="{{ street }}">{{ street }}</option>
                         {% endfor %}
@@ -98,7 +98,7 @@
 </div>
 
 {% endif %}
-{% if Search %}
+{% if search %}
 
 <div class="result-container">
   <div class="algo-res">
@@ -122,7 +122,7 @@
           <li>שכונה: {{params.neighborhood}}</li>
           <li>גוש: {{params.gush}}</li>
           <li>חלקה: {{params.helka}}</li>
-          <li>תת-חלקה: {{params.size}}</li>
+          <li>שנת בנייה: {{params.build_year}}</li>
         </ul>
       </div>
     </div>
@@ -181,70 +181,9 @@
 
 {%endif%}
 
-<script>
-    document.querySelector('.calc-form').addEventListener('submit', function() {
-    document.getElementById('loading-popup').style.display = 'flex';
-});
-</script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttonGraph = document.querySelector('#graph');
-    const buttonLast = document.querySelector('#last-deals');
-    const buttonSimilar = document.querySelector('#similar-deals');
-
-    const neighborhoodImage = document.querySelector('#neighborhood-image');
-    const lastDealsContent = document.querySelector('#last-deals-content');
-    const similarDealsContent = document.querySelector('#similar-deals-content');
-    neighborhoodImage.style.display = 'block';
-    lastDealsContent.style.display = 'none';
-    similarDealsContent.style.display = 'none';
-
-    buttonGraph.addEventListener('click', () => {
-      neighborhoodImage.style.display = 'block';
-      lastDealsContent.style.display = 'none';
-      similarDealsContent.style.display = 'none';
-    });
-
-    buttonLast.addEventListener('click', () => {
-      neighborhoodImage.style.display = 'none';
-      lastDealsContent.style.display = 'block';
-      similarDealsContent.style.display = 'none';
-    });
-
-    buttonSimilar.addEventListener('click', () => {
-      neighborhoodImage.style.display = 'none';
-      lastDealsContent.style.display = 'none';
-      similarDealsContent.style.display = 'block';
-    });
-  });
-</script>
-
-<script type="text/javascript">
-    function updateStreets() {
-        var selectedCity = document.getElementById('city_calc').value;
-        var tableName = 'nadlan_rank'; // Fixed table name
-        var url = `{% url 'get-streets-city' %}?city=${encodeURIComponent(selectedCity)}&table_name=${encodeURIComponent(tableName)}`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                var streetSelect = document.getElementById('street_calc');
-                streetSelect.innerHTML = ''; // Clear existing options
-                streetSelect.add(new Option('בחר רחוב', ''));
-
-                data.streets.forEach(function(street) {
-                    var option = new Option(street, street);
-                    streetSelect.add(option);
-                });
-            })
-            .catch(error => console.error('Error fetching streets:', error));
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById('city_calc').addEventListener('change', updateStreets);
-    });
-</script>
+<script src="{% static 'js/buy_sell.js' %}"></script>
+<script src="{% static 'js/asset_value.js' %}"></script>
 
 
 

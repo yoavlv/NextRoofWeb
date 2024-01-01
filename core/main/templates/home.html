@@ -18,15 +18,7 @@
     <div class="day">
 
 {% for deal in top_deals %}
-
-    {% if forloop.counter0 %}
-        <div class="card-day-right">
-    {% elif forloop.counter1 %}
-        <div class="card-day-middle">
-    {% else %}
-        <div class="card-day-left">
-    {% endif %}
-
+        <div class="card-day">
         <div class="top-card">
             {% if deal.Images %}
                 <img class="photo-card" src="{{ deal.Images }}" alt="">
@@ -36,8 +28,8 @@
             <img alt="" class="triple-card" src="https://static.overlay-tech.com/assets/1caae834-6301-4529-9963-b5b4ddb1b780.svg">
         </div>
 
-        <div class="down-card-text">
-            <div class="down-card">
+        <div class="card-text">
+            <div class="card">
                 <p class="saving">חיסכון: {{ deal.p_change }}%</p>
                 <p class="price">מחיר מבוקש : {{ deal.Price }}</p>
                 <p class="predicted-price">מחיר מוערך: {{ deal.Predicted }}</p>
@@ -52,15 +44,8 @@
                 <p class="num-4">חדרים {{ deal.Room }}</p>
             </div>
 
-            {% if forloop.counter0 %}
-                <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
-            {% elif forloop.counter1 %}
-                <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
-            {% else %}
-                <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
-            {% endif %}
+            <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
         </div>
-
 
     </div>
 
@@ -71,7 +56,7 @@
 
     <div class="newsletter">
         <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
-        <a href="{% url 'register' %}">
+        <a class="a-btn-daily" href="{% url 'register' %}">
             <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
         </a>
     </div>
