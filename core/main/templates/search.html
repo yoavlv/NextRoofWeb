@@ -118,9 +118,9 @@
             <img src="{{ apartment.Images }}" class="card-img-top" alt="Apartment Image" style="max-height: 200px;" onerror="this.onerror=null; this.src='{% static 'img/nextroof-icon.png' %}';">
 
             <div class="apt-card-body">
-                <p class="saving">חיסכון: {{ apartment.p_change }}%</p>
+                <p class="saving" id="saving">חיסכון: {{ apartment.p_change }}%</p>
                 <p class="price">מחיר מבוקש: {{ apartment.Price }}</p>
-                <p class="predicted-price">מחיר מוערך: {{ apartment.Predicted }}</p>
+                <p class="predicted-price" >מחיר מוערך: {{ apartment.Predicted }}</p>
                 <p class="location-apartment">{{ apartment.Street }}, {{ apartment.Neighborhood }}, {{ apartment.City }}</p>
                 <p class="apt-size-floor-rooms">  {{ apartment.Size }} מ"ר  | קומה {{ apartment.Floor }} | חדרים {{ apartment.Room }}</p>
 
@@ -157,60 +157,16 @@
         {% endif %}
       </span>
     </div>
+
 {%endif%}
+
+<script type="text/javascript">
+var staticPaths = {
+    likeImg: "{% static 'img/like.png' %}",
+    likedImg: "{% static 'img/liked.png' %}"
+};
+</script>
 
 <script src="{% static 'js/search.js' %}"></script>
 <script src="{% static 'js/buy_sell.js' %}"></script>
-
-<script>
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-function toggleLike(button, itemId) {
-    var img = button.querySelector('.like-icon');
-
-    // Perform an AJAX call to toggle like status
-    fetch(`/toggle_like/${itemId}/`, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': getCookie('csrftoken')
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else if (response.status === 403) {
-            // Redirect to the login page if user is not logged in
-            window.location.href = '/login/';
-        } else {
-            throw new Error('Something went wrong');
-        }
-    })
-    .then(data => {
-        if (data && data.liked) {
-            img.src = '{% static "img/liked.png" %}';
-        } else {
-            img.src = '{% static "img/like.png" %}';
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-</script>
-
-
-
 {% endblock %}

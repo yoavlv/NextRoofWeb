@@ -11,6 +11,11 @@ This repository encompasses the website's frontend and backend, developed using 
 ![NextRoof Image 1](core/static/img/nextroof1.png)
 ![NextRoof Image 2](core/static/img/nextroof2.png)
 
+
+
+## NextRoof - Algorithm
+![nextroof_workflow](core/static/img/nextroof_workflow.png)
+
 ## Objective :dart:
 
 The core mission of NextRoof is to deliver trustworthy and pinpoint valuations for real estate assets. This empowers users, offering them clarity and confidence when entering the real estate market in Israel, whether buying or selling.

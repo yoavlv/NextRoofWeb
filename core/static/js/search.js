@@ -3,7 +3,6 @@ function saveSelectedCity(value) {
     fetchAndUpdateNeighborhoods(value);
 }
 
-
 function saveSelectedNeighborhood(value) {
     localStorage.setItem('selectedNeighborhood', value);
     fetchAndUpdateStreets(value);
@@ -30,7 +29,7 @@ function fetchAndUpdateNeighborhoods(city) {
         .then(response => response.json())
         .then(data => {
             var neighborhoodSelect = document.getElementById('neighborhood');
-            neighborhoodSelect.innerHTML = ''; // Clear existing options
+            neighborhoodSelect.innerHTML = '';
             data.neighborhoods.forEach(function(neighborhood) {
                 var option = new Option(neighborhood, neighborhood);
                 neighborhoodSelect.add(option);
@@ -45,7 +44,7 @@ function fetchAndUpdateStreets(neighborhood) {
         .then(response => response.json())
         .then(data => {
             var streetSelect = document.getElementById('street');
-            streetSelect.innerHTML = ''; // Clear existing options
+            streetSelect.innerHTML = '';
             data.streets.forEach(function(street) {
                 var option = new Option(street, street);
                 streetSelect.add(option);
@@ -62,21 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
         citySelect.value = selectedCity;
         fetchAndUpdateNeighborhoods(selectedCity);
     }
-
     var selectedNeighborhood = getSelectedNeighborhood();
     if (selectedNeighborhood) {
         var neighborhoodSelect = document.getElementById('neighborhood');
         neighborhoodSelect.value = selectedNeighborhood;
         fetchAndUpdateStreets(selectedNeighborhood);
     }
-
     var selectedStreet = getSelectedStreet();
     if (selectedStreet) {
         var streetSelect = document.getElementById('street');
         streetSelect.value = selectedStreet;
     }
 });
-
 
 
 function toggleMoreOptions(event) {
@@ -91,26 +87,22 @@ function toggleMoreOptions(event) {
         localStorage.setItem("moreOptionsState", "expanded");
         if (isMobileView) {
            searchRectangle.style.minHeight = '35.7rem';
-
         }
         else {
             searchRectangle.style.minHeight = '25rem';
         }
-
     } else {
         moreOptions.style.display = "none";
         toggleButton.innerText = "חיפוש מתקדם";
         localStorage.setItem("moreOptionsState", "collapsed");
         if (isMobileView) {
            searchRectangle.style.minHeight = '29rem';
-
         }
         else {
             searchRectangle.style.minHeight = '20rem';
         }
-
     }
-}
+};
 
 document.addEventListener("DOMContentLoaded", function() {
     const moreOptions = document.getElementById("more-options-section");
@@ -137,7 +129,7 @@ function saveSearchParams() {
     };
 
     localStorage.setItem("searchParams", JSON.stringify(params));
-}
+};
 
 function loadSearchParams() {
     const savedParams = JSON.parse(localStorage.getItem("searchParams"));
@@ -151,7 +143,7 @@ function loadSearchParams() {
         document.getElementById("min-size").value = savedParams.minSize || '';
         document.getElementById("max-size").value = savedParams.maxSize || '';
     }
-}
+};
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -222,3 +214,63 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 });
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+function toggleLike(button, itemId) {
+    var img = button.querySelector('.like-icon');
+
+    // Perform an AJAX call to toggle like status
+    fetch(`/toggle_like/${itemId}/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else if (response.status === 403) {
+            window.location.href = '/login/';
+        } else {
+            throw new Error('Something went wrong');
+        }
+    })
+    .then(data => {
+        if (data && data.liked) {
+            img.src = staticPaths.likedImg;  // Use the path from the staticPaths object
+        } else {
+            img.src = staticPaths.likeImg;  // Use the path from the staticPaths object
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+
+window.onload = function() {
+    var savingElements = document.querySelectorAll('.saving');
+    savingElements.forEach(function(element) {
+            if (element.innerHTML.includes('-')) {
+                element.style.color = 'red';
+                element.innerHTML = element.innerHTML.replace('חיסכון:', '');
+                element.innerHTML = element.innerHTML.replace('-', '');
+
+
+            } else {
+                element.style.color = 'green';
+            }
+        });
+};
