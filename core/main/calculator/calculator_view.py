@@ -1,6 +1,5 @@
 import datetime
 
-import joblib
 from django.http import HttpResponse  # noqa: F401
 from django.shortcuts import render
 from sklearn.preprocessing import MinMaxScaler  # noqa: F401
