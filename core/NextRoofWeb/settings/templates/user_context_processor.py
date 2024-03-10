@@ -8,4 +8,7 @@ def user_info(request):
     if hasattr(request, 'user_id'):
         context['user_id'] = request.user_id
 
+    if hasattr(request, 'super_user'):
+        context['super_user'] = request.super_user
+
     return context

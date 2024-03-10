@@ -15,7 +15,7 @@
         {% csrf_token %}
 
     <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">אימייל:</label>
         <input type="email" id="email" name="email" required>
     </div>
 
@@ -25,12 +25,12 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Login">
+            <input type="submit" value="התחבר">
         </div>
 
     </form>
     <div class="register-link">
-        Don't have an account? <a href="{% url 'register' %}">Register</a>
+       עדיין אין לך חשבון? <a href="{% url 'register' %}">להרשמה</a>
     </div>
 </div>
 

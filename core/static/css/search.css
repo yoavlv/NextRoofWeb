@@ -1,4 +1,3 @@
-
 .hero-search {
   margin-top:1rem;
   min-height: 67vh;
@@ -8,16 +7,20 @@
   align-items: flex-start;
 }
 
-.Search-rectangle {
+.search-rectangle {
+  display: flex;
+  justify-content: space-between; /* Keep this to align items on both ends */
   align-items: center;
   width: 87%;
   margin-right: 6rem;
-  margin-top:0rem;
-  min-height: 20rem;
+  margin-top: 0rem;
+  padding-right: 3rem;
+  min-height: 21.5rem;
   background: rgba(190, 190, 190, 0.7);
   clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
   border-radius: 0.0125rem;
 }
+
 .sell-asset-value {
   margin-right: 6rem;
   display: flex;
@@ -47,65 +50,35 @@ a {
 }
 
 .calc-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.1rem;
-    margin-right: 7rem;
-    z-index: 1001;
+  display: flex;
+  flex-direction: column; /* Keeps the main axis vertical */
+  align-items: flex-start; /* Aligns items to the start of the cross axis */
+  gap: 0.1rem;
+  z-index: 1001;
+  padding-left: 10rem;
+  direction: rtl; /* Sets the direction of text and layout to right-to-left */
 }
 
-
-.calc-form input, .calc-form select {
-  border-style: none;
-  border-radius: 0.2rem;
-  width:100%;
-  padding:0.1rem;
-  max-height: 2rem;
-}
-
-.short-text-field {
-    width: 5.5rem;
-}
-
-
-.calc-form .search-btn {
-  margin-top: 6rem;
-  position: flex;
-  border-radius: 0.5125rem;
-  background: #041524;
-  transition: 0.3s;
-  display: block;
-  cursor: pointer;
-  width: 30%;
-  padding: 0.52rem 2.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-}
-
-.calc-form .search-btn:hover {
-  background: #041544;
-}
 
 .search-text {
   font-size: 2rem;
   font-weight: 400;
   color: #020b13;
-  text-align: right;
-  padding: 1rem;
 }
 
 
-.more-options-section {
-    display: none;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-    flex-wrap: wrap;
+.city , .street {
+  width: 12rem;
+  padding-right: 0rem;
+  height: 2rem;
+}
+
+#min-price , #max-price , #min-room-number , #max-room-number, #min-floor , #max-floor, #min-size , #max-size {
+  border-radius: 0.2rem;
+  padding-right: 2rem;
+  border-style: none;
+  width: 6rem;
+  height: 2rem;
 }
 
 .top-search-row {
@@ -128,23 +101,38 @@ a {
     flex-wrap: wrap;
 }
 
-
-.toggle-options {
-    cursor: pointer;
-    background-color: rgba(220,255,255);
+.calc-form-btn button, .toggle-options {
+    background: linear-gradient(135deg, #3a7bd5, #3a6073);
+    color: white;
     border: none;
-    border-radius: 0.3rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    align-self: flex-start;
-
+    padding: 10px 20px;
     margin-top: 1rem;
-    transition: background-color 0.3s;
-
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
-.toggle-options:hover {
-    background-color: rgba(200,240,255);
+.calc-form-btn button:hover {
+    background: linear-gradient(135deg, #a777e3, #6e8efb);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.calc-form-btn button:focus{
+    outline: none;
+}
+
+
+.more-options-section {
+    display: none;
+    padding-left: 12rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 
@@ -156,6 +144,12 @@ a {
     gap: 1rem;
 }
 
+.error-message {
+    color: red; /* Or any color that fits your design */
+    font-size: 1rem; /* Adjust as needed */
+    margin: 10px 0; /* Provides some spacing around the message */
+    text-align: center; /* Center the message */
+}
 .res-number,
 .sort-res {
     padding-top:1.5rem;
@@ -172,11 +166,13 @@ a {
     margin-right: 1rem;
 }
 
+
 #sort {
-    width: 7.5rem;
-    height: 5.9rem;
+    width: 5.2rem;
+    height: 2.7rem;
     appearance: none;
-    padding: 0.5rem 0.75rem;
+    padding: 0.8rem 0.9rem;
+    margin-right: 1rem;
     border: 0.0625rem solid #ccc;
     border-radius: 0.25rem;
     font-size: 1rem;
@@ -184,7 +180,6 @@ a {
     color: #333;
     cursor: pointer;
 }
-
 #sort:hover,
 #sort:focus {
     border-color: #999;
@@ -199,8 +194,6 @@ a {
 #sort:focus option {
     background-color: #e0e0e0;
 }
-
-
 
 .table-container {
   display: grid;
@@ -241,26 +234,19 @@ a {
 }
 
 .btn, .like-btn {
-    padding: 0.2rem 0.5rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
-}
-
-.button-container {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.225rem;
-    align-items: center;
-    justify-content: flex-start;
+    vertical-align: middle; /* Add this to align buttons vertically */
 
 }
+
+
 .btn-primary {
    color: #ffffff;
 
 }
 .like-btn {
-    padding: 0;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -273,6 +259,8 @@ a {
     text-decoration: none;
     display: inline-block;
     padding: 0.5rem 3.95rem; /* Adjust padding as needed */
+    vertical-align: middle; /* Ensure primary button aligns with like button */
+
 }
 
 .btn-primary:hover {
@@ -283,6 +271,8 @@ a {
     width: 2rem;
     height: 2.5rem;
     background-color: transparent;
+    display: inline-block; /* This might already be the case due to being an <img>, but ensure it's here for clarity */
+    vertical-align: middle; /* Align icon vertically within the button */
 }
 .card-img-top {
     position: relative;
@@ -385,6 +375,100 @@ a {
   margin: 0 0.625rem;
 }
 
+
+@media only screen and (min-width: 768px) and (max-width: 1124px) {
+    /* Adjust the Search Rectangle */
+    .search-rectangle {
+        width: 100%;
+        margin: 0.1rem;
+        margin-top: 0rem;
+        min-height: 21.5rem;
+        background: rgba(190, 190, 190, 0.7);
+        clip-path: none;
+        border-radius: 0.0125rem;
+    }
+
+    /* Adjust the hero search area for better spacing and alignment */
+    .hero-search {
+        margin-top: 1rem;
+        min-height: 67vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    /* Ensure sale and buy options are visually distinct and well spaced */
+    .sell-asset-value {
+        margin-right: 1rem;
+        display: flex;
+    }
+
+    .sale, .buy {
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255);
+        border-radius: 0.8rem;
+        padding: 1.2rem;
+        text-align: center;
+        box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+        margin: 0.6rem;
+    }
+
+    /* Highlight active options */
+    .buy.active, .sale.active {
+        transform: scale(1.1);
+        background-color: rgba(220, 255, 255);
+    }
+
+    /* Adjust the appearance of form inputs for consistency */
+    .calc-form {
+        margin-right: 0rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        z-index: 1001;
+    }
+
+    .calc-form input, .calc-form select {
+      border-style: none;
+      border-radius: 0.2rem;
+      width: 100%;
+      padding:0.02rem;
+      max-height: 2rem;
+    }
+
+    /* Ensure short text fields are properly aligned and sized */
+    .short-text-field {
+        width: 2.5rem;
+    }
+
+
+
+    /* Adjust the layout and spacing of the more options section */
+    .more-options-section {
+        display: none; /* Adjust as necessary, based on your JS functionality */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    /* Ensure top and down search rows are well spaced and aligned */
+    .top-search-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     body {
       overflow-x: hidden;
@@ -399,12 +483,12 @@ a {
     justify-content: center;
   }
 
-  .Search-rectangle {
+  .search-rectangle {
     margin-right: 0rem;
     margin-top:1rem;
     width: 100%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    min-height: 29rem;
+    min-height: 31rem;
   }
 
   .calc-form {
@@ -420,13 +504,17 @@ a {
     width: 100%;
     margin-bottom: 0.05rem;
   }
+  .short-text-field {
+       width: 2.5rem;
+    }
 
-  .more-options-section , .top-search-row , .down-search-row{
+  .more-options-section , .top-search-row {
     gap: 0.1rem;
   }
+
   .calc-form .click-continue {
       position: static;
-      margin: 3rem auto 0 auto;
+      margin: 0rem auto 0 auto;
       height: 5%;
       width: 100%;
       border-radius: 0.25rem;
@@ -455,7 +543,6 @@ a {
     margin-top: 2rem;
   }
 
-
   .table-container {
     margin-top: 0.7rem;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); /* Smaller column size for smaller screens */
@@ -469,9 +556,24 @@ a {
     padding: 0rem;
     margin: 0rem;
   }
-    .btn, .like-btn {
-        padding: 0.4rem 0.8rem; /* Increase padding for better touch accessibility */
-        font-size: 1rem; /* Increase font size for better readability on small screens */
-        margin: 0.2rem; /* Add some margin to avoid buttons sticking together */
+
+  .btn, .like-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 1rem;
+      margin: 0.2rem;
+  }
+
+ #sort {
+    width: 5.2rem;
+    height: 2.7rem;
+    appearance: none;
+    padding: 0.8rem 0.9rem;
+    margin-right: 1rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background: #f9f9f9;
+    color: #333;
+    cursor: pointer;
     }
 }

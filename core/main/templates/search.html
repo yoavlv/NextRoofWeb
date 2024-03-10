@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<div class="hero-search">
+<div class="hero-search" >
     <div class="sell-asset-value">
             <div class="buy">
                 <a href="{%url 'search' %}">קונה</a>
@@ -12,36 +12,20 @@
             </div>
     </div>
 
-    <div class="Search-rectangle" id="search-rectangle">
-        <p class="search-text">חיפוש</p>
-        <h1>{{parmas}}</h1>
+    <div class="search-rectangle" id="search-rectangle">
         <form action="{% url 'search' %}"  id="searchForm" method="get" class="calc-form">
+            <p class="search-text">חיפוש</p>
             <div class="top-search-row">
-                <div class="input-search-field">
-                    <p>עיר</p>
-                    <select class="city" name="city" autocomplete="off" id="city" onchange="saveSelectedCity(this.value)">
-                        {% for city in cities %}
-                            <option value="{{ city }}">{{ city }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="input-search-field">
-                    <p>שכונה</p>
-                    <select class="neighborhood" name="neighborhood" autocomplete="on" id="neighborhood" onchange="saveSelectedNeighborhood(this.value)">
-                        {% for neighborhood in neighborhoods %}
-                            <option value="{{ neighborhood }}">{{ neighborhood }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+              <div class="input-search-field">
+                <p>עיר</p>
+                <input type="text" class="city" name="city" autocomplete="off" id="city" placeholder="עיר" value="{{user_search_params.city}}" required>
+              </div>
 
-                <div class="input-search-field">
-                    <p>רחוב</p>
-                    <select class="street" name="street" autocomplete="on" id="street"  onchange="saveSelectedStreet(this.value)">
-                        {% for street in streets %}
-                            <option value="{{ street }}">{{ street }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+              <div class="input-search-field">
+                <p>רחוב</p>
+                <input type="text" class="street" name="street" autocomplete="off" id="street" placeholder="רחוב" value="{{user_search_params.street}}">
+              </div>
+
 
                 <div class="input-search-field">
                     <p>מחיר מ-</p>
@@ -87,15 +71,17 @@
 
     </div>
 
-    <div class="down-search-row">
-        <div class="search-btn-s">
-           <button class="calc-form search-btn" type="submit">חפש</button>
+        <div class="calc-form-btn">
+           <button class="calc-form-btn" type="submit">חפש</button>
         </div>
-    </div>
 
       {%if search %}
         <div class="total-results">
-            <p class="res-number">נמצאו {{ num_results }} תוצאות</p>
+            {% if error_message %}
+                <p class="res-number">{{ error_message }}</p>
+            {% else %}
+                <p class="res-number">נמצאו {{ num_results }} תוצאות עבור {{ user_search_params.street }} {{ user_search_params.city }}</p>
+            {% endif %}
             <div class="sort-res">
                 <label class = sort_label for="sort">מיין לפי:</label>
                 <select name="sort" id="sort" onchange="this.form.submit()">
@@ -126,7 +112,7 @@
 
                 <div class="button-container">
                     <a href="{{ apartment.link }}" class="btn-primary" target="_blank">לפרטים נוספים</a>
-                    <button class="like-btn" onclick="toggleLike(this, '{{ apartment.Item_id }}')">
+                        <button class="like-btn" onclick="toggleLike(this, '{{ apartment.Item_id }}')" data-logged-in="{% if user_logged_in %}true{% else %}false{% endif %}">
                         {% if apartment.Liked %}
                         <img src="{% static 'img/liked.png' %}" class="like-icon" alt="Liked">
                         {% else %}
@@ -158,7 +144,7 @@
       </span>
     </div>
 
-{%endif%}
+            {%endif%}
 
 <script type="text/javascript">
 var staticPaths = {

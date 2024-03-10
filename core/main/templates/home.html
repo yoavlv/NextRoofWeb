@@ -6,15 +6,14 @@
 <div class="welcome">
     <h1> ברוכים הבאים לNextRoof</h1>
     <p>
-        אתר הנדל"ן שמתשמש בבינה מלאוכתית כדי למצוא את הנכס הכי משתלם עבורכם
+        אתר הנדל"ן שמתשמש בAI כדי למצוא את הנכס הכי משתלם עבורכם
     </p>
 </div>
 
-
 <div class = 'daily-find'>
-    <div class = 'daily-find-title'>
-        <h1>המציאה היומית</h1>
-    </div>
+<!--    <div class = 'daily-find-title'>-->
+<!--        <h1>המציאה היומית</h1>-->
+<!--    </div>-->
     <div class="day">
 
 {% for deal in top_deals %}
@@ -46,27 +45,44 @@
 
             <button class="btn-card" onclick="window.open('{{ deal.link }}', '_blank')">לפרטים נוספים</button>
         </div>
-
     </div>
-
 
 {% endfor %}
 
     </div>
 
     <div class="newsletter">
-        <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
-        <a class="a-btn-daily" href="{% url 'register' %}">
-            <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
-        </a>
+        <div class="newsletter-right">
+            <p>כאן תוכלו למצוא מציאות שוות לקנייה/השקעה</p>
+            <a class="a-btn-daily" href="{% url 'register' %}">
+                <button class="btn-daily">הצטרפו וקבלו הצעות ראשונים</button>
+            </a>
+        </div>
+
+        <div class="newsletter-left">
+            <ul>
+                <li><img src="{% static 'img/fast.png' %}" alt="Fast" class="animate-this-image"></li>
+                <li><img src="{% static 'img/smart.png' %}" alt="Smart" class="animate-this-image"></li>
+                <li><img src="{% static 'img/accuracy.png' %}" alt="Accuracy" class="animate-this-image"></li>
+            </ul>
+        </div>
     </div>
 
 
 </div>
 
+<div class='home-map' id="home-map">
+    {% include "map_snippet.html" %}
+</div>
+
     <div class="about-us">
         <h2>מי אנחנו?</h2>
-        <p>NextRoof הינה מערכת אינטרנטית המשתמשת באלגוריתם בינה מלאכותית כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
+        <p>NextRoof הינה מערכת אינטרנטית המשתמשת ב-AI כדי לחזות את הערך של נכסי הנדל"ן בישראל. המטרה העיקרית של המערכת היא לספק למשתמשים הערכות שווי אמינות ומדויקות של נכסים כדי לסייע להם לקבל החלטות מושכלות בעת קנייה או מכירה של נדל"ן בישראל</p>
     </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/home.js' %}"></script>
+
+
+
 
 {% endblock %}

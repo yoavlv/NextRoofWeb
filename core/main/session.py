@@ -9,8 +9,8 @@ def create_session(user_id):
     cursor = conn.cursor()
     try:
         session_token = str(uuid.uuid4())  # Generate a unique session token
-        # Calculate expiration timestamp 2 hours from now
-        expiration = datetime.datetime.now() + datetime.timedelta(hours=48)
+        # Calculate expiration timestamp t hours from now
+        expiration = datetime.datetime.now() + datetime.timedelta(hours=1000)
 
         query = """
         INSERT INTO custom_sessions (user_id, session_token, expiration)
@@ -53,7 +53,7 @@ def get_user_from_session(token):
     try:
         cursor.execute(
             """
-            SELECT users.user_id, users.first_name , users.email ,users.phone_number
+            SELECT users.user_id, users.first_name , users.email ,users.phone_number ,users.super_user
             FROM custom_sessions
             JOIN users ON custom_sessions.user_id = users.user_id
             WHERE custom_sessions.session_token = %s AND custom_sessions.expiration > CURRENT_TIMESTAMP
@@ -68,7 +68,8 @@ def get_user_from_session(token):
                 "user_id": result[0],
                 "first_name": result[1],
                 "email": result[2],
-                "phone_number": result[3]
+                "phone_number": result[3],
+                'super_user': result[4]
             }
         else:
             return None
@@ -107,22 +108,32 @@ def entrance_count_middleware(session_id, page, user_agent, ip_address):
 def session_middleware(get_response):
     def middleware(request):
         session_token = request.COOKIES.get('session_token')
+
         page = request.path
         ip_address = get_client_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
+
         if len(page) < 2:
             entrance_count_middleware(session_token, page, user_agent,
                                       ip_address)
+
         if session_token:
             user_data = get_user_from_session(session_token)
             if user_data:
                 request.is_user_logged_in = True
-                request.user_id = user_data['user_id']
-                request.user_name = user_data['first_name']
-                request.email = user_data['email']
-                request.phone_number = user_data['phone_number']
+                request.user_id = user_data.get('user_id')
+                request.user_name = user_data.get('first_name')
+                request.email = user_data.get('email')
+                request.phone_number = user_data.get('phone_number')
+                # Safely accessing super_user with a default value of False
+                request.super_user = user_data.get('super_user', False)
             else:
                 request.is_user_logged_in = False
+                request.super_user = False
+        else:
+            request.is_user_logged_in = False
+            request.super_user = False
+
         return get_response(request)
 
     return middleware

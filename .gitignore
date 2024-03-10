@@ -9,6 +9,10 @@ core/NextRoofWeb/settings/dev.py
 # Backup files
 *.bak
 *.txt
+*.csv
+core/static/img
+core/static/df
+
 nginx.conf
 # Python
 *.py[cod]

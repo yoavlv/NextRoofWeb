@@ -1,6 +1,6 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="he">
+<!DOCTYPE html >
+<html lang="he" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/asset_value.css' %}">
-    <link rel="stylesheet" href="{% static 'css/post.css' %}">
     <link rel="stylesheet" href="{% static 'css/registration.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-<!--    <link rel="stylesheet" href="{% static 'css/ad.css' %}">-->
+        <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/map.css' %}">
 
     <link rel="icon" href="{% static 'img/nextroof-black.png' %}" type="image/png">
@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap" rel="stylesheet">
 
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -35,17 +36,20 @@
 
 <body dir="rtl">
     <header>
-        <nav id="nav-bar" class='nav-bar'>>
+        <nav id="nav-bar" class='nav-bar'>
             <div class="nav-container">
                 <ul>
                      <li>
                         <a href="{% url 'home' %}">
-                          <img class="logo-img" rel="icon" src="{% static 'img/nextroof-white.png' %}" >
+                            <img class="logo-img" rel="icon" src="{% static 'img/nextroof-black.png' %}" data-black="{% static 'img/nextroof-black.png' %}" data-white="{% static 'img/nextroof-white.png' %}">
                         </a>
                      </li>
-                    <li class="nav-link"><a href="{% url 'home' %}"> המציאה היומית</a></li>
+                    <li class="nav-link"><a href="{% url 'home' %}">המציאה היומית</a></li>
                     <li class="nav-link"><a href="{% url 'asset_value' %}">שווי הנכס</a></li>
                     <li class="nav-link"><a href="{% url 'search' %}">חיפוש</a></li>
+<!--                    <li class="nav-link"><a href="{% url 'map' %}">מפה</a></li>-->
+                    <li class="nav-link"><a href="{% url 'home' %}#home-map">מפה</a></li>
+
                     <li class="nav-link"><a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">יצירת קשר</a></li>
                     {% if user_logged_in %}
                         <ul>
@@ -58,6 +62,13 @@
                         </ul>
                     {% endif %}
 
+                    {% if super_user %}
+                        <ul>
+                            <li><a href="{% url 'dashboard' %}">אדמין</a></li>
+                        </ul>
+                     {% endif %}
+
+
                 </ul>
             </div>
         </nav>
@@ -69,7 +80,6 @@
         </div>
 
 
-      </div>
    </header>
 
     <div class="main-container">
@@ -81,26 +91,25 @@
 
 <div class=close-sec>
     <footer>
-
         <div class="social">
             <div class="linkedin-section">
                 <a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">
-                    <img class="linkedin-icon" rel="icon" src="{% static 'img/linkedin-logo.png' %}" >
+                    <img class="linkedin-icon" rel="icon" src="{% static 'img/linkedin.png' %}" >
                 </a>
             </div>
             <div class="github-section">
                 <a href="https://github.com/yoavlv/NextRoof" target="_blank">
-                    <img class="github-icon" rel="icon" src="{% static 'img/github-icon.png' %}" >
+                    <img class="github-icon" rel="icon" src="{% static 'img/github.png' %}" >
                 </a>
             </div>
             <div class="email-section">
                 <a href="mailto:yoavlv12@gmail.com" target="_blank">
-                    <img class="email-icon" rel="icon" src="{% static 'img/email-icon.png' %}">
+                    <img class="email-icon" rel="icon" src="{% static 'img/email.png' %}">
                 </a>
             </div>
              <div class="nextroof-section">
                 <a href="https://www.linkedin.com/in/yoav-lavie-973ba61b4/" target="_blank">
-                    <img class="nextroof-icon" rel="icon" src="{% static 'img/nextroof-black.png' %}" >
+                    <img class="nextroof-icon" rel="icon" src="{% static 'img/nextroof-white.png' %}" >
                 </a>
             </div>
 
@@ -114,6 +123,12 @@
         <p class="copyrights"> Copyrights 2024. Made by <Bold>Yoav Lavie</Bold>  ©</p>
     </footer>
   </div>
+<script>
+document.body.style.backgroundSize = "100% auto";
+window.onload = function() {
+    document.body.style.backgroundSize = "100% auto";
+};
+</script>
 
 </body>
 </html>

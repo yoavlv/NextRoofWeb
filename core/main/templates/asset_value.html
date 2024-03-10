@@ -14,81 +14,72 @@
     </div>
 
   <div class="search-rectangle">
-        <p class="search-text">חיפוש נכס</p>
-            <form action="{% url 'asset_value' %}" method="get" class="calc-form">
-             <div class="top-search-row">
-
+        <form action="{% url 'asset_value' %}" method="get" class="calc-form">
+            <p class="search-text">חיפוש נכס</p>
+            <div class="top-search-row">
                 <div class="input-search-field">
                     <p>עיר</p>
-                    <select class="city" name="city" autocomplete="on" id="city_calc" onchange="saveSelectedCityCalc()" required>
-                        {% for city in cities %}
-                            <option value="{{ city }}">{{ city }} </option>
-                        {% endfor %}
-                    </select>
+                    <input type="text" class="city" name="city" autocomplete="off" id="city" placeholder="עיר" value="{{ params.city }}" required>
                 </div>
-
-
                 <div class="input-search-field">
                     <p>רחוב</p>
-                    <select class="street" name="street" autocomplete="on" id="street_calc"  onchange="saveSelectedStreetCalc(this.value)" required>
-                        {% for street in streets %}
-                            <option value="{{ street }}">{{ street }}</option>
-                        {% endfor %}
+                    <input type="text" class="street" name="street" autocomplete="off" id="street" placeholder="רחוב" value="{{ params.street }}" required>
+                </div>
+                <div class="input-search-field">
+                    <p>מספר בית</p>
+                    <input type="text" class="home-number" name="home-number" autocomplete="off" id="home-number" placeholder="מספר בית" value="{{ params.home_number }}" required>
+                </div>
+                <div class="input-search-field">
+                    <p>מספר חדרים</p>
+                    <input class="rooms" type="number" name="rooms" id="rooms" min="1" max="10" placeholder="חדרים" value="{{ params.rooms }}" required>
+                </div>
+                <div class="input-search-field">
+                    <p>קומה</p>
+                    <input class="floor" type="number" name="floor" id="floor" min="0" max="40" placeholder="קומה" value="{{ params.floor }}" required>
+                </div>
+                <div class="input-search-field">
+                    <p>מטר רבוע</p>
+                    <input class="size" type="number" name="size" id="size" min="10" max="300" placeholder="מטר" value="{{ params.size }}" required>
+                </div>
+                <div class="input-search-field">
+                    <p>סוג הנכס</p>
+                    <select class="asset_type" name="asset_type" autocomplete="off" id="asset_type">
+                        <option value="1">דירה בבניין דירות</option>
+                        <option value="2">דירת גן</option>
+                        <option value="3">דירת גג</option>
+                        <option value="4">דירת גג (פנטהאוס)</option>
                     </select>
                 </div>
-
-              <div class="input-search-field">
-                <p>מספר בית</p>
-                <input type="text" class="home-number" name="home-number" autocomplete="off" id="home-number" placeholder="מספר בית" value="{{params.Home_number}}" required>
-              </div>
-
-              <div class="input-search-field">
-                <p>מספר חדרים</p>
-                <input class="short-text-field" type="number" name="rooms" id="rooms" min="1" max="10" placeholder="חדרים" value="{{params.Rooms}}" required>
-              </div>
-
-              <div class="input-search-field">
-                <p>קומה</p>
-                <input class="short-text-field" type="number" name="floor" id="floor" min="0" max="40" placeholder="קומה" value="{{params.Floor}}" required>
-              </div>
-
-              <div class="input-search-field">
-                <p>מטר רבוע</p>
-                <input class="short-text-field" type="number" name="size" id="size" min="10" max="300" placeholder="מטר" value="{{params.Size}}" required>
-              </div>
-
-              <div class="input-search-field">
-                <p>חניה</p>
-                <select class="parking" name="parking" autocomplete="off" id="parking">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-
-              <div class="input-search-field">
-                <p>מצב הנכס</p>
-                <select class="condition" name="condition" autocomplete="off" id="condition">
-                  <option value="1">חדש מקבלן</option>
-                  <option value="1">חדש</option>
-                  <option value="0">משופץ</option>
-                  <option value="0">מצב טוב</option>
-                  <option value="0">צריך שיפוץ</option>
-                </select>
-              </div>
-             </div>
-
-            <div class="down-search-row">
-               <button class="calc-form search-btn" type="submit">חפש</button>
+                <div class="input-search-field">
+                    <p>חניה</p>
+                    <select class="parking" name="parking" autocomplete="off" id="parking">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-search-field">
+                    <p>מצב הנכס</p>
+                    <select class="condition" name="condition" autocomplete="off" id="condition">
+                        <option value="1">חדש מקבלן</option>
+                        <option value="2">חדש</option>
+                        <option value="3">משופץ</option>
+                        <option value="4">מצב טוב</option>
+                        <option value="5">צריך שיפוץ</option>
+                    </select>
+                </div>
             </div>
-                <div id="loading-popup" class="loading-popup">
+            <div class="calc-form-btn">
+                <button type="submit">חפש</button>
+            </div>
+            <div id="loading-popup" class="loading-popup">
                 <div class="loading-content">
                     <img src="{% static 'img/loading.gif' %}" alt="Loading" class="loading-spinner">
                     <p>Calculating...</p>
                 </div>
             </div>
-            </form>
+        </form>
     </div>
 
 </div>
@@ -114,12 +105,12 @@
           <li>גודל הנכס: {{params.size}}</li>
           <li>{{params.rooms}}: חדרים</li>
           <li>קומה: {{params.floor}}</li>
-          <li>סוג הנכס: דירה</li>
+          <li>סוג הנכס: דירה {{params.asset_value}}</li>
         </ul>
       </div>
       <div class="algo-left">
         <ul>
-          <li>שכונה: {{params.neighborhood}}</li>
+<!--          <li>שכונה: {{params.neighborhood}}</li>-->
           <li>גוש: {{params.gush}}</li>
           <li>חלקה: {{params.helka}}</li>
           <li>שנת בנייה: {{params.build_year}}</li>
@@ -128,15 +119,15 @@
     </div>
   </div>
 
-  <div id="neighborhood_plot">
+  <div id="street_plot">
     <div class="button-row">
-      <button class="button-choose" id="graph" value="true">גרף שכונה</button>
+      <button class="button-choose" id="graph" value="true">גרף רחוב</button>
       <button class="button-choose" id="last-deals" value="false">עסקאות אחרונות</button>
       <button class="button-choose" id="similar-deals" value="false">גרף עיר</button>
     </div>
 
       <div class="user-choice">
-        <img id="neighborhood-image" src="data:image/png;base64,{{ neighborhood_plt }}" alt="Neighborhood Plot">
+        <img id="street-image" src="data:image/png;base64,{{ street_plt }}" alt="Street Plot">
         <div id="last-deals-content" class="generate-last-deals">
           <h3>עסקאות אחרונות ברחוב {{params.street}}</h3>
           <table>
@@ -145,7 +136,7 @@
                 <th>תאריך</th>
                 <th>סוג הנכס</th>
                 <th>מספרים חדרים</th>
-                <th>קןמה</th>
+                <th>קומה</th>
                 <th> גודל (מ"ר)</th>
                 <th>שנת בנייה</th>
                 <th>מספר קומות</th>
@@ -157,15 +148,15 @@
             <tbody>
               {% for item in last_deals %}
                 <tr>
-                  <td>{{ item.Date }}</td>
-                  <td>{{ item.Type }}</td>
-                  <td>{{ item.Rooms }}</td>
-                  <td>{{ item.Floor }}</td>
-                  <td>{{ item.Size }}</td>
-                  <td>{{ item.Build_year }}</td>
-                  <td>{{ item.Floors }}</td>
-                  <td>{{ item.Home_number }}</td>
-                  <td>{{ item.Price }}</td>
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.rooms }}</td>
+                  <td>{{ item.floor }}</td>
+                  <td>{{ item.size }}</td>
+                  <td>{{ item.build_year }}</td>
+                  <td>{{ item.floors }}</td>
+                  <td>{{ item.home_number }}</td>
+                  <td>{{ item.price }}</td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -182,6 +173,7 @@
 
 {%endif%}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="{% static 'js/buy_sell.js' %}"></script>
 <script src="{% static 'js/asset_value.js' %}"></script>

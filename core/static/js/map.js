@@ -1,95 +1,197 @@
-var map = L.map('map').setView([31.0461, 34.8516], 8); // Coordinates for Israel
-
+// Initialize the map with a view over Israel
+var map = L.map('map').setView([32.0695, 34.87254], 11);
 // Set up the tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-var markers = [];
-var currentMarker = null; // Keep track of the currently open marker
-var cityBoundaryLayer = null; // Layer for the city boundary
+// Define global variables
+var markers = [], currentMarker = null, cityBoundaryLayer = null, polygonsLayerGroup = L.layerGroup().addTo(map);
+var legend = L.control({position: 'topright'});
+
+function displayMessage(message) {
+    const searchContainer = document.getElementById('searchContainer');
+    const errorMessageDiv = document.createElement('div');
+    errorMessageDiv.id = 'errorMessage';
+    errorMessageDiv.className = 'errorMessage';
+    errorMessageDiv.textContent = message;
+    searchContainer.appendChild(errorMessageDiv);
+}
+
+
+function checkAvailability(city, street) {
+    // Case when both city and street are provided
+    if (city && street) {
+        const dataUrl = `/check_for_street/${encodeURIComponent(city)}/${encodeURIComponent(street)}`;
+        return fetch(dataUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`הכתובת אינה זמינה ${city}, ${street}`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                throw error; // Rethrow after displaying so it can be handled or logged elsewhere if necessary
+            });
+
+    // Case when only city is provided
+    } else if (city) {
+        const dataUrl = `/check_for_city/${encodeURIComponent(city)}`;
+        return fetch(dataUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`העיר ${city} אינה זמינה`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                throw error; // Rethrow after displaying so it can be handled or logged elsewhere if necessary
+            });
+
+    // Error cases: either street is provided without city, or neither is provided
+    } else if (street) {
+        // If street is provided but city is not
+        const errorMessage = 'אנא הזן עיר';
+        return Promise.reject(new Error(errorMessage));
+    } else {
+        // Neither city nor street is provided
+        const errorMessage = 'הכתובת לא תקינה';
+        return Promise.reject(new Error(errorMessage));
+    }
+}
 
 document.getElementById('searchForm').onsubmit = function(e) {
     e.preventDefault();
     polygonsLayerGroup.clearLayers();
-    var city = document.getElementById('city_map').value;
-    var neighborhood = document.getElementById('neighborhood_map').value;
-    var street = document.getElementById('street_map').value;
 
-    if (city) {
-        var url = `https://nominatim.openstreetmap.org/search?format=json&country=israel&city=${encodeURIComponent(city)}&polygon_geojson=1`;
-        if (street) {
-            url += `&street=${encodeURIComponent(street)}`;
-        } else if (neighborhood) {
-            url += `&county=${encodeURIComponent(neighborhood)}`;
-        }
+     // Clear existing error messages
 
-        // Remove existing markers and city boundary layer
-        markers.forEach(marker => map.removeLayer(marker));
-        markers = [];
-        if (cityBoundaryLayer) {
-            map.removeLayer(cityBoundaryLayer);
-            cityBoundaryLayer = null;
-        }
+    const searchContainer = document.getElementById('searchContainer');
+    const errorMessage = document.getElementById('errorMessage');
+    if (searchContainer &&  searchContainer.lastChild && errorMessage) {
+        searchContainer.removeChild(searchContainer.lastChild);
+    }
 
-        // Use Nominatim geocoding service to get coordinates and polygon
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                if (data.length > 0) {
-                    var latLng = new L.LatLng(data[0].lat, data[0].lon);
-                    var marker = L.marker(latLng).addTo(map);
-                    map.setView(marker.getLatLng(), 13);
+    const city = document.getElementById('city_map').value;
+    const street = document.getElementById('street_map').value;
 
-                    // Create popup content
-                    var popupContent = document.createElement('div');
-                    popupContent.className = 'custom-popup';
-                    var plotDiv = document.createElement('div');
-                    popupContent.appendChild(plotDiv);
+    // Clear existing markers and layers
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = [];
 
-                    // Function to load the selected plot
-                    function loadPlot(plotType) {
-                        plotDiv.innerHTML = ''; // Clear existing plots
-                        var plotUrl = '';
-                        switch (plotType) {
-                            case 'city':
-                                plotUrl = `/city_plot_map/${encodeURIComponent(city)}`;
-                                break;
-                            case 'neighborhood':
-                                if (!neighborhood) return; // Prevent fetching if neighborhood is empty
-                                plotUrl = `/neighborhood_plot_map/${encodeURIComponent(city)}/${encodeURIComponent(neighborhood)}`;
-                                break;
-                            case 'street':
-                                if (!street) return; // Prevent fetching if street is empty
-                                plotUrl = `/street_plot_map/${encodeURIComponent(city)}/${encodeURIComponent(street)}`;
-                                break;
-                        }
+    if (cityBoundaryLayer) {
+        map.removeLayer(cityBoundaryLayer);
+        cityBoundaryLayer = null;
+    }
 
-                        fetch(plotUrl)
-                            .then(response => response.text())
-                            .then(plotImageBase64 => {
-                                var plotImage = document.createElement('img');
-                                plotImage.src = "data:image/png;base64," + plotImageBase64;
-                                plotImage.alt = `${plotType} Plot`;
-                                plotImage.className = 'plot-image';
-                                plotDiv.appendChild(plotImage);
-                            });
+    // Initialize plot images for a new search
+    let cityPlotImage = null;
+    let streetPlotImage = null;
+    let lastDealsData = null;
+
+    checkAvailability(city, street)
+        .then(data => {
+
+            const cityId = data.city_id;
+            const streetId = data.hasOwnProperty('street_id') ? data.street_id : null;
+            const last_deals = data.hasOwnProperty('last_deals') ? data.last_deals : null;
+
+            if (!cityId) {
+                var errorMessage = 'הכתובת לא תקינה'
+                displayMessage(errorMessage)
+                return; // Early return if cityId is falsy
+            }
+
+
+            var url = `https://nominatim.openstreetmap.org/search?format=json&country=israel&city=${encodeURIComponent(city)}&polygon_geojson=1`;
+            if (streetId) {
+                url += `&street=${encodeURIComponent(street)}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        const errorMessage = 'הכתובת לא נמצאה';
+                        displayMessage(errorMessage)
+                        return;
                     }
 
-                    // Add buttons to switch between plots
-                    var buttonRow = document.createElement('div');
-                    buttonRow.className = 'button-row-map';
-                    ['city', 'neighborhood', 'street'].forEach(type => {
-                        var button = document.createElement('button');
-                        button.className = 'button-choose';
-                        button.innerText = type === 'city' ? 'עיר' : type === 'neighborhood' ? 'שכונה' : 'רחוב';
-                        button.addEventListener('click', () => loadPlot(type));
-                        buttonRow.appendChild(button);
-                    });
-                    popupContent.appendChild(buttonRow);
+                    const latLng = new L.LatLng(data[0].lat, data[0].lon);
+                    const marker = L.marker(latLng).addTo(map);
+                    map.setView(marker.getLatLng(), 13);
 
-                    // Bind the popup to the marker
+                    const popupContent = document.createElement('div');
+                    popupContent.className = 'custom-popup';
+                    const plotDiv = document.createElement('div');
+                    plotDiv.className = 'plot-div'; // Make sure to set this class
+
+                    popupContent.appendChild(plotDiv);
+
+                    function loadPlot(plotType) {
+                        plotDiv.innerHTML = ''; // Clear existing plots
+                        let plotImageBase64 = plotType === 'city' ? cityPlotImage : streetPlotImage;
+
+                        if (plotImageBase64) {
+                            displayPlotImage(plotImageBase64, plotType);
+                        } else {
+                            const plotUrl = plotType === 'city' ?
+                                `/city_plot_map/${encodeURIComponent(cityId)}/${encodeURIComponent(city)}` :
+                                `/street_plot_map/${encodeURIComponent(cityId)}/${encodeURIComponent(city)}/${encodeURIComponent(streetId)}/${encodeURIComponent(street)}`;
+
+                            fetch(plotUrl)
+                                .then(response => response.text())
+                                .then(base64 => {
+                                    plotImageBase64 = base64; // Update variable with fetched data
+                                    displayPlotImage(plotImageBase64, plotType);
+
+                                    if (plotType === 'city') {
+                                        cityPlotImage = base64;
+                                    } else if (plotType === 'street') {
+                                        streetPlotImage = base64;
+                                    }
+                                });
+                        }
+                    }
+
+                    function displayPlotImage(base64, plotType) {
+                        const plotImage = document.createElement('img');
+                        plotImage.src = "data:image/png;base64," + base64;
+                        plotImage.alt = `${plotType} Plot`;
+                        plotImage.className = 'plot-image';
+                        plotDiv.appendChild(plotImage);
+                    }
+
+                    // Add buttons to switch between city and street plots
+                    const buttonRow = document.createElement('div');
+                    buttonRow.className = 'button-row-map';
+
+                    // Always add the city button
+                    const cityButton = document.createElement('button');
+                    cityButton.className = 'button-choose';
+                    cityButton.innerText = 'עיר';
+                    cityButton.addEventListener('click', () => loadPlot('city'));
+                    buttonRow.appendChild(cityButton);
+
+                    // Add the street button and last_deals only if the user has searched for a street
+                    if (street) {
+                        const streetButton = document.createElement('button');
+                        streetButton.className = 'button-choose';
+                        streetButton.innerText = 'רחוב';
+                        streetButton.addEventListener('click', () => loadPlot('street'));
+                        buttonRow.appendChild(streetButton);
+                        // last last_deals Button
+
+                        const lastDealsButton = document.createElement('button');
+                        lastDealsButton.className = 'button-choose';
+                        lastDealsButton.innerText = 'עסקאות';
+                        lastDealsButton.addEventListener('click', () => displayLastDeals(city, street, popupContent)); // Pass city and street
+                        buttonRow.appendChild(lastDealsButton);
+
+                    }
+
+                    popupContent.appendChild(buttonRow);
                     marker.bindPopup(popupContent);
                     marker.on('click', function() {
                         if (currentMarker) {
@@ -97,14 +199,13 @@ document.getElementById('searchForm').onsubmit = function(e) {
                         }
                         marker.openPopup();
                         currentMarker = marker;
-                        loadPlot('city'); // Load city plot by default
+                        loadPlot('city');
                     });
 
                     markers.push(marker);
 
-                    // Add city boundary layer
+                    // Optionally add city boundary layer
                     if (data[0].geojson) {
-                        console.log(data[0].geojson)
                         cityBoundaryLayer = L.geoJSON(data[0].geojson, {
                             color: "blue",
                             weight: 2,
@@ -113,20 +214,106 @@ document.getElementById('searchForm').onsubmit = function(e) {
                         }).addTo(map);
                         map.fitBounds(cityBoundaryLayer.getBounds());
                     }
-                } else {
-                    alert("City not found");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("An error occurred while searching for the city");
-            });
-    } else {
-        alert("Please enter a city name");
-    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        })
+        .catch(error => {
+            displayMessage(error.message)
+        });
 };
 
+var dealsDataCache = {};
 
+function displayLastDeals(city, street, popupContent) {
+    const cacheKey = city + "_" + street;
+
+    // Check if data is in cache
+    if (dealsDataCache[cacheKey]) {
+        // Data is already fetched, use it to display last deals
+        const lastDeals = dealsDataCache[cacheKey];
+        createLastDealsGrid(lastDeals, popupContent);
+    } else {
+        // Data is not in cache, fetch it
+        const dataUrl = `/check_for_street/${encodeURIComponent(city)}/${encodeURIComponent(street)}`;
+
+        fetch(dataUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('The address was not found.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Store fetched data in cache
+                dealsDataCache[cacheKey] = data.last_deals;
+                createLastDealsGrid(data.last_deals, popupContent);
+            })
+            .catch(error => {
+                console.error('Error fetching or displaying last deals:', error);
+            });
+    }
+}
+function createLastDealsGrid(lastDeals, popupContent) {
+    if (!lastDeals || lastDeals.length === 0) {
+        console.Error('No last deals found for the specified address.');
+        return;
+    }
+
+    const plotDiv = popupContent.querySelector('.plot-div');
+    plotDiv.innerHTML = ''; // Reset the plotDiv content
+
+    popupContent.style.width = '600px';
+    popupContent.style.height = 'auto';
+
+    // Create a container for the last deals grid
+    const gridContainer = document.createElement('div');
+    gridContainer.className = 'last-deals-grid';
+
+    // Add a header or title for the grid
+    const gridTitle = document.createElement('div');
+    gridTitle.className = 'grid-title';
+    gridTitle.textContent = 'עסקאות אחרונות';
+    gridContainer.appendChild(gridTitle);
+
+    // Create the grid header
+    const headerRow = document.createElement('div');
+    headerRow.className = 'grid-row header';
+    headerRow.innerHTML = `
+        <div>תאריך</div>
+        <div>סוג</div>
+        <div>חדרים</div>
+        <div>קומה</div>
+        <div>שנת בנייה</div>
+        <div>גודל</div>
+        <div>מחיר</div>
+        <div>מספר בית</div>`;
+    gridContainer.appendChild(headerRow);
+
+    // Populate the grid with last deals data
+    lastDeals.forEach(deal => {
+        const row = document.createElement('div');
+        row.className = 'grid-row';
+        row.innerHTML = `
+            <div>${deal.date}</div>
+            <div>${deal.type}</div>
+            <div>${deal.rooms}</div>
+            <div>${deal.floor}</div>
+            <div>${deal.build_year}</div>
+            <div>${deal.size} מ"ר</div>
+            <div>${deal.price}</div>
+            <div>${deal.home_number}</div>`;
+        gridContainer.appendChild(row);
+    });
+
+    // Append the grid to the plotDiv
+    plotDiv.appendChild(gridContainer);
+
+    if (currentMarker && currentMarker.getPopup()) {
+        currentMarker.getPopup().update();
+    }
+}
 
 function processPolygon(polygonObject) {
     // Ensure the 'polygon' property exists and is not null
@@ -184,7 +371,8 @@ function drawPolygons(polygonsData) {
                 color: 'black',        // Border color
                 fillColor: polygonColor,
                 opacity: 1,
-                fillOpacity: 0.8,
+                fillOpacity: 0.6,
+                weight: 1,
             };
 
             polygon.setStyle(style);
@@ -247,11 +435,8 @@ document.getElementById('loadPolygonsButton').addEventListener('click', function
 
 function updateMapForYear() {
     var selectedYear = document.getElementById('year').value;
-
-    // Modify the requestURL if your endpoint is different
     var requestURL = `/update_map/?year=${selectedYear}`;
 
-    console.log()
     fetch(requestURL)
         .then(response => {
             if (!response.ok) {
@@ -266,6 +451,8 @@ function updateMapForYear() {
             maxRank = data.max_rank;
             minRank = data.min_rank;
 
+            updateLegend(minRank,maxRank); // update the
+
             // Clear existing polygons and draw new ones
             if (map.hasLayer(polygonsLayerGroup)) {
                 map.removeLayer(polygonsLayerGroup); // Remove the existing layer group from the map
@@ -279,7 +466,41 @@ function updateMapForYear() {
         });
 }
 
+
+function updateLegend(min,max) {
+    // Remove the existing legend if it exists
+    legend.remove();
+    // Update legend content or recreate it based on new maxRank and minRank
+    legend.onAdd = function(map) {
+        var div = L.DomUtil.create('div', 'info legend');
+        // Update your gradientCSS and formatter logic here based on new maxRank and minRank
+        var gradientCSS = `background: linear-gradient(to top, ${getColorByRank(min)} 0%, ${getColorByRank(max)} 100%);`;
+
+        var formatter = new Intl.NumberFormat('he-IL', {
+          style: 'currency',
+          currency: 'ILS',
+          minimumFractionDigits: 0,
+            });
+        var legendHTML = `
+              <div style="padding: 5px; background: rgba(255, 255, 255, 0.8); border: 1px solid #777; border-radius: 5px;">
+                <div style="width: 20px; height: 100px; ${gradientCSS}"></div>
+                <div style="text-align: left; font-size: 12px; margin-top: 5px;">
+                <h3>מחיר למטר ₪</h3>
+                  <div>${formatter.format(maxRank)} (אדום)</div>
+                  <div style="position: flex; top: 80px;">${formatter.format(minRank)} (כחול)</div>
+                </div>
+              </div>
+            `;
+
+        div.innerHTML = legendHTML;
+        return div;
+    };
+    legend.addTo(map);
+}
+
 document.getElementById('polyForm').addEventListener('submit', function(event) {
     event.preventDefault();
     updateMapForYear();
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = [];
 });

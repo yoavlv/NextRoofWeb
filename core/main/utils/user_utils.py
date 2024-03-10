@@ -46,31 +46,6 @@ def get_user_saved(user_id):
     return properties
 
 
-# def get_user_saved(user_id):
-#     conn = get_connection()
-#     cursor = conn.cursor()
-#     try:
-#         query = "SELECT item_id FROM user_saved WHERE user_id = %s"
-#         cursor.execute(query, (int(user_id),))
-#         user_item_ids = [row[0] for row in cursor.fetchall()]
-#         if not user_item_ids:
-#             return []
-#
-#         item_ids_placeholder = ', '.join(['%s'] * len(user_item_ids))
-#         cols = []
-#         query = f"SELECT * FROM madlan_rank WHERE item_id IN ({item_ids_placeholder})"
-#         cursor.execute(query, tuple(user_item_ids))
-#
-#         properties = cursor.fetchall()
-#         cursor.close()
-#         conn.close()
-#     finally:
-#         cursor.close()
-#         conn.close()
-#
-#     return properties
-
-
 def get_user_from_db(email):
     conn = get_connection()
     cursor = conn.cursor()

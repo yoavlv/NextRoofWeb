@@ -1,42 +1,10 @@
 
-
-.search-rectangle {
-  align-items: center;
-  width: 87%;
-  margin-right: 6rem;
-  margin-top:-9rem;
-  min-height: 17rem;
-  background: rgba(190, 190, 190, 0.7);
-  clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0 100%);
-  border-radius: 0.0125rem;
-}
-
-.calc-form {
-  display: flex;
-  position: absolute;
-  gap: 0rem 0.2rem;
-  right: 1rem;
-}
-
-.calc-form input {
-  border-radius: 0.2rem;
-  border-style: none;
-  width: 10.4rem;
+.street, .city {
   height: 2rem;
 }
-
-.input-search-field {
-    margin:0.188rem;
-}
-
-.neighborhood , .street ,.condition ,.parking , .city{
-    min-width: 8rem;
-    height: 2rem;
-
-}
-
-.parking , .condition{
-    width: 5.8rem;
+.condition , .parking , .asset_type, .home-number , .size , .floor , .rooms {
+  width: 8rem;
+  height: 2rem;
 }
 
 .error-calc {
@@ -59,7 +27,7 @@
 }
 
 .result-container {
-  margin-top: -8rem;
+  margin-top: 0rem;
   display: flex;
   justify-content: center;
   max-width: 100%;
@@ -137,7 +105,7 @@
   margin-bottom: 0.6rem;
 }
 
-#neighborhood_plot {
+#street_plot {
   margin: 1.25rem;
   padding: 1.25rem;
   border: 0.05.rem solid #ccc;
@@ -235,19 +203,25 @@
     margin-bottom: 10px;
 }
 
+
+
+
 @media only screen and (max-width: 768px) { /* 768px */
 
-  .search-rectangle {
+  .calc-rectangle {
     margin-right: 0rem;
     margin-top:1rem;
     width: 100%;
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    min-height: 23rem;
+    min-height: 32rem;
   }
+
   .result-container {
      margin-top: 1rem;
      flex-direction: column;
   }
+
+
   .algo-res {
     margin: 0.625rem;
     padding: 0.625rem;
@@ -289,7 +263,7 @@
     font-size: 1.125rem;
   }
 
-  #neighborhood_plot {
+  #street_plot {
     margin: 0.325rem;
     padding: 0.325rem;
 
@@ -323,15 +297,7 @@
   .generate-last-deals td {
     padding: 0.5rem;
   }
-}
-
-
-/* Medium screens (tablets) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Add any specific styling for medium screens here */
-}
-
-/* Large screens (desktops) */
-@media only screen and (min-width: 1025px) {
-  /* Add any specific styling for large screens here */
+  .calc-form .search-btn {
+        padding: 0;
+    }
 }

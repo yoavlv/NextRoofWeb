@@ -14,11 +14,10 @@
 .welcome {
     padding: 5rem;
     text-align: right;
-    background-color: rgba(255, 255, 255, 0.7);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.7) 0%, transparent 50%);
     width: 100%;
     margin: 3rem auto;
 }
-
 .welcome h1, .welcome p {
     color: #333;
     animation: slideInFromRight 1.7s ease-out;
@@ -43,10 +42,11 @@
     text-align: center;
 }
 
+
 .daily-find-title {
     width: 100%;
-    animation: slideUp 1.3s ease-in-out forwards;
-    font-size: 3rem; /* Increased font size for more prominence */
+    animation: slideUp 1.6s ease-in-out forwards;
+    font-size: 2.2rem; /* Increased font size for more prominence */
     color: #2a2a2a; /* Consider a different color if it matches your color scheme */
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: bold; /* Changed from 1rem to 'bold' for more impact */
@@ -57,40 +57,23 @@
     transition: all 0.35s ease;
     padding: 1rem; /* Padding for better spacing */
     display: inline-block; /* To respect padding and border */
-    background-color: rgba(255, 255, 255, 0.2); /* Optional: subtle background */
+    /*background-color: rgba(255, 255, 255, 0.2); /* Optional: subtle background */
 }
 
-/* Newsletter Section */
-.newsletter {
-    margin-top: 7rem;
-    background: rgba(233, 242, 250, 0.8);
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 1.25rem;
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.newsletter p {
-    font-size: 1.5rem;
-    color: black;
-    text-transform: uppercase;
+.slide-up {
+    animation: slideUp 2s ease-out forwards;
 }
-
-.newsletter button {
-    border: none;
-    border-radius: 0.7rem;
-    background: #072f55;
-    color: white;
-    font-size: 1.4rem;
-    max-width: 25%;
-    margin: 1.7rem 0;
-    transition: background 0.3s;
-}
-
-.newsletter button:hover {
-    background: #0c3476;
-}
-
 /* Day Deal Section */
 .day-deal {
     width: 75%;
@@ -101,10 +84,12 @@
 
 
 .day {
-    width: 80%;
+    width: 100%;
     display: flex;
     gap: 0.8rem;
     margin: auto;
+    padding-left:1rem;
+    padding-right:1rem;
     margin-top: 2.7rem;
     animation: slideUp 1.9s ease-in-out forwards;
 }
@@ -165,7 +150,7 @@
 
 .card-text {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(233, 242, 250, 0.9);
     border-radius: 0.1875rem;
 }
 
@@ -251,17 +236,7 @@
   height: 2rem;
   background-color: #ffffff;
 }
-
-
-.card-text {
-  text-align: center;
-  background-color: rgba(255, 255, 255,0.6);
-  border-radius: 0.1875rem;
-}
-
-.card-text p{
-    color:black;
-}
+/* Day Deal Section   #ffffff*/
 
 .btn-card {
     width: 82%;
@@ -290,10 +265,116 @@
     cursor: pointer;
 }
 
+/* Newsletter Section */
+.newsletter {
+    background-color: rgba(233, 242, 250, 0.6);
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the left and right sides */
+    align-items: center; /* Align items vertically in the center */
+    margin-top: 7rem;
+    padding: 1.25rem;
+    width: 100%;
+    border-top: 1.5px solid black; /* Adds a 2px solid black border at the top */
+    border-bottom: 1.5px solid black; /* Adds a 2px solid black border at the top */
+
+}
+.slide-up {
+    animation: slideUp 3.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.newsletter-left, .newsletter-right {
+    flex: 1; /* Both take equal space */
+    display: flex; /* Use flexbox inside them as well for further alignment */
+    flex-direction: column; /* Arrange content in a column */
+    align-items: center; /* Center content vertically and horizontally */
+    justify-content: center; /* Adjusted to ensure centering in their respective spaces */
+}
+
+.newsletter-left ul, .newsletter-right ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Adjusted to display items in a column */
+    flex-direction: column; /* Ensure list items are arranged in a column */
+    align-items: center; /* Center items vertically */
+}
+
+.newsletter-left li, .newsletter-right li {
+    margin: 0.5rem 0; /* Adjust margin for vertical spacing between items */
+}
+
+.newsletter-left li img {
+    width: 6.1rem; /* Set image width */
+    height: auto; /* Keep image aspect ratio */
+    margin-bottom: 0.5rem; /* Space below each image */
+}
+.newsletter-left li img {
+    width: 6.1rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.newsletter-left li img:hover {
+    transform: scale(1.2);
+}
+.newsletter p {
+    font-size: 1.5rem;
+    color: black;
+    text-transform: uppercase;
+}
+
+.newsletter button {
+    border: none;
+    border-radius: 0.7rem;
+    background: #072f55;
+    color: white;
+    font-size: 1.4rem;
+    padding: 0.8rem 1.6rem; /* Adjust padding to make the button larger */
+    margin: 1.7rem 0;
+    transition: background 0.3s;
+}
+
+.newsletter button:hover {
+    background: #0c3476;
+}
+
+.home-map {
+   padding: 2rem;
+   background-color: rgba(255, 255, 255, 1);
+   border-bottom: 1.5px solid black;
+
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1560px) {
+    .day {
+        width: 100%;
+        margin-top: 4rem;
+    }
+
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+    .day {
+        width: 100%;
+        margin-top: 4rem;
+    }
+
+}
 @media (max-width: 768px) {
 
      .welcome {
-        margin-top: 3rem;
+        margin-top: 6rem;
         width: 100%;
         padding: 4rem;
         box-sizing: border-box;
@@ -309,13 +390,13 @@
     .daily-find {
         width: 100%;
         max-width: none;
-        padding: 1rem;
+        padding: 0rem;
     }
 
     .newsletter {
         width: 100%;
-        padding: 1rem; /* Adjust as needed */
-
+        padding-top: 1rem; /* Adjust as needed */
+        padding-bottom: 1rem;
     }
 
     .day {

@@ -1,25 +1,26 @@
-function updateStreetsForSelectedCity() {
-    var selectedCity = document.getElementById('city_calc').value;
-    fetch(`/get-streets-city/?city_calc=${encodeURIComponent(selectedCity)}`)
-        .then(response => response.json())
-        .then(data => {
-            var streetSelect = document.getElementById('street_calc');
-            streetSelect.innerHTML = '<option value="">בחר רחוב</option>';
-            data.streets.forEach(function(street) {
-                streetSelect.add(new Option(street, street));
-            });
-        })
-        .catch(error => console.error('Error:', error));
-}
+//function updateStreetsForSelectedCity() {
+//    var selectedCity = document.getElementById('city_calc').value;
+//    fetch(`/get-streets-city/?city_calc=${encodeURIComponent(selectedCity)}`)
+//        .then(response => response.json())
+//        .then(data => {
+//            var streetSelect = document.getElementById('street_calc');
+//            streetSelect.innerHTML = '<option value="">בחר רחוב</option>';
+//            data.streets.forEach(function(street) {
+//                streetSelect.add(new Option(street, street));
+//            });
+//        })
+//        .catch(error => console.error('Error:', error));
+//}
 
 // Attach this function to the city dropdown's change event
-document.getElementById('city_calc').addEventListener('change', updateStreetsForSelectedCity);
+//document.getElementById('city_calc').addEventListener('change', updateStreetsForSelectedCity);
 
 
 function saveCalcParams() {
     const params = {
         Rooms: document.getElementById("rooms").value,
         Floor: document.getElementById("floor").value,
+
         Size: document.getElementById("size").value,
         Parking: document.getElementById("parking").value,
         Condition: document.getElementById("condition").value,
@@ -62,26 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonGraph = document.querySelector('#graph');
     const buttonLast = document.querySelector('#last-deals');
     const buttonSimilar = document.querySelector('#similar-deals');
-    const neighborhoodImage = document.querySelector('#neighborhood-image');
+    const streetImage = document.querySelector('#street-image');
     const lastDealsContent = document.querySelector('#last-deals-content');
     const similarDealsContent = document.querySelector('#similar-deals-content');
-    neighborhoodImage.style.display = 'block';
+    streetImage.style.display = 'block';
     lastDealsContent.style.display = 'none';
     similarDealsContent.style.display = 'none';
     buttonGraph.addEventListener('click', () => {
-      neighborhoodImage.style.display = 'block';
+      streetImage.style.display = 'block';
       lastDealsContent.style.display = 'none';
       similarDealsContent.style.display = 'none';
     });
 
     buttonLast.addEventListener('click', () => {
-      neighborhoodImage.style.display = 'none';
+      streetImage.style.display = 'none';
       lastDealsContent.style.display = 'block';
       similarDealsContent.style.display = 'none';
     });
 
     buttonSimilar.addEventListener('click', () => {
-      neighborhoodImage.style.display = 'none';
+      streetImage.style.display = 'none';
       lastDealsContent.style.display = 'none';
       similarDealsContent.style.display = 'block';
     });

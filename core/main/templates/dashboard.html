@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="dashboard-container">
+    {% if super_user %}
+    <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <div class="time-selection">
+            <button class="time-btn" id="daily-btn" type="button" onclick="buttonClicked('daily')">Daily</button>
+            <button class="time-btn" id="weekly-btn" type="button" onclick="buttonClicked('weekly')">Weekly</button>
+            <button class="time-btn" id="monthly-btn" type="button" onclick="buttonClicked('monthly')">Monthly</button>
+            <button class="time-btn" id="year-btn" type="button" onclick="buttonClicked('year')">Year</button>
+            <button class="time-btn" id="all-btn" type="button" onclick="buttonClicked('all')">All</button>
+        </div>
+    </div>
+    <div class="stats-overview">
+        <div class="stats-box users-stats">
+            <h2>Number of Searches</h2>
+            <p class ='stats-count' id="searches-info">0</p>
+        </div>
+
+        <div class="stats-box usage-stats">
+            <h2>Number of Entrances</h2>
+            <p class ='stats-count' id="entrances-info">0</p>
+
+        </div>
+
+    </div>
+    <div class="stats-detail">
+        <h3>Detail Stats</h3>
+        <canvas id="top-cities-chart" width="400" height="200"></canvas>
+
+    </div>
+    {% else %}
+    <div class="unauthorized-access">
+        <h1>404</h1>
+        <p>Unauthorized Access</p>
+    </div>
+    {% endif %}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+{% endblock %}
