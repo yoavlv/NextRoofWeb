@@ -1,13 +1,41 @@
 import json
+import os
 
 import pandas as pd
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_http_methods
 
 from ...NextRoofWeb.settings.dev import get_db_engine
-from ..utils.base_utils import check_for_city_and_street_match
+from ..utils.base_utils import check_for_city_and_street_match, wgs84_to_itm
 from ..utils.plots import city_plot, lasted_deals_street, street_plot
 from ..utils.sql_utils import save_user_search
+
+
+@require_http_methods(["GET"])
+def fetch_and_process_point(request, lat, lng, radius):
+    lat = float(lat)
+    lng = float(lng)
+    radius = float(radius)
+    new_lat, new_lng = wgs84_to_itm(lat, lng)
+    file_path = os.path.join(settings.BASE_DIR, 'core', 'static', 'df', 'nadlan_clean.csv')
+    if not os.path.exists(file_path):
+        return JsonResponse({"error": "File not found"}, status=404)
+
+    df = pd.read_csv(file_path)
+
+    distances_squared = (df['x'] - new_lat) ** 2 + (df['y'] - new_lng) ** 2
+    within_radius = distances_squared <= radius ** 2
+    df_within_radius = df[within_radius]
+    df_sorted = df_within_radius.sort_values(by='date', ascending=False)
+    df_limited = df_sorted.head(20)
+    df_limited = df_limited.copy()
+    df_limited['price'] = df_limited['price'].apply(lambda x: "{:,.0f}₪".format(x))
+    json_response = df_limited.to_json(orient='records', force_ascii=False)
+    decoded_json = json.loads(json_response)
+
+    return JsonResponse(decoded_json, safe=False)
 
 
 def home_page_view(request):
@@ -16,16 +44,13 @@ def home_page_view(request):
         'year', 2023)  # Default to 2023 if no year is specified
     selected_year = int(selected_year)
 
-    # Fetch and process polygon data for the map based on the selected year
     polygons_list, max_rank, min_rank = fetch_and_process_polygons(
         selected_year)
 
-    # Prepare other context data for the home page
     years = list(range(
         2010,
-        2025))  # Example: list of years for a dropdown or similar UI element
+        2025))
 
-    # Compile the context for the template
     context = {
         'selected_year': selected_year,
         'years': years,

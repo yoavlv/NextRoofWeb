@@ -264,7 +264,7 @@ function createLastDealsGrid(lastDeals, popupContent) {
     const plotDiv = popupContent.querySelector('.plot-div');
     plotDiv.innerHTML = ''; // Reset the plotDiv content
 
-    popupContent.style.width = '600px';
+    popupContent.style.width = '700px';
     popupContent.style.height = 'auto';
 
     // Create a container for the last deals grid
@@ -282,13 +282,15 @@ function createLastDealsGrid(lastDeals, popupContent) {
     headerRow.className = 'grid-row header';
     headerRow.innerHTML = `
         <div>תאריך</div>
+        <div>עיר</div>
+        <div>רחוב</div>
+        <div>מספר בית</div>
         <div>סוג</div>
         <div>חדרים</div>
         <div>קומה</div>
         <div>שנת בנייה</div>
         <div>גודל</div>
-        <div>מחיר</div>
-        <div>מספר בית</div>`;
+        <div>מחיר</div>`;
     gridContainer.appendChild(headerRow);
 
     // Populate the grid with last deals data
@@ -297,13 +299,15 @@ function createLastDealsGrid(lastDeals, popupContent) {
         row.className = 'grid-row';
         row.innerHTML = `
             <div>${deal.date}</div>
+            <div>${deal.city}</div>
+            <div>${deal.street}</div>
+            <div>${deal.home_number}</div>
             <div>${deal.type}</div>
             <div>${deal.rooms}</div>
             <div>${deal.floor}</div>
             <div>${deal.build_year}</div>
             <div>${deal.size} מ"ר</div>
-            <div>${deal.price}</div>
-            <div>${deal.home_number}</div>`;
+            <div>${deal.price}</div>`;
         gridContainer.appendChild(row);
     });
 

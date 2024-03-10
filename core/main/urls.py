@@ -2,9 +2,9 @@ from django.urls import path, re_path
 
 from .views.calculator_view import asset_value_view
 from .views.dashboard_view import dashboard, fetch_data
-from .views.map_view import check_for_city, check_for_street, city_plot_map, map_view, street_plot_map, update_map
+from .views.map_view import (check_for_city, check_for_street, city_plot_map, fetch_and_process_point, map_view,
+                             street_plot_map, update_map)
 from .views.proflie_view import edit_profile, profile_view
-# from core.main.calculator.api_view import predict_price
 from .views.search_view import home, search_apartments
 from .views.user_view import login_view, logout_view, register, toggle_like
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('toggle_like/<str:item_id>/', toggle_like, name='toggle_like'),
     path('map/', map_view, name='map'),
     path('update_map/', update_map, name='update_map'),
+    path('point/<str:lat>/<str:lng>/<str:radius>/', fetch_and_process_point, name='point'),
     re_path(r'^city_plot_map/(?P<city_id>\d+)/(?P<city_name>[\w\s-]+)/$',
             city_plot_map,
             name='city_plot_map'),

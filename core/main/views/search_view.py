@@ -14,6 +14,7 @@ from .map_view import fetch_and_process_polygons
 
 
 def home(request):
+
     selected_year = request.GET.get(
         'year', 2023)  # Default to 2023 if no year is specified
     selected_year = int(selected_year)

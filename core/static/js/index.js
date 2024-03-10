@@ -45,7 +45,7 @@ window.addEventListener("scroll", function() {
         const navItems = document.querySelectorAll('.nav-container ul li a');
 
         if (window.pageYOffset > 50) {
-            navBar.style.backgroundColor = "rgba(9, 30, 40, 0.8)";
+            navBar.style.backgroundColor = "rgba(9, 30, 40, 0.45)";
             navItems.forEach(item => item.style.color = "white");
             logoImg.src = whiteLogo; // Use white logo
         } else {
