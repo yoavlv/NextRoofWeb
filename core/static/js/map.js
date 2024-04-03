@@ -3,7 +3,7 @@ var map = L.map('map').setView([32.0695, 34.87254], 11);
 // Set up the tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
+    attribution: '© OpenStreetMap & Yoav Lavie'
 }).addTo(map);
 
 // Define global variables

@@ -96,6 +96,7 @@ function createPointDealsGrid(lastDeals) {
         console.error('No last deals found for the specified address.');
         return;
     }
+    legend.remove();
     polygonsLayerGroup.clearLayers();
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];

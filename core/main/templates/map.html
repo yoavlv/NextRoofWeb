@@ -2,56 +2,72 @@
 {% load static %}
 
 {% block content %}
+
 <div class="map-page-container">
     <div class="map-filters">
-        <form id="polyForm" method="GET" action="/map/">
-            <div class="polygons-div">
-                <div class="filter-year">
+        <!-- Tabs for selecting the filter option -->
+        <div class="filter-tabs">
+            <button class="tab-button" onclick="showTab('polyForm')">מפת חום</button>
+            <button class="tab-button" onclick="showTab('trendsTransactions')">מגמות בשוק</button>
+            <button class="tab-button" onclick="showTab('radiusSearch')">חיפוש על פי רדיוס</button>
+        </div>
+
+        <!-- Tab Content: מפת חום -->
+        <div id="polyForm" class="tab-content">
+            <form method="GET" action="/map/" class="poly-form">
+                <div>
+                    <h1>הצגת מפת חום על פי ערים</h1>
                     <p>בחר שנה:</p>
-                    <select class="year" name="year" autocomplete="on" id="year">
+                    <select class="year" class="year" name="year" autocomplete="on">
                         {% for year in years %}
                         <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit" id="loadPolygonsButton">הצג מפת חום</button>
                 </div>
-            </div>
-        </form>
-        <hr>
+                    <button class='map-btn' type="submit" id="loadPolygonsButton">הצג מפת חום</button>
+            </form>
+        </div>
 
-        <div class="search-container" id="searchContainer">
+        <!-- Tab Content: הצגת מגמות ועסקאות אחרונות -->
+        <div id="trendsTransactions" class="tab-content" style="display:none;">
             <h1>הצגת מגמות ועסקאות אחרונות</h1>
             <form id="searchForm">
                 <div class="form-group">
                     <label for="city_map">עיר:</label>
                     <input type="text" id="city_map" name="city_map" placeholder="הכנס עיר">
                 </div>
-
                 <div class="form-group">
                     <label for="street_map">רחוב:</label>
                     <input type="text" id="street_map" name="street_map" placeholder="הכנס רחוב">
                 </div>
-
-                <button type="submit">חפש</button>
-
+                <button class='map-btn' type="submit">חפש</button>
             </form>
+        </div>
+
+        <!-- Tab Content: חיפוש על פי רדיוס -->
+        <div id="radiusSearch" class="tab-content" style="display:none;">
+            <h1>חיפוש על פי רדיוס</h1>
+                 <div class="form-group">
+                 <label for="radiusSlider">רדיוס חיפוש: <span id="radiusValue">1</span> ק"מ</label>
+                     <p>בחר נק' על המפה להצגת העסקאות האחרונות באזור</p>
+                <input type="range" id="radiusSlider" name="radius" min="0.05" max="1" value="1" step ='0.05' oninput="updateRadiusValue(this.value)">
+               </div>
         </div>
     </div>
 
     <div class="map-container">
-        <div class="map" id="map"></div>
+        <div id="map" class="map"></div>
     </div>
-
 </div>
 
-<!-- Load Leaflet.js -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <script src="{% static 'js/map.js' %}"></script>
+<script src="{% static 'js/map_radius.js' %}"></script>
+
 <script type="text/javascript">
     var polygonsData = JSON.parse('{{ polygons|escapejs|safe }}');
     var maxRank = {{ max_rank|safe }};
     var minRank = {{ min_rank|safe }};
-
 </script>
 {% endblock %}

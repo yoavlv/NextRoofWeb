@@ -16,7 +16,7 @@
                 <div>
                     <h1>הצגת מפת חום על פי ערים</h1>
                     <p>בחר שנה:</p>
-                    <select class="year" class="year" name="year" autocomplete="on">
+                    <select id="year" class="year" name="year" autocomplete="on">
                         {% for year in years %}
                         <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
                         {% endfor %}

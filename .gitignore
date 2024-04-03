@@ -10,9 +10,9 @@ core/NextRoofWeb/settings/dev.py
 *.bak
 *.txt
 *.csv
-core/static/img
+#core/static/img
 core/static/df
-
+core/static/img/*background*
 nginx.conf
 # Python
 *.py[cod]

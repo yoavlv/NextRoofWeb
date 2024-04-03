@@ -13,7 +13,7 @@
 body {
     z-index: 1001;
     background-color: rgba(233, 0, 250);
-    background-image: url("/static/img/back.jpg");
+    background-image: url("/static/img/background-large.jpeg");
     background-repeat: no-repeat;
     background-position: top center;
     font-family: "Rubik", sans-serif;
@@ -191,6 +191,9 @@ footer p bold {
 }
 
 @media (max-width: 768px) {
+    body {
+        background-image: url("/static/img/background-small.jpeg");
+     }
     .main-container {
             padding-top: 1rem;
         }
@@ -198,7 +201,7 @@ footer p bold {
     .nav-bar {
         display:none;
         height: 100%;
-        background-color: rgba(49, 83, 165, 1);
+        background-color: rgba(23, 144, 243, 0.99);
         position: absolute;
         z-index: 1000;
         flex-direction: column;
@@ -256,6 +259,10 @@ footer p bold {
     }
 }
 @media only screen and (min-width: 1080px) and (max-width: 1340px) {
+
+    body {
+            background-image: url("/static/img/background-small.jpeg");
+         }
     .nav-container ul li {
         margin: 0.3rem; /* Reduce margin */
         padding: 0.2rem; /* Reduce padding */
@@ -265,7 +272,9 @@ footer p bold {
 }
 /* Medium screens (tablets) */
 @media only screen and (min-width: 768px) and (max-width: 1080px) {
-
+    body {
+            background-image: url("/static/img/background-small.jpeg");
+         }
     .nav-bar {
         height: 6.5rem;
         padding: 0.5rem 0; /* Add some padding to the top and bottom */
@@ -290,9 +299,4 @@ footer p bold {
     }
 
 
-}
-
-/* Large screens (desktops) */
-@media only screen and (min-width: 1025px) {
-  /* Add any specific styling for large screens here */
 }

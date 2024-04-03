@@ -42,7 +42,7 @@ def fetch_data(request):
         query_top_cities = f"""
             SELECT us.city_id, c.city_name, COUNT(*) AS count
             FROM user_search AS us
-            JOIN cities c ON us.city_id = c.city_code
+            JOIN cities c ON us.city_id = c.city_id
             {time_condition}
             GROUP BY us.city_id, c.city_name
             ORDER BY count DESC

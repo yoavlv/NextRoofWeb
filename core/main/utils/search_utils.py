@@ -17,7 +17,6 @@ def create_apartment_item(res, liked=False):
                                                              '/b').strip()
     except:
         img = None
-
     return {
         'Street': res[0],
         'Item_id': item_id,
@@ -32,37 +31,6 @@ def create_apartment_item(res, liked=False):
         'Images': img,
         'link': base_link + item_id,
         'Liked': liked
-    }
-
-
-def create_apartment_item_search(res):
-    base_link = "https://madlan.co.il/listings/"
-    price = int(res[7])
-    p_price = int(res[8])
-    item_id = str(res[1])
-    img = None
-    try:
-        images = res[9].split(",")
-        img = images[0][1:]
-        img = (
-            'https://images2.madlan.co.il/t:nonce:v=2;resize:height=1280;convert:type=webp/'
-            + img).replace('"', '').replace('}', '').replace('//b',
-                                                             '/b').strip()
-    except:
-        pass
-    return {
-        'Street': res[1],
-        'Item_id': item_id,
-        'Room': int(res[2]),
-        'Neighborhood': res[3],
-        'Floor': int(res[4]),
-        'Size': int(res[5]),
-        'City': res[6],
-        'Price': f"₪{price:,.0f}",
-        'Predicted': f"₪{p_price:,.0f}",
-        'p_change': calculate_percentage_difference(res[7], res[8]),
-        'Images': img,
-        'link': base_link + item_id
     }
 
 

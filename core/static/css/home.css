@@ -297,8 +297,6 @@
     flex: 1; /* Both take equal space */
     display: flex; /* Use flexbox inside them as well for further alignment */
     flex-direction: column; /* Arrange content in a column */
-    align-items: center; /* Center content vertically and horizontally */
-    justify-content: center; /* Adjusted to ensure centering in their respective spaces */
 }
 
 .newsletter-left ul, .newsletter-right ul {
@@ -307,7 +305,6 @@
     margin: 0;
     display: flex; /* Adjusted to display items in a column */
     flex-direction: column; /* Ensure list items are arranged in a column */
-    align-items: center; /* Center items vertically */
 }
 
 .newsletter-left li, .newsletter-right li {
@@ -330,9 +327,9 @@
     transform: scale(1.2);
 }
 .newsletter p {
+    padding-right: 1rem;
     font-size: 1.5rem;
     color: black;
-    text-transform: uppercase;
 }
 
 .newsletter button {

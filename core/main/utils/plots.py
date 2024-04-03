@@ -3,13 +3,11 @@ import matplotlib
 matplotlib.use('Agg')
 import base64
 import datetime
-
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from sqlalchemy import text
-
-from ...NextRoofWeb.settings.dev import db, get_db_engine
+from ...NextRoofWeb.settings.dev import get_db_engine
 
 
 def read_cities_and_streets_nadlan(table_name='nadlan_clean', city_id=False):
@@ -39,7 +37,6 @@ def read_from_db(query_params):
     table = query_params['table']
     cols = query_params['cols']
     condition = query_params['condition']
-
     condition_column = condition['where']
     condition_value_1 = condition['value_1']
 
@@ -218,7 +215,7 @@ def lasted_deals_street(city_id, city_name, street_id, street_name):
     engine = get_db_engine()
     with engine.connect() as conn:
         query_params = text(
-            "SELECT date,type,rooms,floor,build_year,home_number, price, size, city, street FROM nadlan_clean WHERE city_id = :city_id AND street_id = :street_id ORDER BY date DESC LIMIT 5"
+            "SELECT date,type,rooms,floor,build_year,home_number, price, size, city, street, floors FROM nadlan_clean WHERE city_id = :city_id AND street_id = :street_id ORDER BY date DESC LIMIT 5"
         )
         df = pd.read_sql_query(query_params,
                                conn,
@@ -239,7 +236,7 @@ def lasted_deals_street(city_id, city_name, street_id, street_name):
             'date': formatted_date,
             'city': row.get('city', 'N/A'),
             'street': row.get('street', 'N/A'),
-            'type': row.get('type', 'N/A'),  # Default to 'N/A' if missing
+            'type': row.get('type', 'N/A'),
             'rooms': row.get('rooms', 'N/A'),
             'floor': row.get('floor', 'N/A'),
             'size': row.get('size', 'N/A'),

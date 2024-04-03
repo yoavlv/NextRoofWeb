@@ -1,11 +1,9 @@
 from urllib.parse import urlparse
-
 import numpy as np
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
 from sqlalchemy import text
-
 from ...NextRoofWeb.settings.dev import db, get_db_connection, get_db_engine
 
 

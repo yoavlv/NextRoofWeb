@@ -1,11 +1,8 @@
 import datetime
-
 from django.http import HttpResponse  # noqa: F401
 from django.shortcuts import render
 from sklearn.preprocessing import MinMaxScaler  # noqa: F401
-
 from core.main.utils.plots import *
-
 from ..utils.base_utils import find_most_similar_word, get_key_by_value
 from ..utils.plots import read_cities_and_streets_nadlan
 from ..utils.sql_utils import save_user_search
@@ -58,7 +55,7 @@ def asset_value_view(request):
 
         params = get_asset_type(params)
 
-        city_dict = read_cities_and_streets_nadlan(table_name='nadlan_rank')
+        city_dict = read_cities_and_streets_nadlan(table_name='nadlan_clean')
         search_city_name = find_most_similar_word(city_dict.values(),
                                                   params['city'])
 
@@ -75,7 +72,7 @@ def asset_value_view(request):
         city_id = get_key_by_value(city_dict, search_city_name)
         params['city_id'] = city_id
 
-        street_dict = read_cities_and_streets_nadlan(table_name='nadlan_rank',
+        street_dict = read_cities_and_streets_nadlan(table_name='nadlan_clean',
                                                      city_id=city_id)
         search_street_name = find_most_similar_word(street_dict.values(),
                                                     params['street'])
@@ -107,7 +104,6 @@ def asset_value_view(request):
                 })
 
         else:
-
             model = read_model_scaler_from_db(city_id, model=True)
             predicted_price = predict_apt_price(apt_params, model)
 

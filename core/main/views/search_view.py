@@ -1,11 +1,8 @@
 import json
-
 import pandas as pd
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render  # type: ignore # noqa: F401
-
 from core.main.utils.search_utils import create_apartment_item
-
 from ...NextRoofWeb.settings.dev import get_db_engine
 from ..utils.base_utils import check_for_city_and_street_match
 from ..utils.search_utils import user_liked_id
@@ -14,7 +11,6 @@ from .map_view import fetch_and_process_polygons
 
 
 def home(request):
-
     selected_year = request.GET.get(
         'year', 2023)  # Default to 2023 if no year is specified
     selected_year = int(selected_year)

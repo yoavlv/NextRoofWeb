@@ -1,7 +1,5 @@
 import pandas as pd
-
 from .sql_utils import get_connection
-
 
 def get_user_saved(user_id):
     conn = get_connection()

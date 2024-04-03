@@ -1,12 +1,11 @@
+import datetime
 import json
 import os
-
 import pandas as pd
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
-
 from ...NextRoofWeb.settings.dev import get_db_engine
 from ..utils.base_utils import check_for_city_and_street_match, wgs84_to_itm
 from ..utils.plots import city_plot, lasted_deals_street, street_plot
@@ -71,12 +70,11 @@ def read_polygons(year):
     query = """
     SELECT cp.polygon, cr.rank, c.city_name
     FROM city_polygons cp
-    JOIN city_rank cr ON cp.city_code = CAST(cr.city_id AS bigint)
-    JOIN cities c ON cp.city_code = c.city_code
+    JOIN city_rank_map_view cr ON cp.city_id = CAST(cr.city_id AS bigint)
+    JOIN cities c ON cp.city_id = c.city_id
     WHERE cr.year = %s;
     """
     df = pd.read_sql_query(query, engine, params=(year, ))
-
     return df
 
 
@@ -94,7 +92,7 @@ def map_view(request):
 
     polygons_list, max_rank, min_rank = fetch_and_process_polygons(year)
 
-    years = [i for i in range(2010, 2025)]
+    years = [i for i in range(2010, datetime.datetime.now().year)]
     context = {
         'years': years,
         'polygons': json.dumps(polygons_list),
