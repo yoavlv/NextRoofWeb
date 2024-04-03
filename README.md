@@ -8,8 +8,10 @@ This repository encompasses the website's frontend and backend, developed using 
 
 
 
-![NextRoof Image 1](core/static/img/nextroof1.png)
-![NextRoof Image 2](core/static/img/nextroof2.png)
+![NextRoof Image 1](core/static/img/nextroof1.jpeg)
+![NextRoof Image 2](core/static/img/nextroof2.jpeg)
+![NextRoof Image 2](core/static/img/nextroof3.jpeg)
+![NextRoof Image 2](core/static/img/nextroof4.jpeg)
 
 
 
